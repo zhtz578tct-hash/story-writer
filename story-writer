@@ -1,0 +1,353 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कथा-लेखक | Story Writer</title>
+<style>
+:root{--bg:#12101a;--panel:#1c1830;--panel2:#241f3d;--acc:#b57bff;--acc2:#7bd6ff;--txt:#eae6f5;--mut:#9b94b5;--err:#ff7a7a;--ok:#8affc1;--bd:#332c52}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+header{background:var(--panel);border-bottom:1px solid var(--bd);padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:1.15rem;margin:0;color:var(--acc)}
+.badge{font-size:.7rem;background:var(--panel2);border:1px solid var(--bd);padding:2px 10px;border-radius:20px;color:var(--mut)}
+.wrap{display:grid;grid-template-columns:300px 1fr;gap:16px;padding:16px;max-width:1400px;margin:0 auto}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:16px}
+h2{font-size:.95rem;margin:0 0 10px;color:var(--acc2);border-bottom:1px solid var(--bd);padding-bottom:8px}
+label{display:block;font-size:.78rem;color:var(--mut);margin:12px 0 4px}
+input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--bd);color:var(--txt);border-radius:8px;padding:9px 10px;font-size:.9rem;font-family:inherit}
+textarea{resize:vertical;min-height:70px}
+input[type=range]{padding:0;accent-color:var(--acc)}
+.row{display:flex;gap:10px;align-items:center}
+.row>*{flex:1}
+button{background:var(--acc);color:#1a1025;border:0;border-radius:8px;padding:10px 14px;font-weight:700;cursor:pointer;font-size:.9rem}
+button:hover{filter:brightness(1.1)}
+button.sec{background:var(--panel2);color:var(--txt);border:1px solid var(--bd)}
+button.small{padding:6px 10px;font-size:.8rem}
+button:disabled{opacity:.5;cursor:not-allowed}
+.chat{display:flex;flex-direction:column;gap:12px;min-height:220px;max-height:62vh;overflow-y:auto;padding:4px 2px 12px}
+.msg{border-radius:10px;padding:12px 14px;white-space:pre-wrap;word-break:break-word}
+.msg.user{background:#24204a;border:1px solid var(--bd)}
+.msg.assistant{background:var(--panel2);border:1px solid #413a6b}
+.msg .tag{font-size:.7rem;color:var(--mut);display:block;margin-bottom:6px}
+.tailbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.status{font-size:.8rem;color:var(--mut);display:flex;gap:14px;flex-wrap:wrap}
+.hint{font-size:.78rem;color:var(--mut);background:var(--panel2);border:1px dashed var(--bd);padding:10px 12px;border-radius:8px;margin-top:10px}
+.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.tab{background:var(--panel2);border:1px solid var(--bd);color:var(--txt);padding:6px 12px;border-radius:8px;font-size:.8rem;cursor:pointer}
+.tab.on{background:var(--acc);color:#1a1025}
+details{margin:6px 0}
+summary{cursor:pointer;color:var(--acc2);font-size:.85rem}
+.syspt{border-left:3px solid var(--acc);padding-left:10px}
+.mut{color:var(--mut);font-size:.78rem}
+.errbox{color:var(--err);font-size:.85rem;margin-top:8px;white-space:pre-wrap}
+.good{color:var(--ok)}
+#age{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px}
+#age .card{background:var(--panel);border:1px solid var(--bd);max-width:460px;padding:24px;border-radius:16px}
+</style>
+</head>
+<body>
+<div id="age">
+  <div class="card">
+    <h2 style="border:none;color:var(--acc)">18+ वयस्क सामग्री</h2>
+    <p class="mut">यह ऐप वयस्क (18+) कथा-सृजन के लिए है। कृपया पुष्टि करें कि आप 18 वर्ष या उससे अधिक हैं और आप सभी पात्र सहमति वाले वयस्क रखेंगे।</p>
+    <div class="row"><button onclick="closAge()">मैं 18+ हूँ</button><button class="sec" onclick="document.body.innerHTML=''">रुकें</button></div>
+  </div>
+</div>
+<header>
+  <h1>✍️ कथा-लेखक · Story Writer</h1>
+  <span class="badge">Hindi · Uncensored · Featherless API</span>
+  <span class="status" style="margin-left:auto">
+    <span id="st-tok">0 tokens</span>
+    <span id="st-cost">$0.00 est.</span>
+  </span>
+</header>
+
+<div class="wrap">
+  <!-- Settings -->
+  <div class="panel">
+    <h2>⚙️ Settings</h2>
+    <div class="tabs" id="tabsLang">
+      <div class="tab on" data-lang="hi">हिंदी</div>
+      <div class="tab" data-lang="en">English</div>
+      <div class="tab" data-lang="hing">Hinglish</div>
+    </div>
+
+    <label>API Key (Featherless)</label>
+    <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off">
+    <p class="mut" style="margin:4px 0 0"><a href="https://featherless.ai/account/api-keys" target="_blank" rel="noopener">Get your key here →</a></p>
+
+    <label>Model</label>
+    <select id="model"></select>
+    <div id="customModelRow" style="display:none;margin-top:6px">
+      <input id="customModel" placeholder="owner/model-id">
+    </div>
+
+    <label>API Base URL <span class="mut">(change only if you add a CORS proxy)</span></label>
+    <input id="baseUrl" value="https://api.featherless.ai/v1">
+
+    <details open>
+      <summary>Parameters</summary>
+      <label>Temperature <span id="lblTemp">0.8</span></label>
+      <input type="range" id="temp" min="0" max="1.6" step="0.05" value="0.8">
+      <label>Top-p <span id="lblTopP">0.95</span></label>
+      <input type="range" id="topP" min="0" max="1" step="0.01" value="0.95">
+      <label>Max tokens / chunk <span id="lblMaxT">1100</span></label>
+      <input type="range" id="maxT" min="200" max="4000" step="100" value="1100">
+      <label>Frequency penalty <span id="lblFreq">0.4</span> <span class="mut">(repetition control)</span></label>
+      <input type="range" id="freq" min="0" max="1.5" step="0.05" value="0.4">
+      <label>Presence penalty <span id="lblPres">0.0</span></label>
+      <input type="range" id="pres" min="-1" max="1" step="0.05" value="0">
+      <label><input type="checkbox" id="stream" checked style="width:auto"> Stream response</label>
+    </details>
+
+    <div class="tailbar">
+      <button class="sec small" onclick="saveSettings()">💾 Save settings</button>
+      <button class="sec small" onclick="resetStory(false)">🧹 New story</button>
+      <button class="sec small" onclick="resetStory(true)">🗑 Clear all</button>
+    </div>
+    <div class="hint">Everything (key, story, settings) is stored only in your browser. Nothing is sent anywhere except Featherless for generation.</div>
+  </div>
+
+  <!-- Writing area -->
+  <div class="panel">
+    <h2>📖 Story Workspace</h2>
+    <label>कहानी का शीर्षक (Title)</label>
+    <input id="title" placeholder="उदा. बारिश की रात">
+
+    <label>पात्र / कहानी की पृष्ठभूमि (Characters & premise)</label>
+    <textarea id="premise" placeholder="पात्रों का विवरण, रिश्ते, स्थिति..."></textarea>
+
+    <details class="syspt" open>
+      <summary>System Prompt (auto-generated, editable)</summary>
+      <textarea id="sysPrompts" class="syspt" style="min-height:110px"></textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="sec small" onclick="makeSys()">🔄 Regenerate prompt</button>
+      </div>
+    </details>
+
+    <label>दृश्य निर्देश / क्या लिखना है (Scene directive)</label>
+    <textarea id="directive" placeholder="उदा. पहला अध्याय — वे पहली बार मिलते हैं। बारिश, रोशनी, आँखों का मिलना..."></textarea>
+
+    <div class="tailbar">
+      <button id="btnGo" onclick="generate()">► पहला अध्याय लिखें / Generate</button>
+      <button class="sec" onclick="continuar()">➤ आगे बढ़ाएँ (Continue)</button>
+      <button class="sec" onclick="stopGen()">⛔ Stop</button>
+      <button class="sec" onclick="exportStory()">⬇ Export chapter</button>
+    </div>
+    <div class="errbox" id="err"></div>
+
+    <div class="chat" id="chat"></div>
+  </div>
+</div>
+
+<script>
+/* ---------- Constants ---------- */
+const MODELS=[
+ {id:'DavidAU/Qwen3.5-9B-The-Bradbury-F451-Pro-Writer-Uncensored-Heretic',label:'Qwen3.5-9B Bradbury F451 Writer (Heretic) — best value',out:1.12},
+ {id:'CezarJedi/Qwen3.5-9B-Abliterated',label:'Qwen3.5-9B Abliterated — balanced',out:1.12},
+ {id:'mlasli/Qwen3.6-27B-abliterated',label:'Qwen3.6-27B Abliterated — premium',out:2.60},
+ {id:'huihui-ai/Huihui-Qwen3.6-35B-A3B-Claude-4.7-Opus-abliterated',label:'Huihui Qwen3.6-35B-A3B (MoE) abliterated',out:4.00},
+ {id:'paijo77/qwen3-4b-abliterated',label:'Qwen3-4B abliterated — cheapest',out:0.80},
+ {id:'__custom__',label:'✏️ Custom model ID…',out:null}
+];
+const LANG={
+ hi:{sys:`तुम एक अनुभवी भारतीय उपन्यासकार हो जो वयस्क रोमांस और कामुक कथा (erotica) लिखते हो।
+निर्देश:
+- भाषा: केवल साफ देवनागरी हिंदी। अंग्रेज़ी शब्द / कोड-स्विचिंग बिल्कुल नहीं।
+- लेखन: सजीव, विस्तृत, भावनात्मक और संवेदनशील। संवाद "" में, विचार या आंतरिक भाव *...* में।
+- टोन: कामुक/रोमांटिक वयस्क सामग्री। स्पष्ट दृश्य लिखने में संकोच न करें, लेकिन भावनात्मक गहराई बनाए रखें।
+- सभी पात्र वयस्क (18+) और सहमति वाले हैं। केवल कल्पना।
+- पात्रों की भावनाएँ, शारीरिक बारीकियाँ और वातावरण का चित्रण करो।
+- कहानी की निरंतरता बनाए रखो; मरोड़ और विकास जोड़ो; दोहराव मत करो; कथानक आगे बढ़ाओ।`,
+ cont:'कहानी को आगे बढ़ाओ। पिछले दृश्य की निरंतरता में अगला हिस्सा लिखो। संवाद, भावना और कथानक-विकास को जारी रखो।'},
+ en:{sys:`You are an experienced novelist who writes adult romance and erotica.
+Rules:
+- Write vivid, sensual, emotionally rich prose. Dialogue in " ", internal thoughts in *...*.
+- Tone: adult/explicit romance; do not soften or fade scenes.
+- All characters are consenting adults (18+). Fiction only.
+- Depict emotion, physical detail, atmosphere.
+- Maintain continuity; advance the plot; avoid repetition.`,
+ cont:'Continue the story. Write the next part continuing from the last scene, keeping dialogue, emotion, and plot momentum.'},
+ hing:{sys:`तुम एक भारतीय कथा-लेखक हो जो adult romance / erotica लिखता है। Hinglish + हिंदी मिश्रण में लिखो। सजीव, भावनात्मक, इमर्सिव। Dialogue "..." में। सभी पात्र consenting adults (18+) हैं। Continuity बनाए रखो; repetition मत करो।`,
+ cont:'Kahaani ko aage badhao. Last scene se continue karte hue agla part likho.'}
+};
+let S={
+ apiKey:'',model:MODELS[0].id,baseUrl:'https://api.featherless.ai/v1',
+ temp:0.8,topP:0.95,maxT:1100,freq:0.4,pres:0,stream:true,lang:'hi',
+ sys:LANG.hi.sys,title:'',premise:'',directive:'',messages:[],outPrice:MODELS[0].out
+};
+let busy=false,abort=null;
+const LS='kathalekh_v1';
+
+/* ---------- Init ---------- */
+function closAge(){document.getElementById('age').style.display='none'}
+function load(){try{const d=JSON.parse(localStorage.getItem(LS));if(d)Object.assign(S,d)}catch(e){}}
+function save(){localStorage.setItem(LS,JSON.stringify(S))}
+function el(id){return document.getElementById(id)}
+
+function initModels(){
+  const sel=el('model');sel.innerHTML='';
+  MODELS.forEach(m=>{const o=document.createElement('option');o.value=m.id;o.textContent=m.label;if(m.id===S.model)o.selected=true;sel.appendChild(o)});
+  if(!MODELS.find(m=>m.id===S.model)){const o=document.createElement('option');o.value=S.model;o.textContent=S.model;o.selected=true;sel.appendChild(o)}
+}
+function applyLang(){
+  el('sysPrompts').value=S.sys;
+  el('tabsLang').querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.lang===S.lang));
+}
+function bindSettings(){
+  el('apiKey').value=S.apiKey;el('baseUrl').value=S.baseUrl;
+  el('temp').value=S.temp;el('topP').value=S.topP;el('maxT').value=S.maxT;
+  el('freq').value=S.freq;el('pres').value=S.pres;el('stream').checked=S.stream;
+  el('title').value=S.title;el('premise').value=S.premise;el('directive').value=S.directive;
+  el('lblTemp').textContent=S.temp;el('lblTopP').textContent=S.topP;el('lblMaxT').textContent=S.maxT;
+  el('lblFreq').textContent=S.freq;el('lblPres').textContent=S.pres;
+  document.querySelector('#customModelRow').style.display=(S.model==='__custom__')?'block':'none';
+  if(S.model==='__custom__')el('customModel').value=S.customModel||'';
+}
+function collect(){
+  S.apiKey=el('apiKey').value.trim();
+  S.baseUrl=el('baseUrl').value.trim().replace(/\/+$/,'');
+  S.model=el('model').value; if(S.model==='__custom__'){S.customModel=el('customModel').value.trim();S.model=S.customModel}
+  S.temp=+el('temp').value;S.topP=+el('topP').value;S.maxT=+el('maxT').value;
+  S.freq=+el('freq').value;S.pres=+el('pres').value;S.stream=el('stream').checked;
+  S.title=el('title').value;S.premise=el('premise').value;S.directive=el('directive').value;
+  S.sys=el('sysPrompts').value;
+  const m=MODELS.find(x=>x.id===S.model);S.outPrice=m?m.out:null;
+  S.lang=(el('tabsLang').querySelector('.tab.on')||{}).dataset?.lang||S.lang;
+  save();updateTokens();
+}
+function saveSettings(){collect();el('err').innerHTML='';el('err').innerHTML='<span class="good">✓ Saved</span>'}
+function makeSys(){collect();S.sys=LANG[S.lang].sys;el('sysPrompts').value=S.sys;save();el('err').innerHTML='<span class="good">✓ Prompt regenerated for '+S.lang+'</span>'}
+function genSys(){
+  collect();
+  const sys=S.sys||LANG[S.lang].sys;
+  const msgs=[{role:'system',content:sys}];
+  msgs.push({role:'user',content:'शीर्षक: '+(S.title||'(untitled)')+'\n\nपृष्ठभूमि/पात्र:\n'+(S.premise||S.directive||'(describe your story)')});
+  return msgs;
+}
+
+/* ---------- Rendering chat ---------- */
+function renderChat(){
+  const c=el('chat');c.innerHTML='';
+  S.messages.forEach(m=>{c.appendChild(msgEl(m.role,m.content))});
+  if(busy){const d=document.createElement('div');d.className='msg assistant';d.id='streamBox';d.innerHTML='<span class="tag">● generating…</span>';c.appendChild(d);scrollChat()}
+}
+function msgEl(role,content){
+  const d=document.createElement('div');d.className='msg '+role;
+  const label=role==='user'?'🧑 आप / You':'📝 लेखक / Writer';
+  d.innerHTML='<span class="tag">'+label+'</span>';
+  d.appendChild(document.createTextNode(content));
+  return d;
+}
+function appendLive(text){
+  let b=el('streamBox');if(!b){b=document.createElement('div');b.className='msg assistant';b.id='streamBox';b.innerHTML='<span class="tag">● generating…</span>';el('chat').appendChild(b)}
+  const txt=b.querySelector('span:not(.tag)');if(txt){txt.textContent+=text}else{b.appendChild(document.createTextNode(text))}
+  scrollChat();
+}
+function finalizeLive(content){
+  let b=el('streamBox');if(b){b.remove()}
+  S.messages.push({role:'assistant',content:content});
+  renderChat();save();updateTokens();
+}
+function scrollChat(){const c=el('chat');c.scrollTop=c.scrollHeight}
+
+/* ---------- API ---------- */
+async function generate(){
+  collect();
+  if(!S.apiKey){el('err').innerHTML='❌ कृपया API key डालें (Settings → API Key).';return}
+  const dir=el('directive').value.trim(); if(!dir){el('err').innerHTML='❌ कृपया scene directive लिखें।';return}
+  if(S.messages.length===0){
+    const msgs=genSys();
+    msgs.push({role:'user',content:dir});
+    S.messages=msgs;
+  }else{
+    S.messages.push({role:'user',content:dir});
+  }
+  el('directive').value='';el('err').innerHTML='';save();
+  await run(S.messages);
+}
+async function continuar(){
+  collect();
+  if(!S.apiKey){el('err').innerHTML='❌ API key डालें।';return}
+  if(S.messages.length===0){el('err').innerHTML='❌ पहले पहला अध्याय लिखें।';return}
+  const cont=LANG[S.lang].cont;
+  S.messages.push({role:'user',content:cont});
+  el('err').innerHTML='';save();
+  await run(S.messages);
+}
+async function run(msgs){
+  busy=true;renderChat();el('btnGo').disabled=true;
+  abort=new AbortController();
+  const url=S.baseUrl+'/chat/completions';
+  const headers={'Content-Type':'application/json','Authorization':'Bearer '+S.apiKey,'HTTP-Referer':location.href,'X-Title':'Katha-Lekha Story Writer'};
+  const body={model:S.model,messages:msgs,temperature:S.temp,top_p:S.topP,max_tokens:S.maxT,frequency_penalty:S.freq,presence_penalty:S.pres};
+  if(S.stream)body.stream=true;
+  try{
+    const res=await fetch(url,{method:'POST',headers,body:JSON.stringify(body),signal:abort.signal});
+    if(!res.ok){let t='';try{const j=await res.json();t=j.error?.message||JSON.stringify(j)}catch(e){t=await res.text()}
+      throw new Error('HTTP '+res.status+': '+t)}
+    if(S.stream){await streamRead(res)}else{const j=await res.json();finalizeLive(j.choices[0].message.content)}
+  }catch(e){
+    if(e.name==='AbortError'){let b=el('streamBox');if(b)b.remove();renderChat();}
+    else{el('err').innerHTML='❌ '+e.message+(e.message.includes('fetch')||e.message.includes('Network')?'\n\n⚠️ CORS/network? Try the proxy base URL option — see notes.':'');}
+  }finally{busy=false;el('btnGo').disabled=false;save();updateTokens()}
+}
+async function streamRead(res){
+  const rd=res.body.getReader();const dec=new TextDecoder();
+  let full='',buf='';
+  while(true){
+    const {done,value}=await rd.read();if(done)break;
+    buf+=dec.decode(value,{stream:true});
+    let idx;
+    while((idx=buf.indexOf('\n'))>=0){
+      const line=buf.slice(0,idx).trim();buf=buf.slice(idx+1);
+      if(!line.startsWith('data:'))continue;
+      const d=line.slice(5).trim();if(d==='[DONE]'){finalizeLive(full);return}
+      try{const j=JSON.parse(d);const t=j.choices?.[0]?.delta?.content;if(t){full+=t;appendLive(t)}}catch(e){}
+    }
+  }
+  finalizeLive(full);
+}
+function stopGen(){if(abort)abort.abort()}
+
+/* ---------- Misc ---------- */
+function updateTokens(){
+  const n=S.messages.reduce((acc,m)=>acc+wordCount(m.content),0);
+  el('st-tok').textContent=Math.round(n)+' words';
+  if(S.outPrice!=null){const est=(n/1000)*(S.outPrice);el('st-cost').textContent='$'+est.toFixed(2)+' est.'}else{el('st-cost').textContent='$— est.'}
+}
+function wordCount(s){if(!s)return 0;return (s.trim().match(/\S+/g)||[]).length}
+function resetStory(full){
+  if(!confirm(full?'Clear ALL saved data (key + story)?':'Start a new story? (keeps settings)'))return;
+  S.messages=[];S.title='';S.premise='';S.directive='';
+  if(full){S.apiKey=''}
+  el('title').value='';el('premise').value='';el('directive').value='';
+  save();renderChat();updateTokens();
+}
+function exportStory(){
+  collect();
+  let txt='# '+(S.title||'Untitled')+'\n\n';
+  S.messages.forEach(m=>{txt+=(m.role==='user'?'## निर्देश\n':'## कहानी\n')+m.content+'\n\n'});
+  const md='data:text/markdown;charset=utf-8,'+encodeURIComponent(txt);
+  const a=document.createElement('a');a.href=md;a.download=(S.title||'story')+'.md';a.click();
+}
+function toggleCustom(){
+  document.querySelector('#customModelRow').style.display=(el('model').value==='__custom__')?'block':'none';
+}
+
+/* ---------- Events ---------- */
+document.addEventListener('DOMContentLoaded',()=>{
+  load();initModels();bindSettings();applyLang();renderChat();updateTokens();
+  el('model').addEventListener('change',toggleCustom);
+  el('tabsLang').querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    collect();S.lang=t.dataset.lang;el('tabsLang').querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
+    if(!el('sysPrompts').value.trim()||confirm('Regenerate system prompt for '+t.dataset.lang+'?')){el('sysPrompts').value=LANG[t.dataset.lang].sys;S.sys=LANG[t.dataset.lang].sys;save()}
+    save();
+  }));
+  ['temp','topP','maxT','freq','pres'].forEach(id=>el(id).addEventListener('input',()=>{el('lbl'+id.charAt(0).toUpperCase()+id.slice(1)).textContent=el(id).value}));
+});
+</script>
+</body>
+</html>
