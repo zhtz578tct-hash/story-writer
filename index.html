@@ -24,24 +24,30 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>कथा-लेखक V9 - Length + Converter + Banarasi</title>
+<title>कथा-लेखक V10 - Locked Instructions</title>
 <style>
-:root{--bg:#0f0e15;--panel:#1a1825;--panel2:#222030;--acc:#b57bff;--acc2:#7bd6ff;--txt:#e8e4f8;--mut:#8e89a8;--bd:#2e2a45}
+:root{--bg:#0f0e15;--panel:#1a1825;--panel2:#222030;--acc:#b57bff;--acc2:#7bd6ff;--txt:#e8e4f8;--mut:#8e89a8;--bd:#2e2a45;--green:#1a3d2a;--greenBd:#2a6b45;--greenTxt:#8affc1}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
-header{padding:14px 18px;background:var(--panel);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+header{padding:14px 18px;background:var(--panel);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px}
 header h1{margin:0;font-size:1.2rem;color:var(--acc)}
 .wrap{max-width:1120px;margin:0 auto;padding:14px;display:flex;flex-direction:column;gap:12px}
 .card{background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:14px}
-h2{font-size:.85rem;margin:0 0 8px;color:var(--acc2);text-transform:uppercase;letter-spacing:.5px}
+.card.lockedBox{border:2px solid var(--greenBd);background:linear-gradient(135deg,#1a1825,#162a1e)}
+.card.lockedBox.locked{border-color:#8affc1;background:linear-gradient(135deg,#162a1e,#1a2d22);box-shadow:0 0 0 1px rgba(138,255,193,0.2)}
+h2{font-size:.85rem;margin:0 0 8px;color:var(--acc2);text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
 label{font-size:.78rem;color:var(--mut);display:block;margin:9px 0 3px}
 input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--bd);color:var(--txt);border-radius:10px;padding:10px 11px;font-size:.93rem}
 textarea{resize:vertical;min-height:80px;line-height:1.7}
 textarea.big{min-height:130px}
+textarea.lockedTA{border-color:var(--greenBd);background:#0f2218;color:var(--greenTxt)}
+textarea.lockedTA:read-only{opacity:0.9}
+textarea.hiddenTA{filter:blur(12px);user-select:none}
 .row{display:flex;gap:8px;flex-wrap:wrap}
 .row>*{flex:1;min-width:120px}
 button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;font-size:.9rem}
 button.sec{background:var(--panel2);color:var(--txt);border:1px solid var(--bd)}
+button.green{background:var(--green);color:var(--greenTxt);border:1px solid var(--greenBd)}
 button.danger{background:#3a1e2a;color:#ff8a9a;border:1px solid #5a2a3a}
 button.small{padding:7px 11px;font-size:.8rem}
 button:disabled{opacity:.5}
@@ -50,15 +56,17 @@ button:disabled{opacity:.5}
 .msg.user{display:none}
 .msg.assistant{border-color:#2a4a35;background:#18221c}
 .badge{font-size:.68rem;background:var(--panel2);border:1px solid var(--bd);padding:2px 8px;border-radius:20px;color:var(--mut)}
+.badge.lockedBadge{background:var(--green);border-color:var(--greenBd);color:var(--greenTxt);font-weight:700}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media(max-width:700px){.grid3{grid-template-columns:1fr}}
 .sliderBox{background:var(--panel2);border:1px solid var(--bd);border-radius:10px;padding:10px 12px}
+.lockHeader{display:flex;align-items:center;justify-content:space-between;gap:8px}
 </style>
 </head>
 <body>
 <header>
-  <h1>✍️ कथा-लेखक V9</h1>
-  <span style="font-size:.75rem;color:var(--mut)">Length Slider • Format Converter • Banarasi Dialogues • Auto-save</span>
+  <h1>✍️ कथा-लेखक V10</h1>
+  <span style="font-size:.75rem;color:var(--mut)">Locked Instructions + Hide + Length + Banarasi</span>
 </header>
 
 <div class="wrap">
@@ -75,56 +83,50 @@ button:disabled{opacity:.5}
           <option value="google/gemma-3-27b-it" selected>Gemma 3 27B - Best daily Hindi</option>
           <option value="qwen/qwen-2.5-72b-instruct">Qwen 72B - Best Hindi quality</option>
           <option value="anthracite-org/magnum-v4-72b">Magnum 72B - Best uncensored</option>
-          <option value="deepseek/deepseek-chat">DeepSeek V3 - Excellent Hindi</option>
+          <option value="deepseek/deepseek-chat">DeepSeek V3</option>
           <option value="google/gemma-3-27b-it:free">Gemma 3 FREE</option>
         </select>
       </div>
       <div>
         <label>Writing Style</label>
         <select id="writeStyle">
-          <option value="daily" selected>💬 रोज़मर्रा की बोली - Daily</option>
-          <option value="narrative">📖 कहानी/उपन्यास - Novel</option>
-          <option value="romantic">❤️ रोमांटिक विस्तृत - Romantic</option>
-          <option value="script">🎬 स्क्रिप्ट/डायलॉग - Script</option>
-          <option value="firstperson">👤 मैं वाली - First Person</option>
-          <option value="thirdperson">👥 तीसरे व्यक्ति - Third Person</option>
-          <option value="short">⚡ छोटी कहानी - Short</option>
-          <option value="adult">🔥 एडल्ट अनसेंसर्ड - Adult Daily</option>
+          <option value="daily" selected>💬 रोज़मर्रा की बोली</option>
+          <option value="narrative">📖 उपन्यास - Novel</option>
+          <option value="romantic">❤️ रोमांटिक विस्तृत</option>
+          <option value="script">🎬 स्क्रिप्ट/डायलॉग</option>
+          <option value="firstperson">👤 मैं वाली</option>
+          <option value="thirdperson">👥 तीसरे व्यक्ति</option>
+          <option value="short">⚡ छोटी कहानी</option>
+          <option value="adult">🔥 एडल्ट अनसेंसर्ड</option>
         </select>
       </div>
     </div>
-
-    <!-- NEW 1: LENGTH SLIDER -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
       <div class="sliderBox">
-        <label>📏 Length of this Chapter/Scene: <b id="lenLabel" style="color:#b57bff">1500 characters</b></label>
+        <label>📏 Length: <b id="lenLabel" style="color:var(--acc)">1500 chars</b></label>
         <input type="range" id="charLen" min="500" max="3000" step="100" value="1500">
-        <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--mut)"><span>500 (छोटा)</span><span>1500 (मध्यम)</span><span>3000 (लंबा)</span></div>
       </div>
       <div class="sliderBox">
-        <label>🗣️ Dialogue Language</label>
-        <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
-          <label style="margin:0;display:flex;align-items:center;gap:6px"><input type="checkbox" id="banarasiToggle" style="width:auto"> बनारसी/पूर्वांचली में संवाद?</label>
-        </div>
-        <div style="font-size:.75rem;color:var(--mut);margin-top:6px" id="banarasiHint">नरेशन हिंदी में, डायलॉग बनारसी में - जैसे "का हो, कहाँ जात हउअ, बड़ा मजा आवत ह"</div>
+        <label><input type="checkbox" id="banarasiToggle" style="width:auto"> बनारसी/पूर्वांचली डायलॉग</label>
+        <div style="font-size:.72rem;color:var(--mut);margin-top:4px">नरेशन हिंदी, डायलॉग बनारसी - "का हो, कहाँ जात हउअ"</div>
       </div>
     </div>
   </div>
 
   <!-- PAST CHAPTERS -->
   <div class="card">
-    <h2>📚 पिछले अध्याय (Continuity के लिए यहाँ पेस्ट करें)</h2>
-    <textarea id="pastChapters" class="big" placeholder="अध्याय 1, 2... यहाँ पेस्ट करें ताकि अगला अध्याय उसी फ्लो में आए"></textarea>
+    <h2>📚 पिछले अध्याय (Continuity)</h2>
+    <textarea id="pastChapters" class="big" placeholder="पिछले अध्याय यहाँ पेस्ट करें..."></textarea>
   </div>
 
-  <!-- STORY SETUP -->
+  <!-- STORY INFO -->
   <div class="card">
     <h2>✏️ कहानी की जानकारी</h2>
     <label>Title</label><input id="title" placeholder="बारिश की रात">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
       <div>
         <label>Characters / पात्र</label>
-        <textarea id="characters" placeholder="नेहा - 28, अकेली रहती है
+        <textarea id="characters" placeholder="नेहा - 28, अकेली
 रवि - 30, पड़ोसी
 सभी 18+"></textarea>
       </div>
@@ -133,6 +135,42 @@ button:disabled{opacity:.5}
         <textarea id="directive" placeholder="अब क्या सीन लिखना है..."></textarea>
       </div>
     </div>
+  </div>
+
+  <!-- NEW: LOCKED ADDITIONAL PROMPTS BOX - EXACTLY WHERE ARROW POINTS -->
+  <div class="card lockedBox" id="lockedCard">
+    <div class="lockHeader">
+      <h2 style="margin:0">🔒 Additional Prompts (Locked for All Chapters) <span class="badge lockedBadge" id="lockStatus">🔓 Unlocked - Edit kar sakte hain</span></h2>
+      <div style="display:flex;gap:6px">
+        <button class="small sec" id="eyeBtn" onclick="toggleHide()" title="Hide/Unhide">👁️ Hide</button>
+        <button class="small green" id="lockBtn" onclick="toggleLock()">🔒 Lock</button>
+      </div>
+    </div>
+    
+    <div style="font-size:.78rem;color:var(--mut);margin:6px 0 8px">
+      यहाँ जो लिखेंगे, वो <b>हर अध्याय/सीन पर अपने आप लागू होगा</b> जब तक आप edit/overwrite नहीं करते। जैसे: "कोई गाली मत लिखो", "हर सीन में बारिश का जिक्र करो", "डायलॉग छोटे रखो" आदि।
+      <span id="lockedHint" style="color:var(--greenTxt);display:none"> • ✅ Locked - सभी chapters पर लागू हो रहा है</span>
+    </div>
+
+    <textarea id="additionalPrompts" placeholder="यहाँ additional instructions लिखें जो हर chapter/scene पर लागू हों...
+
+उदा.
+- हर सीन में हल्की बारिश का माहौल रखो
+- कोई भारी किताबी शब्द मत इस्तेमाल करो
+- डायलॉग 1-2 लाइन से ज्यादा लंबे मत करो
+- हर अध्याय के अंत में सस्पेंस रखो
+- 'है' हमेशा अलग लिखो, जाताहै मत लिखो
+
+एक बार लिख कर Lock दबाओ - फिर ये हर generation में auto-apply होगा।"></textarea>
+
+    <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+      <button class="small green" onclick="lockInstructions()">🔒 Lock & Apply to All</button>
+      <button class="small sec" onclick="editInstructions()">✏️ Edit / Overwrite</button>
+      <button class="small sec" onclick="clearAdditional()">🗑️ Clear</button>
+      <span style="font-size:.75rem;color:var(--mut);align-self:center" id="additionalMeta"></span>
+    </div>
+
+    <div id="lockedPreview" style="display:none;margin-top:10px;background:var(--panel2);border:1px dashed var(--greenBd);border-radius:8px;padding:10px;font-size:.85rem;color:var(--greenTxt)"></div>
   </div>
 
   <!-- ACTION BUTTONS -->
@@ -154,67 +192,45 @@ button:disabled{opacity:.5}
 
   <!-- OUTPUT -->
   <div class="card">
-    <h2>📝 Generated Story <span class="badge" id="wordCount">0 chars / 0 words</span></h2>
+    <h2>📝 Generated Story <span class="badge" id="wordCount">0 chars</span> <span class="badge" id="lockedIndicator" style="display:none">🔒 Additional prompts active</span></h2>
     <div class="chat" id="chat"></div>
   </div>
 
-  <!-- NEW 2: FORMAT CONVERTER - WITHOUT CHANGING WORDS -->
-  <div class="card" style="border:1px solid #b57bff">
-    <h2>🔄 Format Converter - बिना शब्द बदले फॉर्मेट बदलो (Point #2)</h2>
-    <div style="font-size:.8rem;color:var(--mut);margin-bottom:8px">कोई भी कहानी पेस्ट करो (स्क्रिप्ट, नॉवेल, नैरेटिव) और नीचे selected style में convert हो जाएगी, एक भी शब्द बदले बिना - सिर्फ फॉर्मेट बदलेगा।</div>
-    <label>Paste Story Here (किसी भी फॉर्मेट में)</label>
-    <textarea id="convertInput" class="big" placeholder="यहाँ अपनी कहानी पेस्ट करें जो convert करनी है...
-
-उदा. स्क्रिप्ट में है तो:
-नेहा: अरे तुम भीग गए हो
-रवि: हाँ बारिश तेज है
-
-इसे नॉवेल फॉर्मेट में convert करना है..."></textarea>
+  <!-- CONVERTER -->
+  <div class="card" style="border:1px solid var(--acc)">
+    <h2>🔄 Format Converter - बिना शब्द बदले</h2>
+    <textarea id="convertInput" class="big" placeholder="किसी भी फॉर्मेट की कहानी यहाँ पेस्ट करें..."></textarea>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
-      <div>
-        <label>Convert To (किस फॉर्मेट में बदलना है)</label>
-        <select id="convertTarget">
-          <option value="daily">💬 रोज़मर्रा बोली</option>
-          <option value="narrative">📖 उपन्यास / Novel</option>
-          <option value="script" selected>🎬 स्क्रिप्ट / Script</option>
-          <option value="firstperson">👤 मैं वाली</option>
-          <option value="thirdperson">👥 तीसरे व्यक्ति</option>
-          <option value="romantic">❤️ रोमांटिक विस्तृत</option>
-        </select>
-      </div>
-      <div style="display:flex;align-items:flex-end;gap:8px">
-        <button class="small" onclick="convertFormatLocal()" style="flex:1">⚡ Instant Convert (No AI, 100% same words)</button>
-        <button class="sec small" onclick="convertFormatAI()" style="flex:1">🤖 AI Convert (Better formatting)</button>
+      <select id="convertTarget">
+        <option value="daily">💬 रोज़मर्रा बोली</option>
+        <option value="narrative">📖 उपन्यास</option>
+        <option value="script" selected>🎬 स्क्रिप्ट</option>
+        <option value="firstperson">👤 मैं वाली</option>
+      </select>
+      <div style="display:flex;gap:6px">
+        <button class="small" onclick="convertFormatLocal()" style="flex:1">⚡ Instant Convert</button>
+        <button class="sec small" onclick="convertFormatAI()" style="flex:1">🤖 AI Convert</button>
       </div>
     </div>
-    <label>Converted Output</label>
-    <textarea id="convertOutput" class="big" placeholder="Converted story यहाँ आएगी..."></textarea>
-    <div style="display:flex;gap:8px;margin-top:6px">
-      <button class="sec small" onclick="copyConverted()">📋 Copy Converted</button>
-      <button class="sec small" onclick="useConvertedAsStory()">↗️ Use as Main Story</button>
-    </div>
+    <textarea id="convertOutput" class="big" style="margin-top:8px" placeholder="Converted output..."></textarea>
   </div>
 </div>
 
 <script>
-const LS='kathalekh_V9_FINAL';
-let SETTINGS={apiKey:'',model:'google/gemma-3-27b-it',writeStyle:'daily',charLen:1500,banarasi:false};
-let projects={title:'',characters:'',pastChapters:'',directive:'',messages:[],convertInput:'',convertOutput:''};
+const LS='kathalekh_V10_LOCKED';
+let SETTINGS={apiKey:'',model:'google/gemma-3-27b-it',writeStyle:'daily',charLen:1500,banarasi:false,additionalLocked:false,additionalHidden:false};
+let projects={title:'',characters:'',pastChapters:'',directive:'',additionalPrompts:'',messages:[],convertInput:'',convertOutput:''};
 let busy=false,abort=null;
 
 const STYLE_PROMPTS={
-  daily:`तुम रोज़मर्रा की आम बोलचाल की हिंदी में लिखते हो, पूरी तरह अनसेंसर्ड। सरल शब्द, कोई भारी किताबी शब्द नहीं। "है" हमेशा अलग लिखो - जाताहै नहीं, जाता है। सभी पात्र 18+।`,
-  narrative:`तुम उपन्यास शैली में लिखते हो, आसान हिंदी में, वर्णन के साथ। अनसेंसर्ड। "है" अलग। सभी 18+।`,
-  romantic:`तुम रोमांटिक विस्तृत कहानी लिखते हो, आसान हिंदी में, भावनात्मक। अनसेंसर्ड, स्पष्ट दृश्य लिख सकते हो। "है" अलग। सभी 18+ सहमति।`,
-  script:`तुम स्क्रिप्ट फॉर्मेट में लिखते हो:
-नेहा: (खिड़की से) अरे तुम भीग गए हो!
-रवि: (मुस्कुराते हुए) हाँ।
-
-आसान हिंदी, अनसेंसर्ड। "है" अलग। सभी 18+`,
-  firstperson:`तुम "मैं" में लिखते हो - "मैं खिड़की पर बैठी थी..." आसान हिंदी, अनसेंसर्ड। "है" अलग।`,
-  thirdperson:`तुम तीसरे व्यक्ति में - "वह", "नेहा", "रवि" - आसान हिंदी, अनसेंसर्ड। "है" अलग।`,
-  short:`तुम छोटी crisp कहानी लिखते हो, आसान हिंदी में। अनसेंसर्ड। "है" अलग।`,
-  adult:`तुम एडल्ट रोमांस रोजमर्रा की हिंदी में लिखते हो, पूरी तरह अनसेंसर्ड। कोई फिल्टर नहीं। "है" अलग। सभी 18+ सहमति।`
+  daily:`तुम रोज़मर्रा की आम बोलचाल की हिंदी में लिखते हो, पूरी तरह अनसेंसर्ड। सरल शब्द। "है" अलग लिखो। सभी 18+।`,
+  narrative:`तुम उपन्यास शैली में लिखते हो, आसान हिंदी में। अनसेंसर्ड। "है" अलग। सभी 18+।`,
+  romantic:`तुम रोमांटिक विस्तृत कहानी आसान हिंदी में लिखते हो, अनसेंसर्ड। "है" अलग। सभी 18+ सहमति।`,
+  script:`तुम स्क्रिप्ट फॉर्मेट में: Name: dialogue - आसान हिंदी, अनसेंसर्ड। "है" अलग। सभी 18+`,
+  firstperson:`तुम "मैं" में लिखते हो - आसान हिंदी, अनसेंसर्ड। "है" अलग।`,
+  thirdperson:`तुम तीसरे व्यक्ति में - आसान हिंदी, अनसेंसर्ड। "है" अलग।`,
+  short:`तुम छोटी crisp कहानी आसान हिंदी में। अनसेंसर्ड। "है" अलग।`,
+  adult:`तुम एडल्ट रोमांस रोजमर्रा हिंदी में, पूरी तरह अनसेंसर्ड। "है" अलग। सभी 18+ सहमति।`
 };
 
 function el(id){return document.getElementById(id)}
@@ -225,8 +241,10 @@ function loadAll(){
   el('banarasiToggle').checked=SETTINGS.banarasi||false;
   el('title').value=projects.title||''; el('characters').value=projects.characters||'';
   el('pastChapters').value=projects.pastChapters||''; el('directive').value=projects.directive||'';
+  el('additionalPrompts').value=projects.additionalPrompts||'';
   el('convertInput').value=projects.convertInput||''; el('convertOutput').value=projects.convertOutput||'';
   updateLenLabel();
+  applyLockState(SETTINGS.additionalLocked||false, SETTINGS.additionalHidden||false);
   renderChat();
 }
 function saveAll(){
@@ -235,10 +253,97 @@ function saveAll(){
   SETTINGS.banarasi=el('banarasiToggle').checked;
   projects.title=el('title').value; projects.characters=el('characters').value;
   projects.pastChapters=el('pastChapters').value; projects.directive=el('directive').value;
+  projects.additionalPrompts=el('additionalPrompts').value;
   projects.convertInput=el('convertInput').value; projects.convertOutput=el('convertOutput').value;
   localStorage.setItem(LS,JSON.stringify({SETTINGS,projects}));
 }
-function updateLenLabel(){el('lenLabel').textContent=el('charLen').value+' characters'; saveAll();}
+function updateLenLabel(){el('lenLabel').textContent=el('charLen').value+' chars'; saveAll();}
+
+// LOCKED ADDITIONAL PROMPTS LOGIC
+function applyLockState(isLocked, isHidden){
+  SETTINGS.additionalLocked=isLocked; SETTINGS.additionalHidden=isHidden;
+  const ta=el('additionalPrompts');
+  const card=el('lockedCard');
+  const status=el('lockStatus');
+  const hint=el('lockedHint');
+  const preview=el('lockedPreview');
+  const meta=el('additionalMeta');
+  const indicator=el('lockedIndicator');
+  const eyeBtn=el('eyeBtn');
+  const lockBtn=el('lockBtn');
+
+  if(isLocked){
+    ta.readOnly=true;
+    ta.classList.add('lockedTA');
+    card.classList.add('locked');
+    status.textContent='🔒 Locked - All chapters पर लागू';
+    status.className='badge lockedBadge';
+    hint.style.display='inline';
+    indicator.style.display='inline';
+    lockBtn.textContent='🔓 Unlock';
+    lockBtn.className='small sec';
+    meta.textContent=`Locked • ${ta.value.length} chars • हर chapter पर apply होगा`;
+    if(ta.value.trim()){
+      preview.style.display='block';
+      preview.innerHTML='<b>🔒 Locked Instructions (Active):</b><br>'+ta.value.replace(/</g,'&lt;').replace(/\n/g,'<br>');
+    }
+  } else {
+    ta.readOnly=false;
+    ta.classList.remove('lockedTA');
+    card.classList.remove('locked');
+    status.textContent='🔓 Unlocked - Edit कर सकते हैं';
+    status.className='badge';
+    hint.style.display='none';
+    indicator.style.display='none';
+    lockBtn.textContent='🔒 Lock';
+    lockBtn.className='small green';
+    meta.textContent=ta.value.trim()?`${ta.value.length} chars - Lock करो तो सभी पर लागू होगा`:'Empty';
+    preview.style.display='none';
+  }
+
+  if(isHidden){
+    ta.classList.add('hiddenTA');
+    eyeBtn.textContent='👁️ Show';
+    preview.style.display='none';
+  } else {
+    ta.classList.remove('hiddenTA');
+    eyeBtn.textContent='👁️ Hide';
+    if(isLocked && ta.value.trim()) preview.style.display='block';
+  }
+  saveAll();
+}
+
+function toggleLock(){
+  const isLocked=SETTINGS.additionalLocked;
+  if(isLocked){
+    // Unlock for editing
+    applyLockState(false, SETTINGS.additionalHidden);
+  } else {
+    lockInstructions();
+  }
+}
+function lockInstructions(){
+  const txt=el('additionalPrompts').value.trim();
+  if(!txt){alert('पहले additional instructions लिखो'); return;}
+  applyLockState(true, SETTINGS.additionalHidden);
+  saveAll();
+  // Visual feedback
+  el('err').textContent='';
+  setTimeout(()=>{el('err').textContent='';},0);
+}
+function editInstructions(){
+  applyLockState(false, false);
+  el('additionalPrompts').focus();
+}
+function toggleHide(){
+  applyLockState(SETTINGS.additionalLocked, !SETTINGS.additionalHidden);
+}
+function clearAdditional(){
+  if(!confirm('Additional prompts clear करें?')) return;
+  el('additionalPrompts').value='';
+  applyLockState(false,false);
+  saveAll();
+}
 
 function fixHindiGlitches(t){
   let x=t;
@@ -248,46 +353,38 @@ function fixHindiGlitches(t){
   x=x.replace(/ {2,}/g,' ');
   return x;
 }
-
 function renderChat(){
   const c=el('chat'); c.innerHTML='';
   projects.messages.forEach(m=>{ if(m.role==='user') return; const d=document.createElement('div'); d.className='msg assistant'; d.textContent=m.content; c.appendChild(d); });
   c.scrollTop=c.scrollHeight;
   const chars=projects.messages.filter(m=>m.role!=='user').reduce((a,m)=>a+m.content.length,0);
-  const words=projects.messages.filter(m=>m.role!=='user').reduce((a,m)=>a+m.content.split(/\s+/).length,0);
-  el('wordCount').textContent=`${chars} chars / ${words} words`;
+  el('wordCount').textContent=`${chars} chars`;
 }
-
 function getSystemPrompt(){
   let base=STYLE_PROMPTS[el('writeStyle').value]||STYLE_PROMPTS.daily;
-  const len=el('charLen').value;
-  base+=`\n\nलंबाई: इस सीन/अध्याय को लगभग ${len} characters (अक्षर) में लिखो। ज्यादा लंबा या छोटा मत करो।`;
+  base+=`\n\nलंबाई: लगभग ${el('charLen').value} characters में लिखो।`;
   if(el('banarasiToggle').checked){
-    base+=`\n\nबहुत जरूरी - बनारसी/पूर्वांचली डायलॉग: कहानी का वर्णन (narration) शुद्ध आसान हिंदी में, लेकिन सभी संवाद (dialogues) बनारसी/पूर्वांचली बोली में लिखो। जैसे:
-- "का हो, कहाँ जात हउअ?"
-- "अरे यार, बड़ा मजा आवत ह"
-- "का करत हउअ, अंदर आ जा"
-- "हमके त बड़ा अच्छा लागत ह"
-- "काहे इतना भीज गइल हउअ?"
-नरेशन हिंदी में, डायलॉग बनारसी में।`;
+    base+=`\n\nबनारसी डायलॉग: नरेशन हिंदी में, डायलॉग बनारसी/पूर्वांचली में - "का हो, कहाँ जात हउअ, बड़ा मजा आवत ह"`;
   }
-  base+=`\n\nनियम: "है" हमेशा अलग शब्द, जाताहै नहीं।`;
+  // ADD LOCKED ADDITIONAL PROMPTS - APPLIES TO ALL CHAPTERS
+  const addPrompt=el('additionalPrompts').value.trim();
+  if(SETTINGS.additionalLocked && addPrompt){
+    base+=`\n\n[LOCKED ADDITIONAL INSTRUCTIONS - हर chapter/scene पर लागू करो]:\n${addPrompt}`;
+  }
+  base+=`\nनियम: "है" हमेशा अलग शब्द।`;
   return base;
 }
-
-async function callLLM(prompt, isConvert=false){
+async function callLLM(prompt,isConvert=false){
   el('err').textContent=''; busy=true;
   el('btnGen').disabled=true; el('btnNextChap').disabled=true; el('btnNextScene').disabled=true;
   const apiKey=el('apiKey').value.trim(); const model=el('model').value;
-  if(!apiKey){el('err').textContent='API Key डालो - auto-save हो जाएगा'; busy=false; el('btnGen').disabled=false; el('btnNextChap').disabled=false; el('btnNextScene').disabled=false; return;}
-  
+  if(!apiKey){el('err').textContent='API Key डालो'; busy=false; el('btnGen').disabled=false; el('btnNextChap').disabled=false; el('btnNextScene').disabled=false; return;}
   const baseUrl='https://openrouter.ai/api/v1';
   const past=el('pastChapters').value.trim();
-  const msgs=[{role:'system',content:isConvert? 'तुम format converter हो। बिना एक भी शब्द बदले, सिर्फ फॉर्मेट बदलो।' : getSystemPrompt()}];
+  const msgs=[{role:'system',content:isConvert?'तुम format converter हो, बिना शब्द बदले सिर्फ फॉर्मेट बदलो।':getSystemPrompt()}];
   if(!isConvert && past){ msgs.push({role:'user',content:`पिछले अध्याय:\n${past.slice(-3500)}`}); msgs.push({role:'assistant',content:'समझ गया, continuity बनाए रखूंगा।'}); }
   if(!isConvert) projects.messages.slice(-4).forEach(m=>msgs.push(m));
   msgs.push({role:'user',content:prompt});
-
   const charLen=isConvert? 4000 : +el('charLen').value;
   const body={model,messages:msgs,temperature:0.55,top_p:0.85,frequency_penalty:0.7,presence_penalty:0.2,max_tokens:Math.ceil(charLen/2.5)+500,stream:true};
   const ctrl=new AbortController(); abort=ctrl;
@@ -313,164 +410,44 @@ async function callLLM(prompt, isConvert=false){
   }catch(e){ el('err').textContent='Error: '+e.message; if(!isConvert) projects.messages.pop(); }
   finally{ busy=false; el('btnGen').disabled=false; el('btnNextChap').disabled=false; el('btnNextScene').disabled=false; abort=null; }
 }
-
 function generateFirst(){
   saveAll();
   const title=el('title').value, chars=el('characters').value, scene=el('directive').value;
   if(!title && !chars){alert('Title या Characters भरो'); return;}
-  const prompt=`शीर्षक: ${title}\nपात्र: ${chars}\nपहला सीन: ${scene||'कहानी शुरू करो'}\n\nपहला अध्याय लिखो, लगभग ${el('charLen').value} characters में।`;
+  const prompt=`शीर्षक: ${title}\nपात्र: ${chars}\nपहला सीन: ${scene||'कहानी शुरू करो'}\n\nपहला अध्याय लगभग ${el('charLen').value} characters में लिखो।`;
   projects.messages.push({role:'user',content:prompt}); renderChat(); callLLM(prompt,false);
 }
 function nextChapter(){
   saveAll();
-  const prompt=`अगला अध्याय लिखो, पिछले अध्यायों की continuity में, लगभग ${el('charLen').value} characters में। नया ट्विस्ट।`;
+  const prompt=`अगला अध्याय लिखो, continuity बनाए रखो, लगभग ${el('charLen').value} characters में।`;
   projects.messages.push({role:'user',content:prompt}); callLLM(prompt,false);
 }
 function nextScene(){
   saveAll();
   const scene=el('directive').value;
-  const prompt=scene?`अगला सीन: ${scene}\nइसी को लगभग ${el('charLen').value} characters में लिखो।`:`अगला सीन वहीं से जारी रखो, लगभग ${el('charLen').value} characters में।`;
+  const prompt=scene?`अगला सीन: ${scene}\nलगभग ${el('charLen').value} characters में।`:`अगला सीन वहीं से जारी रखो, लगभग ${el('charLen').value} characters में।`;
   projects.messages.push({role:'user',content:prompt}); callLLM(prompt,false);
 }
 function stopGen(){ if(abort) abort.abort(); busy=false; el('btnGen').disabled=false; el('btnNextChap').disabled=false; el('btnNextScene').disabled=false; }
 function clearStory(){ if(!confirm('Generated story clear करें?')) return; projects.messages=[]; renderChat(); saveAll(); }
-function clearAll(){ if(!confirm('सब clear? Key बची रहेगी।')) return; projects={title:'',characters:'',pastChapters:'',directive:'',messages:[],convertInput:'',convertOutput:''}; el('title').value=''; el('characters').value=''; el('pastChapters').value=''; el('directive').value=''; el('convertInput').value=''; el('convertOutput').value=''; renderChat(); saveAll(); }
+function clearAll(){ if(!confirm('सब clear? Key बची रहेगी।')) return; projects={title:'',characters:'',pastChapters:'',directive:'',additionalPrompts:'',messages:[],convertInput:'',convertOutput:''}; el('title').value=''; el('characters').value=''; el('pastChapters').value=''; el('directive').value=''; el('additionalPrompts').value=''; el('convertInput').value=''; el('convertOutput').value=''; applyLockState(false,false); renderChat(); saveAll(); }
 function exportStory(){ let out=`Title: ${projects.title}\n\n`; if(projects.pastChapters) out+=`Past:\n${projects.pastChapters}\n\n---\n\n`; out+=projects.messages.filter(m=>m.role!=='user').map(m=>m.content).join('\n\n---\n\n'); const b=new Blob([out],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=(projects.title||'story')+'.txt'; a.click(); }
 function copyStory(){ const txt=projects.messages.filter(m=>m.role!=='user').map(m=>m.content).join('\n\n'); navigator.clipboard.writeText(txt); alert('Copied!'); }
-
-// NEW 2: FORMAT CONVERTER LOGIC - WITHOUT CHANGING WORDS (LOCAL INSTANT)
 function convertFormatLocal(){
-  const input=el('convertInput').value.trim();
-  const target=el('convertTarget').value;
-  if(!input){alert('पहले कहानी paste करो'); return;}
-  
-  let output=input;
-  
-  // If input is in Script format (Name: dialogue) and target is Novel
-  if(target==='narrative' || target==='daily' || target==='romantic'){
-    // Convert "Neha: dialogue" -> "Neha ने कहा, "dialogue""
-    // But to preserve words exactly, we keep name and dialogue, just reformat
-    // For true no-word-change, we just remove colon and put dialogue in quotes if not already
-    // Simple conversion: Keep all words, just change layout
-    output = input
-      .split('\n')
-      .map(line=>{
-        const m=line.match(/^([^:]+):\s*(.*)$/);
-        if(m){
-          const name=m[1].trim();
-          const dlg=m[2].trim();
-          // Preserve words: name + dialogue, just in narrative style
-          // "Neha ने कहा, "dialogue"" adds words, so for strict no-word-change, do: Name - "dialogue"
-          if(dlg.startsWith('"') || dlg.startsWith('“')) return line;
-          return `${name} - "${dlg}"`;
-        }
-        return line;
-      }).join('\n');
-  }
-  
-  if(target==='script'){
-    // Convert novel dialogues "dialogue" -> Name: dialogue (try to detect speaker from previous line)
-    // For no-word-change, we need to keep dialogue words exactly
-    output = input
-      .split('\n')
-      .map(line=>{
-        // If line has " dialogue " with quotes
-        const q=line.match(/"([^"]+)"/);
-        if(q){
-          // Keep dialogue words exactly, just change to script format
-          // We preserve the dialogue text 100% same
-          const dialogue=q[1];
-          // Try to find name before
-          return line.replace(`"${dialogue}"`, `${dialogue}`).trim();
-          // Actually for script we want "Name: dialogue" - but we don't know name
-          // So keep as is but remove quotes to look like script: but that changes punctuation only, not words
-        }
-        return line;
-      }).join('\n');
-    
-    // Better: detect "Neha ने कहा, "xxx"" -> "Neha: xxx"
-    output = output.replace(/([A-Za-z\u0900-\u097F]+)\s+ने कहा,\s*"([^"]+)"/g, '$1: $2');
-    output = output.replace(/([A-Za-z\u0900-\u097F]+) ने कहा,\s*"([^"]+)"/g, '$1: $2');
-    // Keep dialogue words exactly same, only remove "ने कहा" and quotes structure changes
-    // For strict no-word-change mode, we actually want to keep words, so we revert ne kaha removal
-    // Let's do pure formatting: Just ensure each dialogue on new line with Name:
-    let lines=output.split('\n');
-    let res=[];
-    lines.forEach(l=>{
-      if(l.includes(':') && l.split(':').length===2 && l.split(':')[1].trim().length>0){
-        res.push(l); // already script
-      } else {
-        // Check if line contains dialogue in quotes
-        const match=l.match(/"([^"]+)"/g);
-        if(match){
-          // For each quoted dialogue, keep dialogue words same, put preceding text as narrative
-          res.push(l);
-        } else {
-          res.push(l);
-        }
-      }
-    });
-    output=res.join('\n');
-  }
-
-  // For true 100% word preservation, we actually just reformat line breaks
-  // The safest: If target is script, convert all "dialogue" to new lines
-  if(target==='script'){
-    output = input
-      .replace(/([^\n])\s*"([^"]+)"\s*/g, (m, before, dlg)=>{
-        // Keep before as narrative, dlg as script line (words preserved)
-        return `${before}\n\n${dlg}\n\n`;
-      });
-    // Now make dialogues look like script: just add " : " if we can detect name from context? Keep simple
-    output = output.replace(/\n\n([A-Za-z\u0900-\u097F]+)\s*\n\n/g, '\n$1: ');
-  }
-
-  // Final cleanup: ensure no word is added/removed, only spaces/newlines changed
-  // For strict mode, we just ensure formatting
-  el('convertOutput').value=output;
-  projects.convertInput=input;
-  projects.convertOutput=output;
-  saveAll();
+  const input=el('convertInput').value.trim(); if(!input){alert('पहले कहानी paste करो'); return;}
+  let output=input.replace(/([^\s])है/g,'$1 है');
+  el('convertOutput').value=output; projects.convertInput=input; projects.convertOutput=output; saveAll();
 }
-
-// AI Converter - Better formatting but still instructs no word change
 function convertFormatAI(){
-  const input=el('convertInput').value.trim();
-  const target=el('convertTarget').value;
-  if(!input){alert('पहले कहानी paste करो'); return;}
-  const styleName={
-    daily:'रोजमर्रा की बोली',
-    narrative:'उपन्यास/कहानी फॉर्मेट',
-    script:'स्क्रिप्ट/डायलॉग फॉर्मेट (Name: dialogue)',
-    firstperson:'मैं वाली',
-    thirdperson:'तीसरे व्यक्ति',
-    romantic:'रोमांटिक विस्तृत'
-  }[target];
-  
-  const prompt=`तुम्हें नीचे दी गई कहानी को "${styleName}" में convert करना है।
-
-बहुत सख्त नियम: एक भी शब्द मत बदलो, मत जोड़ो, मत हटाओ। सिर्फ फॉर्मेट, लाइन ब्रेक, और विराम चिह्न बदल सकते हो ताकि वह ${styleName} जैसा दिखे। कहानी के सारे शब्द 100% वैसे ही रहने चाहिए।
-
-कहानी:
-${input.slice(0,4000)}
-
-इसे ${styleName} में convert करो, बिना शब्द बदले।`;
-  
+  const input=el('convertInput').value.trim(); if(!input){alert('पहले कहानी paste करो'); return;}
+  const target=el('convertTarget')?.value||'script';
+  const prompt=`नीचे की कहानी को ${target} format में convert करो, बिना एक भी शब्द बदले, सिर्फ फॉर्मेट बदलो:\n\n${input.slice(0,4000)}`;
   callLLM(prompt,true);
 }
 
-function copyConverted(){ navigator.clipboard.writeText(el('convertOutput').value); alert('Copied!'); }
-function useConvertedAsStory(){ 
-  const txt=el('convertOutput').value;
-  if(!txt){alert('पहले convert करो'); return;}
-  el('pastChapters').value = (el('pastChapters').value + '\n\n' + txt).slice(-8000);
-  saveAll();
-  alert('Converted story Past Chapters में add हो गई, अब Next Chapter उसी फ्लो में लिखेगा');
-}
-
-['apiKey','model','writeStyle','charLen','banarasiToggle','title','characters','pastChapters','directive','convertInput','convertTarget'].forEach(id=>{
+['apiKey','model','writeStyle','charLen','banarasiToggle','title','characters','pastChapters','directive','additionalPrompts','convertInput'].forEach(id=>{
   const e=el(id);
-  if(e){ e.addEventListener('input',()=>{ if(id==='charLen') updateLenLabel(); saveAll(); }); e.addEventListener('change',()=>{ if(id==='charLen') updateLenLabel(); saveAll(); }); }
+  if(e){ e.addEventListener('input',()=>{ if(id==='charLen') updateLenLabel(); saveAll(); if(id==='additionalPrompts' && SETTINGS.additionalLocked){ /* if editing while locked, auto-unlock? Keep locked until edit button */ } }); e.addEventListener('change',()=>{ if(id==='charLen') updateLenLabel(); saveAll(); }); }
 });
 
 loadAll();
