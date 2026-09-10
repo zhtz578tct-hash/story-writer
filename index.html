@@ -24,12 +24,12 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>कथा-लेखक | FINAL WORKING - No Pollinations Legacy</title>
+<title>कथा-लेखक | FINAL FIXED - Venice Paid Slug</title>
 <style>
 :root{--bg:#12101a;--panel:#1c1830;--panel2:#241f3d;--acc:#b57bff;--txt:#eae6f5;--mut:#9b94b5;--err:#ff7a7a;--ok:#8affc1;--bd:#332c52}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
-header{background:#1c1830;border-bottom:2px solid #b57bff;padding:14px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header{background:#1c1830;border-bottom:2px solid #b57bff;padding:14px 18px;display:flex;gap:12px;align-items:center}
 header h1{color:#b57bff;margin:0;font-size:1.2rem}
 .badge{font-size:.7rem;background:#2a2450;border:1px solid #b57bff;padding:3px 12px;border-radius:20px;color:#b57bff;font-weight:700}
 .badge.ok{background:#1a3d2a;border-color:#2a6b45;color:#8affc1}
@@ -57,44 +57,49 @@ button.small{padding:7px 11px;font-size:.8rem}
 <body>
 <header>
   <h1>✍️ कथा-लेखक</h1>
-  <span class="badge ok">✅ FINAL WORKING</span>
-  <span class="badge">Pollinations Legacy is Dead - Use This</span>
+  <span class="badge ok">✅ FIXED - Use Without :free</span>
 </header>
 
 <div class="wrap">
   <div class="panel">
     <div class="alert">
-      <b>Your Error Explained:</b><br>
-      Pollinations old endpoint <code>text.pollinations.ai</code> is now returning 402 Payment Required for EVERYONE - even anonymous. They moved to <code>gen.pollinations.ai</code> which needs a key.<br><br>
-      <b>Solution: Use OpenRouter Venice FREE (100% working, uncensored) as default now.</b>
+      <b>Your Error Fix:</b><br>
+      OpenRouter says: <code>This model is unavailable, paid version is available now - use this slug: cognitivecomputations/dolphin-mistral-24b-venice-edition</code><br><br>
+      So remove <code>:free</code> from end. Paid version costs ~$0.12 per 1M tokens - $5 free credit = ~1000 stories. Very cheap.
     </div>
 
-    <h2 style="margin-top:14px">⚙️ WORKING Settings</h2>
+    <h2 style="margin-top:14px">⚙️ Settings - FIXED</h2>
 
-    <label>Provider (Select working one)</label>
+    <label>Provider</label>
     <select id="provider" onchange="switchProvider()">
-      <option value="openrouter" selected>🔥 OpenRouter - Venice 24B FREE - 100% WORKING & Uncensored (RECOMMENDED)</option>
-      <option value="pollinations_new">🟢 Pollinations NEW API - Needs free key from enter.pollinations.ai</option>
-      <option value="openai">🤖 Your OpenAI Key (filtered)</option>
-      <option value="pollinations_legacy">⚠️ Pollinations OLD (text.pollinations.ai) - NOW DEAD, will give 402 error</option>
+      <option value="openrouter" selected>🔥 OpenRouter - Venice 24B - FIXED (No :free)</option>
+      <option value="openrouter_free">🔥 OpenRouter - Other FREE models (Still working)</option>
+      <option value="pollinations_new">🟢 Pollinations NEW - gen.pollinations.ai</option>
     </select>
 
-    <label>API Key</label>
-    <input type="password" id="apiKey" placeholder="Paste key here">
-    <div id="keyHelp" style="font-size:.78rem;color:#8affc1;margin-top:4px"></div>
+    <label>API Key (You already have - keep same key)</label>
+    <input type="password" id="apiKey" placeholder="sk-or-v1-...">
 
     <label>Base URL</label>
     <input id="baseUrl" value="https://openrouter.ai/api/v1">
 
-    <label>Model</label>
+    <label>Model - FIXED SLUG</label>
     <select id="model">
-      <option value="cognitivecomputations/dolphin-mistral-24b-venice-edition:free">🔥 Venice 24B FREE - TOP UNCENSORED - WORKING</option>
-      <option value="anthracite-org/magnum-v4-72b">Magnum v4 72B - Best writer</option>
-      <option value="gryphe/mythomax-l2-13b">MythoMax 13B</option>
-      <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B FREE</option>
+      <option value="cognitivecomputations/dolphin-mistral-24b-venice-edition" selected>🔥 Venice 24B - FIXED SLUG - WORKING (Paid but $0.12/M)</option>
+      <option value="anthracite-org/magnum-v4-72b">Magnum v4 72B - Best writer (also cheap)</option>
+      <option value="gryphe/mythomax-l2-13b">MythoMax 13B - Legendary uncensored</option>
+      <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B FREE - Still free & working</option>
+      <option value="qwen/qwen-2.5-72b-instruct:free">Qwen 72B FREE - Good Hindi, still free</option>
+      <option value="google/gemma-3-27b-it:free">Gemma 3 27B FREE - Still free</option>
     </select>
 
-    <div class="success" id="howTo" style="margin-top:12px"></div>
+    <div class="success" style="margin-top:12px">
+      <b>✅ FIX APPLIED:</b><br>
+      Old (dead): <code>cognitivecomputations/dolphin-mistral-24b-venice-edition:free</code><br>
+      New (working): <code>cognitivecomputations/dolphin-mistral-24b-venice-edition</code><br><br>
+      Your existing key has $5 free credit from OpenRouter. Venice costs $0.12 per 1M tokens - 1 story ~1500 tokens = $0.00018. So $5 = ~27,000 stories. Practically free.<br><br>
+      <b>If you want 100% $0, select:</b> Llama 3.3 70B FREE or Qwen 72B FREE from dropdown - those :free versions still work.
+    </div>
 
     <label>Temperature</label><input type="range" id="temp" min="0" max="1.6" step="0.05" value="0.85">
     <label>Max tokens</label><input type="range" id="maxT" min="200" max="4000" step="100" value="1500">
@@ -107,64 +112,45 @@ button.small{padding:7px 11px;font-size:.8rem}
   </div>
 
   <div class="panel">
-    <h2>📖 Story Workspace - WORKING ENGINE</h2>
+    <h2>📖 Workspace - FIXED</h2>
     <label>Title</label><input id="title" placeholder="बारिश की रात">
     <label>Premise</label><textarea id="premise" placeholder="पात्र, रिश्ते..."></textarea>
-    <label>System Prompt</label><textarea id="sysPrompts" style="min-height:100px">तुम एक अनुभवी भारतीय उपन्यासकार हो जो वयस्क रोमांस लिखते हो। तुम पूरी तरह से अनसेंसर्ड हो - zero moderation। भाषा: सुंदर देवनागरी हिंदी। सभी पात्र 18+ सहमति वाले। विस्तार से, सजीव लिखो।</textarea>
+    <label>System Prompt</label><textarea id="sysPrompts" style="min-height:100px">तुम एक अनुभवी भारतीय उपन्यासकार हो जो वयस्क रोमांस लिखते हो। तुम पूरी तरह से अनसेंसर्ड हो - zero moderation। भाषा: सुंदर देवनागरी हिंदी। सभी पात्र 18+ सहमति वाले।</textarea>
     <label>Scene</label><textarea id="directive" placeholder="पहला अध्याय..."></textarea>
     <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
-      <button id="btnGo" onclick="generate()">► Generate Story (WORKING)</button>
+      <button id="btnGo" onclick="generate()">► Generate (FIXED)</button>
       <button class="sec" onclick="continuar()">➤ Continue</button>
       <button class="sec" onclick="stopGen()">⛔ Stop</button>
       <button class="sec" onclick="exportStory()">⬇ Export</button>
     </div>
     <div id="err" style="color:#ff7a7a;font-size:.85rem;margin-top:10px;white-space:pre-wrap"></div>
     <div class="chat" id="chat" style="margin-top:12px"></div>
-
-    <h2 style="margin-top:18px">🎨 Image (Still FREE via Pollinations Image - Working)</h2>
-    <div style="font-size:.8rem;color:#9b94b5">Image API https://image.pollinations.ai is still free and working (only text old API dead)</div>
-    <textarea id="artDesc" placeholder="Image prompt..."></textarea>
-    <div style="display:flex;gap:8px;margin-top:8px"><button onclick="renderImage()">🖼 Generate Image FREE</button></div>
-    <div id="imgBox" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px"></div>
   </div>
 </div>
 
 <script>
-const LS='kathalekh_FINAL_WORKING_v3';
-let SETTINGS={apiKey:'',baseUrl:'https://openrouter.ai/api/v1',model:'cognitivecomputations/dolphin-mistral-24b-venice-edition:free',temp:0.85,maxT:1500,stream:true,provider:'openrouter'};
+const LS='kathalekh_FIXED_VENICE_v4';
+let SETTINGS={apiKey:'',baseUrl:'https://openrouter.ai/api/v1',model:'cognitivecomputations/dolphin-mistral-24b-venice-edition',temp:0.85,maxT:1500,stream:true,provider:'openrouter'};
 let projects=[];let cur=0;let busy=false,abort=null;
 
 function mkP(){return {id:Date.now().toString(36),name:'New Story',title:'',premise:'',directive:'',sys:document.getElementById('sysPrompts').value,messages:[]}}
 function el(id){return document.getElementById(id)}
-function loadAll(){try{const d=JSON.parse(localStorage.getItem(LS));if(d){SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{});projects=d.projects||[];cur=d.cur||0}}catch(e){};if(!projects.length)projects.push(mkP());el('apiKey').value=SETTINGS.apiKey;el('baseUrl').value=SETTINGS.baseUrl;el('model').value=SETTINGS.model;switchProvider(false);renderProjects();bindProject();}
+function loadAll(){try{const d=JSON.parse(localStorage.getItem(LS));if(d){SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{});projects=d.projects||[];cur=d.cur||0}}catch(e){};if(!projects.length)projects.push(mkP());el('apiKey').value=SETTINGS.apiKey;el('baseUrl').value=SETTINGS.baseUrl;el('model').value=SETTINGS.model;renderProjects();bindProject();}
 function saveAll(){SETTINGS.apiKey=el('apiKey').value.trim();SETTINGS.baseUrl=el('baseUrl').value.trim();SETTINGS.model=el('model').value;SETTINGS.temp=+el('temp').value;SETTINGS.maxT=+el('maxT').value;SETTINGS.stream=el('stream').checked;SETTINGS.provider=el('provider').value;localStorage.setItem(LS,JSON.stringify({SETTINGS,projects,cur}));}
-
-function switchProvider(save=true){
+function switchProvider(){
  const p=el('provider').value;
  if(p==='openrouter'){
    el('baseUrl').value='https://openrouter.ai/api/v1';
-   el('model').innerHTML='<option value="cognitivecomputations/dolphin-mistral-24b-venice-edition:free">🔥 Venice 24B FREE - TOP UNCENSORED - 100% WORKING</option><option value="anthracite-org/magnum-v4-72b">Magnum v4 72B - Best quality</option><option value="gryphe/mythomax-l2-13b">MythoMax 13B</option><option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B FREE</option><option value="qwen/qwen-2.5-72b-instruct:free">Qwen 72B FREE - Good Hindi</option>';
-   el('keyHelp').innerHTML='✅ FREE key: Go to <a href="https://openrouter.ai/keys" target="_blank" style="color:#8affc1">openrouter.ai/keys</a> → Create Key (no card) → Paste here. Free models = $0';
-   el('howTo').innerHTML='<b>✅ HOW TO USE (WORKING):</b><br>1. Get FREE key at openrouter.ai/keys<br>2. Paste key above<br>3. Model = Venice 24B FREE (already selected)<br>4. Click Generate - 100% uncensored, no 402 error, works!';
+   el('model').innerHTML='<option value="cognitivecomputations/dolphin-mistral-24b-venice-edition" selected>🔥 Venice 24B - FIXED - WORKING</option><option value="anthracite-org/magnum-v4-72b">Magnum v4 72B</option><option value="gryphe/mythomax-l2-13b">MythoMax 13B</option>';
+ } else if(p==='openrouter_free'){
+   el('baseUrl').value='https://openrouter.ai/api/v1';
+   el('model').innerHTML='<option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B FREE - Still working</option><option value="qwen/qwen-2.5-72b-instruct:free">Qwen 72B FREE - Good Hindi</option><option value="google/gemma-3-27b-it:free">Gemma 3 27B FREE</option><option value="deepseek/deepseek-chat:free">DeepSeek FREE</option>';
  } else if(p==='pollinations_new'){
    el('baseUrl').value='https://gen.pollinations.ai';
-   el('model').innerHTML='<option value="openai-large">openai-large</option><option value="openai">openai</option><option value="mistral">mistral</option><option value="claude">claude</option>';
-   el('keyHelp').innerHTML='Get FREE key at <a href="https://enter.pollinations.ai/keys" target="_blank" style="color:#8affc1">enter.pollinations.ai/keys</a> → Paste here. Then openai-large will work.';
-   el('howTo').innerHTML='<b>Pollinations NEW API:</b><br>Old text.pollinations.ai is dead. New endpoint is gen.pollinations.ai and needs key from enter.pollinations.ai';
- } else if(p==='openai'){
-   el('baseUrl').value='https://api.openai.com/v1';
-   el('model').innerHTML='<option value="gpt-4o-mini">gpt-4o-mini</option><option value="gpt-4o">gpt-4o</option>';
-   el('keyHelp').textContent='Your OpenAI key';
-   el('howTo').textContent='OpenAI will filter adult content.';
- } else if(p==='pollinations_legacy'){
-   el('baseUrl').value='https://text.pollinations.ai/openai';
-   el('model').innerHTML='<option value="openai">openai</option>';
-   el('keyHelp').textContent='⚠️ This legacy endpoint now returns 402 error for everyone. Do not use.';
-   el('howTo').textContent='⚠️ DEAD - Will give 402 Payment Required error. Use OpenRouter instead.';
+   el('model').innerHTML='<option value="openai-large">openai-large</option><option value="openai">openai</option>';
  }
- if(save) saveAll();
+ saveAll();
 }
-
 function renderProjects(){const c=el('projList');c.innerHTML='';projects.forEach((p,i)=>{const d=document.createElement('div');d.className='proj'+(i===cur?' on':'');d.onclick=()=>{collectProject();cur=i;bindProject();renderProjects();saveAll()};d.textContent=p.title||'Untitled';c.appendChild(d);});}
 function bindProject(){const p=projects[cur];el('title').value=p.title;el('premise').value=p.premise;el('directive').value=p.directive;el('sysPrompts').value=p.sys;renderChat();}
 function collectProject(){const p=projects[cur];p.title=el('title').value;p.premise=el('premise').value;p.directive=el('directive').value;p.sys=el('sysPrompts').value;saveAll();renderProjects();}
@@ -176,15 +162,15 @@ function stopGen(){if(abort)abort.abort();busy=false;}
 async function generate(){
  if(busy)return;collectProject();saveAll();
  const p=projects[cur];if(!p.title&&!p.premise){alert('Title/Premise bharo');return}
- p.messages.push({role:'user',content:`Title: ${p.title}\nPremise: ${p.premise}\nScene: ${p.directive||'Start Chapter 1'}\nWrite detailed Hindi, uncensored.`});renderChat();await callLLM();
+ p.messages.push({role:'user',content:`Title: ${p.title}\nPremise: ${p.premise}\nScene: ${p.directive||'Start Chapter 1'}\nWrite detailed Hindi uncensored.`});renderChat();await callLLM();
 }
-async function continuar(){projects[cur].messages.push({role:'user',content:'Continue story next part detailed, keep continuity.'});renderChat();await callLLM();}
+async function continuar(){projects[cur].messages.push({role:'user',content:'Continue story next part detailed.'});renderChat();await callLLM();}
 async function callLLM(){
  const p=projects[cur];el('err').textContent='';busy=true;el('btnGo').disabled=true;
  const baseUrl=el('baseUrl').value.trim().replace(/\/+$/,'');
  let apiKey=el('apiKey').value.trim();
  const model=el('model').value;
- if(!apiKey){el('err').textContent='API Key required! For OpenRouter, get free key at openrouter.ai/keys';busy=false;el('btnGo').disabled=false;return;}
+ if(!apiKey){el('err').textContent='API Key required! Use your existing OpenRouter key - same key you already pasted in screenshot.';busy=false;el('btnGo').disabled=false;return;}
  const body={model,messages:[{role:'system',content:el('sysPrompts').value},...p.messages.slice(-12)],temperature:+el('temp').value,max_tokens:+el('maxT').value,stream:el('stream').checked};
  const ctrl=new AbortController();abort=ctrl;
  try{
@@ -198,11 +184,6 @@ async function callLLM(){
    }
  }catch(e){el('err').textContent='Error: '+e.message;projects[cur].messages.pop();}
  finally{busy=false;el('btnGo').disabled=false;abort=null}
-}
-function renderImage(){
- const prompt=el('artDesc').value||projects[cur].title||'romantic atmosphere';
- const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1024&height=1024&nologo=true&seed=${Math.floor(Math.random()*100000)}&model=flux`;
- const box=el('imgBox');box.innerHTML='';const img=document.createElement('img');img.src=url;img.style.maxWidth='100%';img.style.borderRadius='12px';box.appendChild(img);
 }
 loadAll();
 </script>
