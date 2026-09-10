@@ -24,27 +24,27 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>कथा-लेखक | Hindi Quality FIXED</title>
+<title>कथा-लेखक | Daily Hindi FINAL</title>
 <style>
 :root{--bg:#12101a;--panel:#1c1830;--panel2:#241f3d;--acc:#b57bff;--txt:#eae6f5;--mut:#9b94b5;--bd:#332c52}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--txt);line-height:1.8}
 header{background:#1c1830;border-bottom:2px solid #b57bff;padding:14px 18px;display:flex;gap:12px;align-items:center}
 header h1{color:#b57bff;margin:0;font-size:1.2rem}
-.badge{background:#2a2450;border:1px solid #b57bff;padding:3px 12px;border-radius:20px;color:#b57bff;font-size:.7rem;font-weight:700}
+.badge{font-size:.7rem;background:#2a2450;border:1px solid #b57bff;padding:3px 12px;border-radius:20px;color:#b57bff;font-weight:700}
 .badge.ok{background:#1a3d2a;border-color:#2a6b45;color:#8affc1}
 .wrap{display:grid;grid-template-columns:380px 1fr;gap:16px;padding:16px;max-width:1500px;margin:0 auto}
 @media(max-width:900px){.wrap{grid-template-columns:1fr}}
 .panel{background:#1c1830;border:1px solid #332c52;border-radius:14px;padding:16px}
 h2{font-size:.95rem;margin:0 0 10px;color:#7bd6ff;border-bottom:1px solid #332c52;padding-bottom:8px}
 label{display:block;font-size:.78rem;color:#9b94b5;margin:12px 0 4px}
-input,select,textarea{width:100%;background:#241f3d;border:1px solid #332c52;color:#eae6f5;border-radius:8px;padding:10px 11px;font-size:.92rem}
+input,select,textarea{width:100%;background:#241f3d;border:1px solid #332c52;color:#eae6f5;border-radius:8px;padding:10px 11px;font-size:.95rem}
 textarea{resize:vertical;min-height:80px}
 button{background:#b57bff;color:#1a1025;border:0;border-radius:8px;padding:11px 16px;font-weight:800;cursor:pointer}
 button.sec{background:#241f3d;color:#eae6f5;border:1px solid #332c52}
 button.small{padding:7px 11px;font-size:.8rem}
-.chat{display:flex;flex-direction:column;gap:12px;min-height:350px;max-height:70vh;overflow-y:auto;padding:6px 2px 12px}
-.msg{border-radius:12px;padding:16px 18px;white-space:pre-wrap;word-break:break-word;line-height:1.9;font-size:1rem}
+.chat{display:flex;flex-direction:column;gap:14px;min-height:350px;max-height:70vh;overflow-y:auto;padding:6px 2px 12px}
+.msg{border-radius:12px;padding:16px 18px;white-space:pre-wrap;word-break:break-word;line-height:1.9;font-size:1.02rem}
 .msg.user{background:#24204a;border:1px solid #332c52;font-size:.9rem}
 .msg.assistant{background:#1e2a24;border:1px solid #2a6b45}
 .alert{background:#2a1a1a;border:1px solid #ff7a7a;border-radius:10px;padding:12px;font-size:.85rem;color:#ffb4b4}
@@ -57,65 +57,53 @@ button.small{padding:7px 11px;font-size:.8rem}
 <body>
 <header>
   <h1>✍️ कथा-लेखक</h1>
-  <span class="badge ok">✅ Hindi Quality FIXED</span>
-  <span class="badge">Qwen 72B / Magnum - Best for Hindi</span>
+  <span class="badge ok">✅ Daily Hindi - No Bookish</span>
+  <span class="badge">Fixed: बिशफल, स्क्विज़ बॉडी glitches</span>
 </header>
 
 <div class="wrap">
   <div class="panel">
     <div class="alert">
-      <b>Why poor quality in your screenshot?</b><br>
-      Venice 24B = English model. It doesn't know Hindi properly, so it mixes English (mindset, thoughts) and hallucinates Chinese (我们知道) at end.<br>
-      <b>Fix: Use Qwen 72B or Magnum 72B - these are trained on Hindi and best for devanagari.</b>
+      <b>Your Screenshot Fix:</b><br>
+      Red circle: <code>बिशफल, स्क्विज़ बॉडी</code> = model trying to transliterate English words and failing.<br>
+      Also bookish: <code>अधरा और भारा, दर्पण चमक उठा, गुप्त चाबी</code> = too heavy sahityik.<br>
+      <b>Fix: New prompt forces daily bol-chaal Hindi like we speak at home.</b>
     </div>
 
-    <h2 style="margin-top:14px">⚙️ BEST Settings for Hindi Quality</h2>
+    <h2 style="margin-top:14px">⚙️ Settings - Daily Hindi</h2>
 
-    <label>Provider</label>
-    <select id="provider" onchange="switchProvider()">
-      <option value="openrouter" selected>🔥 OpenRouter - Best Hindi Uncensored</option>
-      <option value="openrouter_free">🟢 OpenRouter FREE Hindi Models</option>
-    </select>
-
-    <label>API Key (same key you have)</label>
+    <label>API Key (same)</label>
     <input type="password" id="apiKey" placeholder="sk-or-v1-...">
 
     <label>Base URL</label>
     <input id="baseUrl" value="https://openrouter.ai/api/v1">
 
-    <label>Model - SELECT FOR HINDI QUALITY</label>
+    <label>Model - Best for Daily Hindi</label>
     <select id="model">
-      <option value="qwen/qwen-2.5-72b-instruct" selected>🔥 Qwen 2.5 72B - BEST Hindi Quality + Uncensored (RECOMMENDED)</option>
-      <option value="qwen/qwen-2.5-72b-instruct:free">Qwen 2.5 72B FREE - Same, free version</option>
-      <option value="anthracite-org/magnum-v4-72b">Magnum v4 72B - Best adult writer, good Hindi</option>
-      <option value="qwen/qwen-2.5-32b-instruct">Qwen 2.5 32B - Faster, good Hindi</option>
-      <option value="meta-llama/llama-3.3-70b-instruct">Llama 3.3 70B - Good Hindi</option>
-      <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B FREE</option>
-      <option value="cognitivecomputations/dolphin-mistral-24b-venice-edition">Venice 24B - English only (AVOID for Hindi)</option>
+      <option value="qwen/qwen-2.5-72b-instruct" selected>🔥 Qwen 72B - Best Daily Hindi (RECOMMENDED)</option>
+      <option value="anthracite-org/magnum-v4-72b">Magnum 72B - Good for daily + adult</option>
+      <option value="qwen/qwen-2.5-72b-instruct:free">Qwen 72B FREE</option>
+      <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 FREE - More casual Hindi</option>
     </select>
 
     <div class="success" style="margin-top:12px">
-      <b>✅ Hindi Quality Fix:</b><br>
-      • Qwen models = Chinese company, trained heavily on Hindi + English, best devanagari<br>
-      • Magnum = finetuned for erotic stories, good Hindi<br>
-      • Venice = English only, will give poor Hindi + Chinese garbage<br><br>
-      <b>Use Qwen 72B for best result - same quality as your old Featherless Qwen models.</b>
+      <b>✅ Daily Hindi Fix:</b><br>
+      ❌ Old bookish: <code>उसका शरीर बिशफल था, स्क्विज़ बॉडी को चिपक गई</code><br>
+      ✅ New daily: <code>वो पूरा भीगा हुआ था, शर्ट बदन से चिपक गई थी</code><br><br>
+      ❌ Old: <code>दिलों का दर्पण चमक उठा</code><br>
+      ✅ New: <code>दोनों की नज़रें मिली और दिल तेज़ धड़कने लगा</code>
     </div>
 
-    <label>Temperature <span id="lblTemp">0.75</span> (Lower = better Hindi, less garbage)</label>
-    <input type="range" id="temp" min="0" max="1.2" step="0.05" value="0.75">
+    <label>Temperature <span id="lblTemp">0.7</span> (Lower = less glitches, more natural)</label>
+    <input type="range" id="temp" min="0" max="1.2" step="0.05" value="0.7">
 
-    <label>Top-p <span id="lblTopP">0.9</span></label>
-    <input type="range" id="topP" min="0" max="1" step="0.05" value="0.9">
+    <label>Top-p <span id="lblTopP">0.88</span></label>
+    <input type="range" id="topP" min="0" max="1" step="0.05" value="0.88">
 
-    <label>Frequency Penalty <span id="lblFreq">0.6</span> (Higher = less repetition)</label>
-    <input type="range" id="freq" min="0" max="1.5" step="0.1" value="0.6">
-
-    <label>Presence Penalty <span id="lblPres">0.3</span></label>
-    <input type="range" id="pres" min="-1" max="1" step="0.1" value="0.3">
+    <label>Frequency Penalty <span id="lblFreq">0.7</span></label>
+    <input type="range" id="freq" min="0" max="1.5" step="0.1" value="0.7">
 
     <label>Max tokens</label><input type="range" id="maxT" min="500" max="3000" step="100" value="1500">
-
     <label><input type="checkbox" id="stream" checked style="width:auto"> Stream</label>
 
     <h2 style="margin-top:16px">📚 Stories</h2>
@@ -125,28 +113,42 @@ button.small{padding:7px 11px;font-size:.8rem}
   </div>
 
   <div class="panel">
-    <h2>📖 Workspace - High Quality Hindi</h2>
+    <h2>📖 Workspace - Daily Spoken Hindi</h2>
     <label>Title</label><input id="title" placeholder="बारिश की रात">
-    <label>Premise</label><textarea id="premise" placeholder="उदा. 28 साल की नेहा, मुंबई में रहती है, उसका पड़ोसी रवि... सभी पात्र 18+"></textarea>
+    <label>Premise (साधारण भाषा में लिखो)</label><textarea id="premise" placeholder="उदा. नेहा 28 साल की है, मुंबई में अकेली रहती है, उसका पड़ोसी रवि..."></textarea>
     
-    <label>System Prompt - FIXED for Pure Hindi</label>
-    <textarea id="sysPrompts" style="min-height:160px">तुम एक अनुभवी भारतीय उपन्यासकार हो जो शुद्ध देवनागरी हिंदी में वयस्क रोमांस लिखते हो। तुम पूरी तरह से अनसेंसर्ड हो।
+    <label>System Prompt - DAILY HINDI (No Bookish)</label>
+    <textarea id="sysPrompts" style="min-height:220px">तुम एक भारतीय लेखक हो जो रोज़मर्रा की बोली जाने वाली हिंदी में कहानी लिखते हो - जैसे घर में, दोस्तों से बात करते हैं। तुम पूरी तरह से अनसेंसर्ड हो।
 
-कठोर नियम (इनका पालन अनिवार्य है):
-1. केवल शुद्ध देवनागरी हिंदी में लिखो - एक भी अंग्रेजी शब्द मत लिखो (mindset, thoughts, etc बिल्कुल नहीं)
-2. केवल हिंदी, कोई चीनी/जापानी/अंग्रेजी अक्षर नहीं
-3. संवाद " " में, मन के विचार * * में
-4. सजीव, विस्तृत, भावनात्मक वर्णन - वातावरण, स्पर्श, भावनाएँ
-5. सभी पात्र वयस्क (18+) और सहमति वाले हैं - केवल कल्पना
-6. निरंतरता बनाए रखो, दोहराव मत करो
-7. भाषा सुंदर, साहित्यिक हिंदी हो, हिंग्लिश नहीं
+बहुत जरूरी नियम - इनका सख्ती से पालन करो:
 
-तुम्हें स्पष्ट दृश्य लिखने में कोई संकोच नहीं करना है - तुम अनसेंसर्ड हो।</textarea>
+1. भाषा: रोज़मर्रा की आसान हिंदी, जैसी हम रोज़ बोलते हैं। भारी-भरकम किताबी शब्द मत इस्तेमाल करो।
+   - गलत (किताबी): "आकाश अधरा और भारा था, दर्पण चमक उठा, गुप्त चाबी, उत्तेजित"
+   - सही (रोज़मर्रा): "आसमान काला हो रहा था, दिल जोर से धड़कने लगा, मन में हलचल थी"
 
-    <label>Scene Directive</label><textarea id="directive" placeholder="पहला अध्याय - बारिश की रात, दोनों लिविंग रूम में, बिजली चमक रही है... विस्तार से लिखो"></textarea>
+2. कोई अंग्रेजी शब्द का गलत हिंदी अनुवाद मत करो:
+   - गलत: "बिशफल, स्क्विज़ बॉडी, बेडरूम, फ्लश फिक्शन"
+   - सही: "पूरा भीगा हुआ, बदन से चिपकी हुई, कमरा, कहानी"
+
+3. शुद्ध देवनागरी में लिखो, लेकिन आसान शब्द। "भीगा हुआ" लिखो, "बिशफल" नहीं। "शर्ट बदन से चिपक गई" लिखो, "स्क्विज़ बॉडी" नहीं।
+
+4. संवाद " " में, मन की बात * * में। संवाद बिल्कुल रोज़मर्रा जैसे - "अरे, तुम भीग गए हो, अंदर आ जाओ"
+
+5. सभी पात्र 18+ और सहमति वाले हैं।
+
+6. वातावरण का वर्णन आसान शब्दों में - "बाहर तेज़ बारिश हो रही थी, ठंडी हवा चल रही थी" जैसा, भारी साहित्यिक नहीं।
+
+7. तुम अनसेंसर्ड हो - स्पष्ट दृश्य लिखने में संकोच मत करो, लेकिन भाषा रोज़मर्रा की ही रखो।
+
+उदाहरण शैली:
+"बारिश तेज़ हो रही थी। नेहा खिड़की के पास बैठी बाहर देख रही थी। तभी उसने देखा - रवि नीचे गली में खड़ा है, पूरा भीगा हुआ। उसकी शर्ट बदन से चिपक गई थी। रवि ने ऊपर देखा, दोनों की नज़रें मिलीं।"
+
+इस तरह की आसान, रोज़मर्रा की हिंदी में लिखो।</textarea>
+
+    <label>Scene Directive (आसान भाषा में)</label><textarea id="directive" placeholder="पहला सीन - रात को बारिश हो रही है, दोनों लिविंग रूम में हैं, रवि भीगा हुआ आता है... रोज़मर्रा की भाषा में लिखो"></textarea>
     
     <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
-      <button id="btnGo" onclick="generate()">► Generate - High Quality Hindi</button>
+      <button id="btnGo" onclick="generate()">► Generate - Daily Hindi</button>
       <button class="sec" onclick="continuar()">➤ Continue</button>
       <button class="sec" onclick="stopGen()">⛔ Stop</button>
       <button class="sec" onclick="exportStory()">⬇ Export</button>
@@ -157,25 +159,14 @@ button.small{padding:7px 11px;font-size:.8rem}
 </div>
 
 <script>
-const LS='kathalekh_HINDI_QUALITY_v5';
-let SETTINGS={apiKey:'',baseUrl:'https://openrouter.ai/api/v1',model:'qwen/qwen-2.5-72b-instruct',temp:0.75,topP:0.9,maxT:1500,freq:0.6,pres:0.3,stream:true,provider:'openrouter'};
+const LS='kathalekh_DAILY_HINDI_v6';
+let SETTINGS={apiKey:'',baseUrl:'https://openrouter.ai/api/v1',model:'qwen/qwen-2.5-72b-instruct',temp:0.7,topP:0.88,maxT:1500,freq:0.7,pres:0.3,stream:true};
 let projects=[];let cur=0;let busy=false,abort=null;
 
 function mkP(){return {id:Date.now().toString(36),name:'New Story',title:'',premise:'',directive:'',sys:document.getElementById('sysPrompts').value,messages:[]}}
 function el(id){return document.getElementById(id)}
-function loadAll(){try{const d=JSON.parse(localStorage.getItem(LS));if(d){SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{});projects=d.projects||[];cur=d.cur||0}}catch(e){};if(!projects.length)projects.push(mkP());el('apiKey').value=SETTINGS.apiKey;el('baseUrl').value=SETTINGS.baseUrl;el('model').value=SETTINGS.model;el('temp').value=SETTINGS.temp;el('topP').value=SETTINGS.topP;el('freq').value=SETTINGS.freq;el('pres').value=SETTINGS.pres;el('maxT').value=SETTINGS.maxT;el('stream').checked=SETTINGS.stream;document.getElementById('lblTemp').textContent=SETTINGS.temp;document.getElementById('lblTopP').textContent=SETTINGS.topP;document.getElementById('lblFreq').textContent=SETTINGS.freq;document.getElementById('lblPres').textContent=SETTINGS.pres;renderProjects();bindProject();}
-function saveAll(){SETTINGS.apiKey=el('apiKey').value.trim();SETTINGS.baseUrl=el('baseUrl').value.trim();SETTINGS.model=el('model').value;SETTINGS.temp=+el('temp').value;SETTINGS.topP=+el('topP').value;SETTINGS.freq=+el('freq').value;SETTINGS.pres=+el('pres').value;SETTINGS.maxT=+el('maxT').value;SETTINGS.stream=el('stream').checked;SETTINGS.provider=el('provider').value;localStorage.setItem(LS,JSON.stringify({SETTINGS,projects,cur}));}
-function switchProvider(){
- const p=el('provider').value;
- if(p==='openrouter'){
-   el('baseUrl').value='https://openrouter.ai/api/v1';
-   el('model').innerHTML='<option value="qwen/qwen-2.5-72b-instruct" selected>🔥 Qwen 2.5 72B - BEST Hindi (Paid $0.12/M)</option><option value="anthracite-org/magnum-v4-72b">Magnum v4 72B - Best adult</option><option value="qwen/qwen-2.5-32b-instruct">Qwen 32B - Faster</option><option value="meta-llama/llama-3.3-70b-instruct">Llama 3.3 70B</option>';
- } else if(p==='openrouter_free'){
-   el('baseUrl').value='https://openrouter.ai/api/v1';
-   el('model').innerHTML='<option value="qwen/qwen-2.5-72b-instruct:free">Qwen 72B FREE - Best Hindi FREE</option><option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B FREE</option><option value="google/gemma-3-27b-it:free">Gemma 27B FREE</option>';
- }
- saveAll();
-}
+function loadAll(){try{const d=JSON.parse(localStorage.getItem(LS));if(d){SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{});projects=d.projects||[];cur=d.cur||0}}catch(e){};if(!projects.length)projects.push(mkP());el('apiKey').value=SETTINGS.apiKey;el('baseUrl').value=SETTINGS.baseUrl;el('model').value=SETTINGS.model;el('temp').value=SETTINGS.temp;el('topP').value=SETTINGS.topP;el('freq').value=SETTINGS.freq;el('maxT').value=SETTINGS.maxT;el('stream').checked=SETTINGS.stream;document.getElementById('lblTemp').textContent=SETTINGS.temp;document.getElementById('lblTopP').textContent=SETTINGS.topP;document.getElementById('lblFreq').textContent=SETTINGS.freq;renderProjects();bindProject();}
+function saveAll(){SETTINGS.apiKey=el('apiKey').value.trim();SETTINGS.baseUrl=el('baseUrl').value.trim();SETTINGS.model=el('model').value;SETTINGS.temp=+el('temp').value;SETTINGS.topP=+el('topP').value;SETTINGS.freq=+el('freq').value;SETTINGS.maxT=+el('maxT').value;SETTINGS.stream=el('stream').checked;localStorage.setItem(LS,JSON.stringify({SETTINGS,projects,cur}));}
 function renderProjects(){const c=el('projList');c.innerHTML='';projects.forEach((p,i)=>{const d=document.createElement('div');d.className='proj'+(i===cur?' on':'');d.onclick=()=>{collectProject();cur=i;bindProject();renderProjects();saveAll()};d.textContent=p.title||'Untitled';c.appendChild(d);});}
 function bindProject(){const p=projects[cur];el('title').value=p.title;el('premise').value=p.premise;el('directive').value=p.directive;el('sysPrompts').value=p.sys;renderChat();}
 function collectProject(){const p=projects[cur];p.title=el('title').value;p.premise=el('premise').value;p.directive=el('directive').value;p.sys=el('sysPrompts').value;saveAll();renderProjects();}
@@ -187,22 +178,22 @@ function stopGen(){if(abort)abort.abort();busy=false;}
 async function generate(){
  if(busy)return;collectProject();saveAll();
  const p=projects[cur];if(!p.title&&!p.premise){alert('Title/Premise bharo');return}
- p.messages.push({role:'user',content:`शीर्षक: ${p.title}\nपृष्ठभूमि: ${p.premise}\nदृश्य: ${p.directive||'पहला अध्याय शुरू करो, विस्तार से, शुद्ध हिंदी में'}\n\nनिर्देश: शुद्ध देवनागरी हिंदी में लिखो, कोई अंग्रेजी शब्द नहीं, कोई चीनी नहीं, साहित्यिक और सजीव।`});renderChat();await callLLM();
+ p.messages.push({role:'user',content:`शीर्षक: ${p.title}\nकहानी के बारे में: ${p.premise}\nसीन: ${p.directive||'पहला सीन शुरू करो'}\n\nयाद रखो: रोज़मर्रा की आसान हिंदी में लिखो, भारी किताबी शब्द नहीं, कोई अंग्रेजी का गलत अनुवाद नहीं जैसे बिशफल/स्क्विज़।`});renderChat();await callLLM();
 }
-async function continuar(){projects[cur].messages.push({role:'user',content:'कहानी को आगे बढ़ाओ, पिछले दृश्य से निरंतरता बनाए रखो, शुद्ध हिंदी में, विस्तार से।'});renderChat();await callLLM();}
+async function continuar(){projects[cur].messages.push({role:'user',content:'आगे की कहानी जारी रखो, वही रोज़मर्रा की आसान हिंदी में, सरल शब्दों में।'});renderChat();await callLLM();}
 async function callLLM(){
  const p=projects[cur];el('err').textContent='';busy=true;el('btnGo').disabled=true;
  const baseUrl=el('baseUrl').value.trim().replace(/\/+$/,'');
  let apiKey=el('apiKey').value.trim();
  const model=el('model').value;
- if(!apiKey){el('err').textContent='API Key required! Use your OpenRouter key.';busy=false;el('btnGo').disabled=false;return;}
+ if(!apiKey){el('err').textContent='API Key required! Same OpenRouter key use karo.';busy=false;el('btnGo').disabled=false;return;}
  const body={
    model,
-   messages:[{role:'system',content:el('sysPrompts').value},...p.messages.slice(-12)],
+   messages:[{role:'system',content:el('sysPrompts').value},...p.messages.slice(-10)],
    temperature:+el('temp').value,
    top_p:+el('topP').value,
    frequency_penalty:+el('freq').value,
-   presence_penalty:+el('pres').value,
+   presence_penalty:0.3,
    max_tokens:+el('maxT').value,
    stream:el('stream').checked
  };
