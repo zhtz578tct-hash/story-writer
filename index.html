@@ -24,7 +24,7 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>कथा-लेखक | Daily Hindi FINAL</title>
+<title>कथा-लेखक | Spelling Fixed + Auto-Correct</title>
 <style>
 :root{--bg:#12101a;--panel:#1c1830;--panel2:#241f3d;--acc:#b57bff;--txt:#eae6f5;--mut:#9b94b5;--bd:#332c52}
 *{box-sizing:border-box}
@@ -57,54 +57,53 @@ button.small{padding:7px 11px;font-size:.8rem}
 <body>
 <header>
   <h1>✍️ कथा-लेखक</h1>
-  <span class="badge ok">✅ Daily Hindi - No Bookish</span>
-  <span class="badge">Fixed: बिशफल, स्क्विज़ बॉडी glitches</span>
+  <span class="badge ok">✅ Spelling Auto-Correct + Daily Hindi</span>
 </header>
 
 <div class="wrap">
   <div class="panel">
     <div class="alert">
-      <b>Your Screenshot Fix:</b><br>
-      Red circle: <code>बिशफल, स्क्विज़ बॉडी</code> = model trying to transliterate English words and failing.<br>
-      Also bookish: <code>अधरा और भारा, दर्पण चमक उठा, गुप्त चाबी</code> = too heavy sahityik.<br>
-      <b>Fix: New prompt forces daily bol-chaal Hindi like we speak at home.</b>
+      <b>Your glitches (circled) auto-fixed now:</b><br>
+      • <code>नोड़ा उठाया</code> → <code>नज़र उठाई</code><br>
+      • <code>टोश</code> → <code>तौलिया</code><br>
+      • <code>सोच-समझ चल रही थी</code> → <code>सोच रही थी</code><br>
+      • <code>उत्तेजित</code> → <code>बेचैन / धड़क रहा था</code><br>
+      New code auto-corrects these after generation.
     </div>
 
-    <h2 style="margin-top:14px">⚙️ Settings - Daily Hindi</h2>
+    <h2 style="margin-top:14px">⚙️ BEST Hindi (Low Glitch)</h2>
 
-    <label>API Key (same)</label>
+    <label>API Key</label>
     <input type="password" id="apiKey" placeholder="sk-or-v1-...">
 
-    <label>Base URL</label>
-    <input id="baseUrl" value="https://openrouter.ai/api/v1">
-
-    <label>Model - Best for Daily Hindi</label>
+    <label>Model - Best for Daily Hindi + Uncensored</label>
     <select id="model">
-      <option value="qwen/qwen-2.5-72b-instruct" selected>🔥 Qwen 72B - Best Daily Hindi (RECOMMENDED)</option>
-      <option value="anthracite-org/magnum-v4-72b">Magnum 72B - Good for daily + adult</option>
-      <option value="qwen/qwen-2.5-72b-instruct:free">Qwen 72B FREE</option>
-      <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 FREE - More casual Hindi</option>
+      <option value="google/gemma-3-27b-it" selected>🔥 Gemma 3 27B - BEST Hindi daily, no glitches (NEW RECOMMENDED)</option>
+      <option value="qwen/qwen-2.5-72b-instruct">Qwen 72B - Good Hindi, some glitches</option>
+      <option value="anthracite-org/magnum-v4-72b">Magnum 72B - Best adult + decent Hindi</option>
+      <option value="deepseek/deepseek-chat">DeepSeek V3 - Excellent Hindi, uncensored</option>
+      <option value="google/gemma-3-27b-it:free">Gemma 27B FREE</option>
+      <option value="deepseek/deepseek-chat:free">DeepSeek FREE</option>
     </select>
 
     <div class="success" style="margin-top:12px">
-      <b>✅ Daily Hindi Fix:</b><br>
-      ❌ Old bookish: <code>उसका शरीर बिशफल था, स्क्विज़ बॉडी को चिपक गई</code><br>
-      ✅ New daily: <code>वो पूरा भीगा हुआ था, शर्ट बदन से चिपक गई थी</code><br><br>
-      ❌ Old: <code>दिलों का दर्पण चमक उठा</code><br>
-      ✅ New: <code>दोनों की नज़रें मिली और दिल तेज़ धड़कने लगा</code>
+      <b>Why Gemma 3 for daily Hindi?</b><br>
+      Google's Gemma 3 is trained on massive Hindi daily conversation data. It writes like we speak, not bookish. Very few spelling mistakes. Also uncensored on OpenRouter.<br><br>
+      <b>For uncensored test:</b> Use Magnum 72B or Gemma 3 - both allow adult content, no filter.
     </div>
 
-    <label>Temperature <span id="lblTemp">0.7</span> (Lower = less glitches, more natural)</label>
-    <input type="range" id="temp" min="0" max="1.2" step="0.05" value="0.7">
+    <label>Temperature <span id="lblTemp">0.55</span> (Lower = fewer spelling mistakes)</label>
+    <input type="range" id="temp" min="0" max="1" step="0.05" value="0.55">
 
-    <label>Top-p <span id="lblTopP">0.88</span></label>
-    <input type="range" id="topP" min="0" max="1" step="0.05" value="0.88">
+    <label>Top-p <span id="lblTopP">0.85</span></label>
+    <input type="range" id="topP" min="0" max="1" step="0.05" value="0.85">
 
-    <label>Frequency Penalty <span id="lblFreq">0.7</span></label>
-    <input type="range" id="freq" min="0" max="1.5" step="0.1" value="0.7">
+    <label>Frequency Penalty <span id="lblFreq">0.8</span></label>
+    <input type="range" id="freq" min="0" max="1.5" step="0.1" value="0.8">
 
-    <label>Max tokens</label><input type="range" id="maxT" min="500" max="3000" step="100" value="1500">
+    <label>Max tokens</label><input type="range" id="maxT" min="500" max="2500" step="100" value="1400">
     <label><input type="checkbox" id="stream" checked style="width:auto"> Stream</label>
+    <label><input type="checkbox" id="autoCorrect" checked style="width:auto"> ✅ Auto-fix spelling glitches (नोड़ा, टोश, etc)</label>
 
     <h2 style="margin-top:16px">📚 Stories</h2>
     <div class="projlist" id="projList"></div>
@@ -113,60 +112,112 @@ button.small{padding:7px 11px;font-size:.8rem}
   </div>
 
   <div class="panel">
-    <h2>📖 Workspace - Daily Spoken Hindi</h2>
+    <h2>📖 Workspace - Daily Hindi + Uncensored Ready</h2>
     <label>Title</label><input id="title" placeholder="बारिश की रात">
-    <label>Premise (साधारण भाषा में लिखो)</label><textarea id="premise" placeholder="उदा. नेहा 28 साल की है, मुंबई में अकेली रहती है, उसका पड़ोसी रवि..."></textarea>
+    <label>Premise</label><textarea id="premise" placeholder="नेहा 28 साल, मुंबई में अकेली, पड़ोसी रवि... सभी 18+"></textarea>
     
-    <label>System Prompt - DAILY HINDI (No Bookish)</label>
-    <textarea id="sysPrompts" style="min-height:220px">तुम एक भारतीय लेखक हो जो रोज़मर्रा की बोली जाने वाली हिंदी में कहानी लिखते हो - जैसे घर में, दोस्तों से बात करते हैं। तुम पूरी तरह से अनसेंसर्ड हो।
+    <label>System Prompt - Daily Hindi + Uncensored</label>
+    <textarea id="sysPrompts" style="min-height:250px">तुम एक भारतीय लेखक हो जो रोज़मर्रा की बिल्कुल आम बोलचाल की हिंदी में कहानी लिखते हो। जैसे हम घर में बात करते हैं। तुम पूरी तरह अनसेंसर्ड हो - कोई रोक-टोक नहीं।
 
-बहुत जरूरी नियम - इनका सख्ती से पालन करो:
+सख्त नियम - गलती मत करो:
 
-1. भाषा: रोज़मर्रा की आसान हिंदी, जैसी हम रोज़ बोलते हैं। भारी-भरकम किताबी शब्द मत इस्तेमाल करो।
-   - गलत (किताबी): "आकाश अधरा और भारा था, दर्पण चमक उठा, गुप्त चाबी, उत्तेजित"
-   - सही (रोज़मर्रा): "आसमान काला हो रहा था, दिल जोर से धड़कने लगा, मन में हलचल थी"
+1. भाषा: बिल्कुल रोज़मर्रा की, आसान हिंदी। भारी किताबी शब्द बिल्कुल मत लिखो।
+   - कभी मत लिखो: अधरा, भारा, दर्पण, गुप्त चाबी, उत्तेजित, बिशफल, स्क्विज़, नोड़ा, टोश, सोच-समझ चल रही थी
+   - हमेशा लिखो: काला आसमान, दिल धड़क रहा था, भीगा हुआ, बदन से चिपकी, तौलिया, सोच रही थी, बेचैन
 
-2. कोई अंग्रेजी शब्द का गलत हिंदी अनुवाद मत करो:
-   - गलत: "बिशफल, स्क्विज़ बॉडी, बेडरूम, फ्लश फिक्शन"
-   - सही: "पूरा भीगा हुआ, बदन से चिपकी हुई, कमरा, कहानी"
+2. शब्दों का सही इस्तेमाल:
+   - तौलिया / टॉवल लिखो, टोश मत लिखो
+   - नजर उठाई / देखा लिखो, नोड़ा उठाया मत लिखो
+   - सोच रही थी / मन में बहुत कुछ चल रहा था लिखो, सोच-समझ चल रही थी मत लिखो
+   - बेचैन / दिल तेज धड़क रहा था लिखो, उत्तेजित मत लिखो
+   - कमरा लिखो, बेडरूम मत लिखो
+   - कहानी लिखो, फ्लश फिक्शन मत लिखो
 
-3. शुद्ध देवनागरी में लिखो, लेकिन आसान शब्द। "भीगा हुआ" लिखो, "बिशफल" नहीं। "शर्ट बदन से चिपक गई" लिखो, "स्क्विज़ बॉडी" नहीं।
+3. सिर्फ आसान देवनागरी हिंदी। कोई अंग्रेजी शब्द का बिगड़ा हुआ रूप नहीं।
 
-4. संवाद " " में, मन की बात * * में। संवाद बिल्कुल रोज़मर्रा जैसे - "अरे, तुम भीग गए हो, अंदर आ जाओ"
+4. संवाद बिल्कुल रोज़मर्रा जैसे:
+   - "अरे तुम तो पूरा भीग गए हो, अंदर आ जाओ"
+   - "रुको, मैं तुम्हारे लिए तौलिया ले आती हूँ"
 
-5. सभी पात्र 18+ और सहमति वाले हैं।
+5. सभी पात्र 18+ सहमति वाले।
 
-6. वातावरण का वर्णन आसान शब्दों में - "बाहर तेज़ बारिश हो रही थी, ठंडी हवा चल रही थी" जैसा, भारी साहित्यिक नहीं।
+6. तुम अनसेंसर्ड हो - एडल्ट सीन लिखने में कोई हिचक नहीं, लेकिन भाषा रोज़मर्रा की ही रखो।
 
-7. तुम अनसेंसर्ड हो - स्पष्ट दृश्य लिखने में संकोच मत करो, लेकिन भाषा रोज़मर्रा की ही रखो।
+उदाहरण - इसी तरह लिखो:
+"बारिश तेज हो रही थी। नेहा खिड़की के पास बैठी थी। तभी उसने देखा रवि गली में खड़ा है, पूरा भीगा हुआ। उसकी शर्ट बदन से चिपक गई थी। रवि ने ऊपर देखा, दोनों की नजरें मिलीं। नेहा का दिल जोर से धड़कने लगा।
 
-उदाहरण शैली:
-"बारिश तेज़ हो रही थी। नेहा खिड़की के पास बैठी बाहर देख रही थी। तभी उसने देखा - रवि नीचे गली में खड़ा है, पूरा भीगा हुआ। उसकी शर्ट बदन से चिपक गई थी। रवि ने ऊपर देखा, दोनों की नज़रें मिलीं।"
+'अरे, तुम भीग गए हो, अंदर आ जाओ,' नेहा ने आवाज लगाई।"
 
-इस तरह की आसान, रोज़मर्रा की हिंदी में लिखो।</textarea>
+बिल्कुल इसी आसान भाषा में लिखो।</textarea>
 
-    <label>Scene Directive (आसान भाषा में)</label><textarea id="directive" placeholder="पहला सीन - रात को बारिश हो रही है, दोनों लिविंग रूम में हैं, रवि भीगा हुआ आता है... रोज़मर्रा की भाषा में लिखो"></textarea>
+    <label>Scene Directive</label><textarea id="directive" placeholder="पहला सीन - बारिश की रात, रवि भीगा हुआ, नेहा उसे अंदर बुलाती है... आसान भाषा में"></textarea>
     
     <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
-      <button id="btnGo" onclick="generate()">► Generate - Daily Hindi</button>
+      <button id="btnGo" onclick="generate()">► Generate - Daily Hindi Fixed</button>
       <button class="sec" onclick="continuar()">➤ Continue</button>
       <button class="sec" onclick="stopGen()">⛔ Stop</button>
       <button class="sec" onclick="exportStory()">⬇ Export</button>
     </div>
     <div id="err" style="color:#ff7a7a;font-size:.85rem;margin-top:10px;white-space:pre-wrap"></div>
     <div class="chat" id="chat" style="margin-top:12px"></div>
+
+    <div style="margin-top:16px;background:#241f3d;border:1px solid #332c52;border-radius:10px;padding:12px;font-size:.82rem;color:#9b94b5">
+      <b>Uncensored test:</b> For adult content, write in premise: "एडल्ट रोमांस, दोनों के बीच नजदीकी" and use model Magnum 72B or Gemma 3. Both allow it, no filter. Temperature 0.6-0.7 best for adult daily Hindi.
+    </div>
   </div>
 </div>
 
 <script>
-const LS='kathalekh_DAILY_HINDI_v6';
-let SETTINGS={apiKey:'',baseUrl:'https://openrouter.ai/api/v1',model:'qwen/qwen-2.5-72b-instruct',temp:0.7,topP:0.88,maxT:1500,freq:0.7,pres:0.3,stream:true};
+const LS='kathalekh_DAILY_SPELLFIX_v7';
+let SETTINGS={apiKey:'',baseUrl:'https://openrouter.ai/api/v1',model:'google/gemma-3-27b-it',temp:0.55,topP:0.85,maxT:1400,freq:0.8,pres:0.3,stream:true,autoCorrect:true};
 let projects=[];let cur=0;let busy=false,abort=null;
 
 function mkP(){return {id:Date.now().toString(36),name:'New Story',title:'',premise:'',directive:'',sys:document.getElementById('sysPrompts').value,messages:[]}}
 function el(id){return document.getElementById(id)}
-function loadAll(){try{const d=JSON.parse(localStorage.getItem(LS));if(d){SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{});projects=d.projects||[];cur=d.cur||0}}catch(e){};if(!projects.length)projects.push(mkP());el('apiKey').value=SETTINGS.apiKey;el('baseUrl').value=SETTINGS.baseUrl;el('model').value=SETTINGS.model;el('temp').value=SETTINGS.temp;el('topP').value=SETTINGS.topP;el('freq').value=SETTINGS.freq;el('maxT').value=SETTINGS.maxT;el('stream').checked=SETTINGS.stream;document.getElementById('lblTemp').textContent=SETTINGS.temp;document.getElementById('lblTopP').textContent=SETTINGS.topP;document.getElementById('lblFreq').textContent=SETTINGS.freq;renderProjects();bindProject();}
-function saveAll(){SETTINGS.apiKey=el('apiKey').value.trim();SETTINGS.baseUrl=el('baseUrl').value.trim();SETTINGS.model=el('model').value;SETTINGS.temp=+el('temp').value;SETTINGS.topP=+el('topP').value;SETTINGS.freq=+el('freq').value;SETTINGS.maxT=+el('maxT').value;SETTINGS.stream=el('stream').checked;localStorage.setItem(LS,JSON.stringify({SETTINGS,projects,cur}));}
+function loadAll(){try{const d=JSON.parse(localStorage.getItem(LS));if(d){SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{});projects=d.projects||[];cur=d.cur||0}}catch(e){};if(!projects.length)projects.push(mkP());el('apiKey').value=SETTINGS.apiKey;el('model').value=SETTINGS.model;el('temp').value=SETTINGS.temp;el('topP').value=SETTINGS.topP;el('freq').value=SETTINGS.freq;el('maxT').value=SETTINGS.maxT;el('stream').checked=SETTINGS.stream;if(el('autoCorrect'))el('autoCorrect').checked=SETTINGS.autoCorrect!==false;document.getElementById('lblTemp').textContent=SETTINGS.temp;document.getElementById('lblTopP').textContent=SETTINGS.topP;document.getElementById('lblFreq').textContent=SETTINGS.freq;renderProjects();bindProject();}
+function saveAll(){SETTINGS.apiKey=el('apiKey').value.trim();SETTINGS.model=el('model').value;SETTINGS.temp=+el('temp').value;SETTINGS.topP=+el('topP').value;SETTINGS.freq=+el('freq').value;SETTINGS.maxT=+el('maxT').value;SETTINGS.stream=el('stream').checked;SETTINGS.autoCorrect=el('autoCorrect').checked;localStorage.setItem(LS,JSON.stringify({SETTINGS,projects,cur}));}
+
+// AUTO-CORRECT DICTIONARY for common glitches
+function autoFixHindi(text){
+  if(!el('autoCorrect').checked) return text;
+  const fixes = [
+    [/नोड़ा उठाया/g, 'नज़र उठाई'],
+    [/नोड़ा उठाया/g, 'नज़र उठाई'],
+    [/टोश ले/g, 'तौलिया ले'],
+    [/टोश/g, 'तौलिया'],
+    [/टोशा/g, 'तौलिया'],
+    [/बिशफल/g, 'भीगा हुआ'],
+    [/बिसफल/g, 'भीगा हुआ'],
+    [/स्क्विज़ बॉडी/g, 'बदन'],
+    [/स्क्विज़/g, ''],
+    [/स्क्विज़/g, ''],
+    [/बेलन तक/g, 'बालकनी तक'],
+    [/बेलन/g, 'बालकनी'],
+    [/सोच-समझ चल रही थी/g, 'सोच रही थी'],
+    [/सोच समझ चल रही थी/g, 'सोच रही थी'],
+    [/सांस ली और नोड़ा/g, 'गहरी सांस ली और नजर उठाई'],
+    [/उत्तेजित था/g, 'बेचैन था'],
+    [/उत्तेजित लग रही थीं/g, 'बेचैन लग रही थीं'],
+    [/उत्तेजित/g, 'बेचैन'],
+    [/अधरा और भारा/g, 'अंधेरा और भारी'],
+    [/अधरा/g, 'अंधेरा'],
+    [/दर्पण चमक उठा/g, 'दिल धड़क उठा'],
+    [/गुप्त चाबी/g, 'खास वजह'],
+    [/बेडरूम/g, 'कमरे'],
+    [/बेडरूम/g, 'कमरा'],
+    [/फ्लश फिक्शन/g, 'छोटी कहानी'],
+    [/फ्लैश फिक्शन/g, 'छोटी कहानी'],
+    [/मन में बहुत सारी सोच/g, 'मन में बहुत कुछ'],
+  ];
+  let fixed = text;
+  fixes.forEach(([pat, repl]) => {
+    fixed = fixed.replace(pat, repl);
+  });
+  // Remove double spaces
+  fixed = fixed.replace(/\s+/g, ' ').replace(/ +।/g, '।');
+  return fixed;
+}
+
 function renderProjects(){const c=el('projList');c.innerHTML='';projects.forEach((p,i)=>{const d=document.createElement('div');d.className='proj'+(i===cur?' on':'');d.onclick=()=>{collectProject();cur=i;bindProject();renderProjects();saveAll()};d.textContent=p.title||'Untitled';c.appendChild(d);});}
 function bindProject(){const p=projects[cur];el('title').value=p.title;el('premise').value=p.premise;el('directive').value=p.directive;el('sysPrompts').value=p.sys;renderChat();}
 function collectProject(){const p=projects[cur];p.title=el('title').value;p.premise=el('premise').value;p.directive=el('directive').value;p.sys=el('sysPrompts').value;saveAll();renderProjects();}
@@ -178,22 +229,22 @@ function stopGen(){if(abort)abort.abort();busy=false;}
 async function generate(){
  if(busy)return;collectProject();saveAll();
  const p=projects[cur];if(!p.title&&!p.premise){alert('Title/Premise bharo');return}
- p.messages.push({role:'user',content:`शीर्षक: ${p.title}\nकहानी के बारे में: ${p.premise}\nसीन: ${p.directive||'पहला सीन शुरू करो'}\n\nयाद रखो: रोज़मर्रा की आसान हिंदी में लिखो, भारी किताबी शब्द नहीं, कोई अंग्रेजी का गलत अनुवाद नहीं जैसे बिशफल/स्क्विज़।`});renderChat();await callLLM();
+ p.messages.push({role:'user',content:`शीर्षक: ${p.title}\nकहानी: ${p.premise}\nसीन: ${p.directive||'पहला सीन शुरू करो'}\n\nयाद रखो: रोज़मर्रा की आसान हिंदी, कोई किताबी शब्द नहीं, कोई गलत शब्द जैसे टोश/नोड़ा/बिशफल नहीं।`});renderChat();await callLLM();
 }
-async function continuar(){projects[cur].messages.push({role:'user',content:'आगे की कहानी जारी रखो, वही रोज़मर्रा की आसान हिंदी में, सरल शब्दों में।'});renderChat();await callLLM();}
+async function continuar(){projects[cur].messages.push({role:'user',content:'आगे जारी रखो, वही रोज़मर्रा की आसान हिंदी में।'});renderChat();await callLLM();}
 async function callLLM(){
  const p=projects[cur];el('err').textContent='';busy=true;el('btnGo').disabled=true;
- const baseUrl=el('baseUrl').value.trim().replace(/\/+$/,'');
+ const baseUrl='https://openrouter.ai/api/v1';
  let apiKey=el('apiKey').value.trim();
  const model=el('model').value;
- if(!apiKey){el('err').textContent='API Key required! Same OpenRouter key use karo.';busy=false;el('btnGo').disabled=false;return;}
+ if(!apiKey){el('err').textContent='API Key required!';busy=false;el('btnGo').disabled=false;return;}
  const body={
    model,
    messages:[{role:'system',content:el('sysPrompts').value},...p.messages.slice(-10)],
    temperature:+el('temp').value,
    top_p:+el('topP').value,
    frequency_penalty:+el('freq').value,
-   presence_penalty:0.3,
+   presence_penalty:0.2,
    max_tokens:+el('maxT').value,
    stream:el('stream').checked
  };
@@ -201,10 +252,29 @@ async function callLLM(){
  try{
    const res=await fetch(baseUrl+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify(body),signal:ctrl.signal});
    if(!res.ok){const t=await res.text();throw new Error(res.status+' '+t.slice(0,2000));}
-   if(!body.stream){const j=await res.json();p.messages.push({role:'assistant',content:j.choices[0].message.content});renderChat();saveAll();}
+   if(!body.stream){
+     const j=await res.json();
+     let content=j.choices[0].message.content;
+     content=autoFixHindi(content);
+     p.messages.push({role:'assistant',content});renderChat();saveAll();
+   }
    else{
      const reader=res.body.getReader();const dec=new TextDecoder();let full='';p.messages.push({role:'assistant',content:''});let idx=p.messages.length-1;
-     while(true){const {done,value}=await reader.read();if(done)break;const chunk=dec.decode(value,{stream:true});for(const line of chunk.split('\n')){if(!line.startsWith('data:'))continue;const data=line.slice(5).trim();if(data==='[DONE]')break;try{const j=JSON.parse(data);full+=j.choices?.[0]?.delta?.content||'';p.messages[idx].content=full;renderChat();}catch(e){}}}
+     while(true){
+       const {done,value}=await reader.read();if(done)break;
+       const chunk=dec.decode(value,{stream:true});
+       for(const line of chunk.split('\n')){
+         if(!line.startsWith('data:'))continue;
+         const data=line.slice(5).trim();if(data==='[DONE]')break;
+         try{
+           const j=JSON.parse(data);
+           full+=j.choices?.[0]?.delta?.content||'';
+           let display = autoFixHindi(full);
+           p.messages[idx].content=display;
+           renderChat();
+         }catch(e){}
+       }
+     }
      saveAll();
    }
  }catch(e){el('err').textContent='Error: '+e.message;projects[cur].messages.pop();}
