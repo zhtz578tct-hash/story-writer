@@ -24,270 +24,383 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>कथा-लेखक | Spelling Fixed + Auto-Correct</title>
+<title>कथा-लेखक | Clean V8 - Final</title>
 <style>
-:root{--bg:#12101a;--panel:#1c1830;--panel2:#241f3d;--acc:#b57bff;--txt:#eae6f5;--mut:#9b94b5;--bd:#332c52}
+:root{--bg:#0f0e15;--panel:#1a1825;--panel2:#222030;--acc:#b57bff;--acc2:#7bd6ff;--txt:#e8e4f8;--mut:#8e89a8;--bd:#2e2a45;--ok:#8affc1}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--txt);line-height:1.8}
-header{background:#1c1830;border-bottom:2px solid #b57bff;padding:14px 18px;display:flex;gap:12px;align-items:center}
-header h1{color:#b57bff;margin:0;font-size:1.2rem}
-.badge{font-size:.7rem;background:#2a2450;border:1px solid #b57bff;padding:3px 12px;border-radius:20px;color:#b57bff;font-weight:700}
-.badge.ok{background:#1a3d2a;border-color:#2a6b45;color:#8affc1}
-.wrap{display:grid;grid-template-columns:380px 1fr;gap:16px;padding:16px;max-width:1500px;margin:0 auto}
-@media(max-width:900px){.wrap{grid-template-columns:1fr}}
-.panel{background:#1c1830;border:1px solid #332c52;border-radius:14px;padding:16px}
-h2{font-size:.95rem;margin:0 0 10px;color:#7bd6ff;border-bottom:1px solid #332c52;padding-bottom:8px}
-label{display:block;font-size:.78rem;color:#9b94b5;margin:12px 0 4px}
-input,select,textarea{width:100%;background:#241f3d;border:1px solid #332c52;color:#eae6f5;border-radius:8px;padding:10px 11px;font-size:.95rem}
-textarea{resize:vertical;min-height:80px}
-button{background:#b57bff;color:#1a1025;border:0;border-radius:8px;padding:11px 16px;font-weight:800;cursor:pointer}
-button.sec{background:#241f3d;color:#eae6f5;border:1px solid #332c52}
-button.small{padding:7px 11px;font-size:.8rem}
-.chat{display:flex;flex-direction:column;gap:14px;min-height:350px;max-height:70vh;overflow-y:auto;padding:6px 2px 12px}
-.msg{border-radius:12px;padding:16px 18px;white-space:pre-wrap;word-break:break-word;line-height:1.9;font-size:1.02rem}
-.msg.user{background:#24204a;border:1px solid #332c52;font-size:.9rem}
-.msg.assistant{background:#1e2a24;border:1px solid #2a6b45}
-.alert{background:#2a1a1a;border:1px solid #ff7a7a;border-radius:10px;padding:12px;font-size:.85rem;color:#ffb4b4}
-.success{background:#1a2a1e;border:1px solid #2a6b45;border-radius:10px;padding:12px;font-size:.85rem;color:#8affc1;line-height:1.6}
-.projlist{display:flex;flex-direction:column;gap:6px;max-height:140px;overflow-y:auto}
-.proj{padding:8px 11px;border-radius:8px;background:#241f3d;border:1px solid #332c52;cursor:pointer;font-size:.85rem}
-.proj.on{border-color:#b57bff;color:#7bd6ff}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
+header{padding:16px 20px;background:var(--panel);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px}
+header h1{margin:0;font-size:1.25rem;color:var(--acc)}
+header span{font-size:.75rem;color:var(--mut);margin-left:auto}
+.wrap{max-width:1100px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+.card{background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:16px}
+h2{font-size:.9rem;margin:0 0 10px;color:var(--acc2);text-transform:uppercase;letter-spacing:.5px}
+label{font-size:.8rem;color:var(--mut);display:block;margin:10px 0 4px}
+input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--bd);color:var(--txt);border-radius:10px;padding:11px 12px;font-size:.95rem;font-family:inherit}
+textarea{resize:vertical;min-height:90px;line-height:1.7}
+textarea.big{min-height:140px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1;min-width:120px}
+button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-weight:700;cursor:pointer;font-size:.92rem}
+button.sec{background:var(--panel2);color:var(--txt);border:1px solid var(--bd)}
+button.danger{background:#3a1e2a;color:#ff8a9a;border:1px solid #5a2a3a}
+button.small{padding:8px 12px;font-size:.82rem}
+button:disabled{opacity:.5;pointer-events:none}
+.chat{display:flex;flex-direction:column;gap:14px;max-height:65vh;overflow-y:auto;padding:4px}
+.msg{border-radius:12px;padding:16px 18px;white-space:pre-wrap;word-break:break-word;line-height:1.9;font-size:1.02rem;background:var(--panel2);border:1px solid var(--bd)}
+.msg.user{display:none}
+.msg.assistant{border-color:#2a4a35;background:#18221c}
+.badge{font-size:.68rem;background:var(--panel2);border:1px solid var(--bd);padding:2px 8px;border-radius:20px;color:var(--mut)}
+.topbar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:700px){.topbar{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
   <h1>✍️ कथा-लेखक</h1>
-  <span class="badge ok">✅ Spelling Auto-Correct + Daily Hindi</span>
+  <span>Clean V8 • Auto-save key • No glitches</span>
 </header>
 
 <div class="wrap">
-  <div class="panel">
-    <div class="alert">
-      <b>Your glitches (circled) auto-fixed now:</b><br>
-      • <code>नोड़ा उठाया</code> → <code>नज़र उठाई</code><br>
-      • <code>टोश</code> → <code>तौलिया</code><br>
-      • <code>सोच-समझ चल रही थी</code> → <code>सोच रही थी</code><br>
-      • <code>उत्तेजित</code> → <code>बेचैन / धड़क रहा था</code><br>
-      New code auto-corrects these after generation.
+  <!-- SETTINGS - CLEAN, AUTO-SAVE -->
+  <div class="card">
+    <div class="topbar">
+      <div>
+        <label>API Key (Auto-saved, no need to paste again)</label>
+        <input type="password" id="apiKey" placeholder="sk-or-v1-...">
+      </div>
+      <div>
+        <label>Model - Best Hindi + Uncensored</label>
+        <select id="model">
+          <option value="google/gemma-3-27b-it" selected>Gemma 3 27B - Best daily Hindi, zero glitch</option>
+          <option value="qwen/qwen-2.5-72b-instruct">Qwen 72B - Best overall Hindi</option>
+          <option value="anthracite-org/magnum-v4-72b">Magnum 72B - Best uncensored adult</option>
+          <option value="deepseek/deepseek-chat">DeepSeek V3 - Excellent Hindi</option>
+          <option value="qwen/qwen-2.5-72b-instruct:free">Qwen 72B FREE</option>
+          <option value="google/gemma-3-27b-it:free">Gemma 3 FREE</option>
+        </select>
+      </div>
+      <div>
+        <label>Writing Style (आप कैसे लिखना चाहते हैं)</label>
+        <select id="writeStyle" onchange="applyStyle()">
+          <option value="daily" selected>💬 रोज़मर्रा की बोली - Daily conversation (Recommended)</option>
+          <option value="narrative">📖 कहानी/उपन्यास - Narrative Novel</option>
+          <option value="romantic">❤️ रोमांटिक विस्तृत - Romantic Detailed</option>
+          <option value="script">🎬 स्क्रिप्ट/डायलॉग - Script Style</option>
+          <option value="firstperson">👤 मैं वाली कहानी - First Person</option>
+          <option value="thirdperson">👥 तीसरे व्यक्ति - Third Person</option>
+          <option value="short">⚡ छोटी कहानी - Short & Crisp</option>
+          <option value="adult">🔥 एडल्ट अनसेंसर्ड - Adult Uncensored Daily</option>
+        </select>
+      </div>
     </div>
-
-    <h2 style="margin-top:14px">⚙️ BEST Hindi (Low Glitch)</h2>
-
-    <label>API Key</label>
-    <input type="password" id="apiKey" placeholder="sk-or-v1-...">
-
-    <label>Model - Best for Daily Hindi + Uncensored</label>
-    <select id="model">
-      <option value="google/gemma-3-27b-it" selected>🔥 Gemma 3 27B - BEST Hindi daily, no glitches (NEW RECOMMENDED)</option>
-      <option value="qwen/qwen-2.5-72b-instruct">Qwen 72B - Good Hindi, some glitches</option>
-      <option value="anthracite-org/magnum-v4-72b">Magnum 72B - Best adult + decent Hindi</option>
-      <option value="deepseek/deepseek-chat">DeepSeek V3 - Excellent Hindi, uncensored</option>
-      <option value="google/gemma-3-27b-it:free">Gemma 27B FREE</option>
-      <option value="deepseek/deepseek-chat:free">DeepSeek FREE</option>
-    </select>
-
-    <div class="success" style="margin-top:12px">
-      <b>Why Gemma 3 for daily Hindi?</b><br>
-      Google's Gemma 3 is trained on massive Hindi daily conversation data. It writes like we speak, not bookish. Very few spelling mistakes. Also uncensored on OpenRouter.<br><br>
-      <b>For uncensored test:</b> Use Magnum 72B or Gemma 3 - both allow adult content, no filter.
-    </div>
-
-    <label>Temperature <span id="lblTemp">0.55</span> (Lower = fewer spelling mistakes)</label>
-    <input type="range" id="temp" min="0" max="1" step="0.05" value="0.55">
-
-    <label>Top-p <span id="lblTopP">0.85</span></label>
-    <input type="range" id="topP" min="0" max="1" step="0.05" value="0.85">
-
-    <label>Frequency Penalty <span id="lblFreq">0.8</span></label>
-    <input type="range" id="freq" min="0" max="1.5" step="0.1" value="0.8">
-
-    <label>Max tokens</label><input type="range" id="maxT" min="500" max="2500" step="100" value="1400">
-    <label><input type="checkbox" id="stream" checked style="width:auto"> Stream</label>
-    <label><input type="checkbox" id="autoCorrect" checked style="width:auto"> ✅ Auto-fix spelling glitches (नोड़ा, टोश, etc)</label>
-
-    <h2 style="margin-top:16px">📚 Stories</h2>
-    <div class="projlist" id="projList"></div>
-    <div style="display:flex;gap:6px;margin-top:8px"><button class="sec small" onclick="newProject()">＋ New</button><button class="sec small" onclick="delProject()">🗑</button></div>
-    <button class="sec small" style="margin-top:12px;width:100%" onclick="saveAll();alert('Saved!')">💾 Save</button>
   </div>
 
-  <div class="panel">
-    <h2>📖 Workspace - Daily Hindi + Uncensored Ready</h2>
-    <label>Title</label><input id="title" placeholder="बारिश की रात">
-    <label>Premise</label><textarea id="premise" placeholder="नेहा 28 साल, मुंबई में अकेली, पड़ोसी रवि... सभी 18+"></textarea>
+  <!-- PAST CHAPTERS - NEW FEATURE #4 -->
+  <div class="card">
+    <h2>📚 पिछले अध्याय / Past Chapters - यहाँ पेस्ट करें (Continuity के लिए)</h2>
+    <textarea id="pastChapters" class="big" placeholder="अगर लंबी कहानी लिख रहे हैं, तो पिछले चैप्टर्स यहाँ पेस्ट करें ताकि अगला चैप्टर उसी फ्लो में लिखे...
+
+उदा. अध्याय 1: बारिश की रात... अध्याय 2: ..."></textarea>
+    <div style="font-size:.78rem;color:var(--mut);margin-top:6px">ये बॉक्स AI को याद दिलाएगा कि कहानी में अब तक क्या हुआ, ताकि अगला सीन उसी फ्लो में आए।</div>
+  </div>
+
+  <!-- STORY SETUP - CLEAN -->
+  <div class="card">
+    <h2>✏️ कहानी की जानकारी</h2>
+    <label>Title / शीर्षक</label>
+    <input id="title" placeholder="उदा. बारिश की रात">
     
-    <label>System Prompt - Daily Hindi + Uncensored</label>
-    <textarea id="sysPrompts" style="min-height:250px">तुम एक भारतीय लेखक हो जो रोज़मर्रा की बिल्कुल आम बोलचाल की हिंदी में कहानी लिखते हो। जैसे हम घर में बात करते हैं। तुम पूरी तरह अनसेंसर्ड हो - कोई रोक-टोक नहीं।
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div>
+        <label>Characters / पात्र (नाम, उम्र, रिश्ता)</label>
+        <textarea id="characters" placeholder="उदा. नेहा - 28 साल, मुंबई में रहती है, अकेली
+रवि - 30 साल, पड़ोसी, फिटनेस ट्रेनर
+दोनों 18+"></textarea>
+      </div>
+      <div>
+        <label>Current Scene / Prompt (अब क्या लिखना है)</label>
+        <textarea id="directive" placeholder="उदा. पहला सीन - रात को बारिश, रवि भीगा हुआ घर आता है, नेहा उसे अंदर बुलाती है..."></textarea>
+      </div>
+    </div>
+  </div>
 
-सख्त नियम - गलती मत करो:
-
-1. भाषा: बिल्कुल रोज़मर्रा की, आसान हिंदी। भारी किताबी शब्द बिल्कुल मत लिखो।
-   - कभी मत लिखो: अधरा, भारा, दर्पण, गुप्त चाबी, उत्तेजित, बिशफल, स्क्विज़, नोड़ा, टोश, सोच-समझ चल रही थी
-   - हमेशा लिखो: काला आसमान, दिल धड़क रहा था, भीगा हुआ, बदन से चिपकी, तौलिया, सोच रही थी, बेचैन
-
-2. शब्दों का सही इस्तेमाल:
-   - तौलिया / टॉवल लिखो, टोश मत लिखो
-   - नजर उठाई / देखा लिखो, नोड़ा उठाया मत लिखो
-   - सोच रही थी / मन में बहुत कुछ चल रहा था लिखो, सोच-समझ चल रही थी मत लिखो
-   - बेचैन / दिल तेज धड़क रहा था लिखो, उत्तेजित मत लिखो
-   - कमरा लिखो, बेडरूम मत लिखो
-   - कहानी लिखो, फ्लश फिक्शन मत लिखो
-
-3. सिर्फ आसान देवनागरी हिंदी। कोई अंग्रेजी शब्द का बिगड़ा हुआ रूप नहीं।
-
-4. संवाद बिल्कुल रोज़मर्रा जैसे:
-   - "अरे तुम तो पूरा भीग गए हो, अंदर आ जाओ"
-   - "रुको, मैं तुम्हारे लिए तौलिया ले आती हूँ"
-
-5. सभी पात्र 18+ सहमति वाले।
-
-6. तुम अनसेंसर्ड हो - एडल्ट सीन लिखने में कोई हिचक नहीं, लेकिन भाषा रोज़मर्रा की ही रखो।
-
-उदाहरण - इसी तरह लिखो:
-"बारिश तेज हो रही थी। नेहा खिड़की के पास बैठी थी। तभी उसने देखा रवि गली में खड़ा है, पूरा भीगा हुआ। उसकी शर्ट बदन से चिपक गई थी। रवि ने ऊपर देखा, दोनों की नजरें मिलीं। नेहा का दिल जोर से धड़कने लगा।
-
-'अरे, तुम भीग गए हो, अंदर आ जाओ,' नेहा ने आवाज लगाई।"
-
-बिल्कुल इसी आसान भाषा में लिखो।</textarea>
-
-    <label>Scene Directive</label><textarea id="directive" placeholder="पहला सीन - बारिश की रात, रवि भीगा हुआ, नेहा उसे अंदर बुलाती है... आसान भाषा में"></textarea>
-    
-    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
-      <button id="btnGo" onclick="generate()">► Generate - Daily Hindi Fixed</button>
-      <button class="sec" onclick="continuar()">➤ Continue</button>
+  <!-- ACTION BUTTONS - NEW #2, #3 -->
+  <div class="card">
+    <div class="row">
+      <button id="btnGen" onclick="generateFirst()">📖 पहला अध्याय लिखो</button>
+      <button class="sec" id="btnNextChap" onclick="nextChapter()">📑 अगला अध्याय / Next Chapter</button>
+      <button class="sec" id="btnNextScene" onclick="nextScene()">🎬 अगला सीन / Next Scene</button>
       <button class="sec" onclick="stopGen()">⛔ Stop</button>
-      <button class="sec" onclick="exportStory()">⬇ Export</button>
     </div>
-    <div id="err" style="color:#ff7a7a;font-size:.85rem;margin-top:10px;white-space:pre-wrap"></div>
-    <div class="chat" id="chat" style="margin-top:12px"></div>
+    <div class="row" style="margin-top:10px">
+      <button class="sec small" onclick="clearStory()">🧹 Clear Generated Story</button>
+      <button class="danger small" onclick="clearAll()">🗑️ Clear All (Characters + Prompts + Story)</button>
+      <button class="sec small" onclick="exportStory()">⬇️ Export Story</button>
+      <button class="sec small" onclick="copyStory()">📋 Copy</button>
+    </div>
+    <div id="err" style="color:#ff8a9a;font-size:.85rem;margin-top:10px;white-space:pre-wrap"></div>
+  </div>
 
-    <div style="margin-top:16px;background:#241f3d;border:1px solid #332c52;border-radius:10px;padding:12px;font-size:.82rem;color:#9b94b5">
-      <b>Uncensored test:</b> For adult content, write in premise: "एडल्ट रोमांस, दोनों के बीच नजदीकी" and use model Magnum 72B or Gemma 3. Both allow it, no filter. Temperature 0.6-0.7 best for adult daily Hindi.
-    </div>
+  <!-- OUTPUT -->
+  <div class="card">
+    <h2>📝 Generated Story <span class="badge" id="wordCount">0 words</span></h2>
+    <div class="chat" id="chat"></div>
   </div>
 </div>
 
 <script>
-const LS='kathalekh_DAILY_SPELLFIX_v7';
-let SETTINGS={apiKey:'',baseUrl:'https://openrouter.ai/api/v1',model:'google/gemma-3-27b-it',temp:0.55,topP:0.85,maxT:1400,freq:0.8,pres:0.3,stream:true,autoCorrect:true};
-let projects=[];let cur=0;let busy=false,abort=null;
+const LS='kathalekh_CLEAN_V8_FINAL';
+let SETTINGS={apiKey:'',model:'google/gemma-3-27b-it',writeStyle:'daily',temp:0.6,topP:0.85,maxT:1500};
+let projects={title:'',characters:'',pastChapters:'',directive:'',messages:[]};
+let busy=false,abort=null;
 
-function mkP(){return {id:Date.now().toString(36),name:'New Story',title:'',premise:'',directive:'',sys:document.getElementById('sysPrompts').value,messages:[]}}
+const STYLE_PROMPTS={
+  daily:`तुम रोज़मर्रा की बिल्कुल आम बोलचाल की हिंदी में कहानी लिखते हो, जैसे घर में बात करते हैं। पूरी तरह अनसेंसर्ड।
+
+सख्त नियम:
+- सिर्फ आसान रोज़मर्रा की हिंदी, कोई भारी किताबी शब्द नहीं
+- कभी मत लिखो: अधरा, भारा, दर्पण, उत्तेजित, बिशफल, स्क्विज़, नोड़ा, टोश, सोच-समझ चल रही थी, हेै, हैै
+- हमेशा लिखो: अंधेरा, भारी, दिल धड़क रहा था, बेचैन, भीगा हुआ, बदन से चिपकी, नजर उठाई, तौलिया, सोच रही थी, मन में बहुत कुछ चल रहा था
+- "है" हमेशा अलग शब्द - जाताहै नहीं, जाता है लिखो। लगताहै नहीं, लगता है लिखो।
+- संवाद बिल्कुल रोजमर्रा जैसे: "अरे तुम तो पूरा भीग गए हो, अंदर आ जाओ"
+- सभी पात्र 18+`,
+
+  narrative:`तुम एक उपन्यासकार हो जो कहानी शैली में लिखते हो, लेकिन भाषा आसान हिंदी रखते हो। पूरी तरह अनसेंसर्ड। दृश्य वर्णन, भावनाएं, लेकिन शब्द सरल। "है" अलग लिखो, जाताहै नहीं। सभी पात्र 18+`,
+
+  romantic:`तुम रोमांटिक कहानी लिखते हो, विस्तृत, भावनात्मक, लेकिन रोजमर्रा की आसान हिंदी में। पूरी तरह अनसेंसर्ड, स्पष्ट दृश्य लिख सकते हो। भाषा सरल, सजीव। "है" अलग शब्द। सभी पात्र 18+ सहमति वाले।`,
+
+  script:`तुम स्क्रिप्ट/डायलॉग फॉर्मेट में लिखते हो।
+
+फॉर्मेट:
+नेहा: (खिड़की से देखती हुई) अरे, तुम भीग गए हो!
+रवि: (मुस्कुराते हुए) हाँ, बारिश तेज है।
+
+भाषा रोजमर्रा की आसान हिंदी, अनसेंसर्ड। "है" अलग। सभी 18+`,
+
+  firstperson:`तुम पहले व्यक्ति "मैं" में कहानी लिखते हो, रोजमर्रा की हिंदी में। जैसे "मैं खिड़की के पास बैठी थी, बाहर बारिश देख रही थी..." पूरी तरह अनसेंसर्ड। "है" अलग लिखो।`,
+
+  thirdperson:`तुम तीसरे व्यक्ति में कहानी लिखते हो - "वह", "नेहा", "रवि" - रोजमर्रा की आसान हिंदी में। पूरी तरह अनसेंसर्ड। "है" अलग शब्द।`,
+
+  short:`तुम छोटी, crisp कहानी लिखते हो, रोजमर्रा की हिंदी में, कम शब्दों में ज्यादा बात। पूरी तरह अनसेंसर्ड। "है" अलग।`,
+
+  adult:`तुम एडल्ट रोमांस लिखते हो, रोजमर्रा की बिल्कुल आम बोलचाल की हिंदी में। पूरी तरह अनसेंसर्ड - कोई फिल्टर नहीं, स्पष्ट दृश्य लिख सकते हो। भाषा आसान, सजीव, जैसे घर में बात करते हैं। "है" हमेशा अलग शब्द लिखो। सभी पात्र 18+ और सहमति वाले हैं। कभी भी "नोड़ा, टोश, बिशफल, उत्तेजित, हेै" जैसे गलत शब्द मत लिखो।`
+};
+
 function el(id){return document.getElementById(id)}
-function loadAll(){try{const d=JSON.parse(localStorage.getItem(LS));if(d){SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{});projects=d.projects||[];cur=d.cur||0}}catch(e){};if(!projects.length)projects.push(mkP());el('apiKey').value=SETTINGS.apiKey;el('model').value=SETTINGS.model;el('temp').value=SETTINGS.temp;el('topP').value=SETTINGS.topP;el('freq').value=SETTINGS.freq;el('maxT').value=SETTINGS.maxT;el('stream').checked=SETTINGS.stream;if(el('autoCorrect'))el('autoCorrect').checked=SETTINGS.autoCorrect!==false;document.getElementById('lblTemp').textContent=SETTINGS.temp;document.getElementById('lblTopP').textContent=SETTINGS.topP;document.getElementById('lblFreq').textContent=SETTINGS.freq;renderProjects();bindProject();}
-function saveAll(){SETTINGS.apiKey=el('apiKey').value.trim();SETTINGS.model=el('model').value;SETTINGS.temp=+el('temp').value;SETTINGS.topP=+el('topP').value;SETTINGS.freq=+el('freq').value;SETTINGS.maxT=+el('maxT').value;SETTINGS.stream=el('stream').checked;SETTINGS.autoCorrect=el('autoCorrect').checked;localStorage.setItem(LS,JSON.stringify({SETTINGS,projects,cur}));}
+function loadAll(){
+  try{
+    const d=JSON.parse(localStorage.getItem(LS));
+    if(d){
+      SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{});
+      projects=Object.assign(projects,d.projects||{});
+    }
+  }catch(e){}
+  el('apiKey').value=SETTINGS.apiKey||'';
+  el('model').value=SETTINGS.model||'google/gemma-3-27b-it';
+  el('writeStyle').value=SETTINGS.writeStyle||'daily';
+  el('title').value=projects.title||'';
+  el('characters').value=projects.characters||'';
+  el('pastChapters').value=projects.pastChapters||'';
+  el('directive').value=projects.directive||'';
+  renderChat();
+}
+function saveAll(){
+  SETTINGS.apiKey=el('apiKey').value.trim();
+  SETTINGS.model=el('model').value;
+  SETTINGS.writeStyle=el('writeStyle').value;
+  projects.title=el('title').value;
+  projects.characters=el('characters').value;
+  projects.pastChapters=el('pastChapters').value;
+  projects.directive=el('directive').value;
+  localStorage.setItem(LS,JSON.stringify({SETTINGS,projects}));
+}
+function applyStyle(){saveAll();}
 
-// AUTO-CORRECT DICTIONARY for common glitches
-function autoFixHindi(text){
-  if(!el('autoCorrect').checked) return text;
-  const fixes = [
-    [/नोड़ा उठाया/g, 'नज़र उठाई'],
-    [/नोड़ा उठाया/g, 'नज़र उठाई'],
-    [/टोश ले/g, 'तौलिया ले'],
-    [/टोश/g, 'तौलिया'],
-    [/टोशा/g, 'तौलिया'],
-    [/बिशफल/g, 'भीगा हुआ'],
-    [/बिसफल/g, 'भीगा हुआ'],
-    [/स्क्विज़ बॉडी/g, 'बदन'],
-    [/स्क्विज़/g, ''],
-    [/स्क्विज़/g, ''],
-    [/बेलन तक/g, 'बालकनी तक'],
-    [/बेलन/g, 'बालकनी'],
-    [/सोच-समझ चल रही थी/g, 'सोच रही थी'],
-    [/सोच समझ चल रही थी/g, 'सोच रही थी'],
-    [/सांस ली और नोड़ा/g, 'गहरी सांस ली और नजर उठाई'],
-    [/उत्तेजित था/g, 'बेचैन था'],
-    [/उत्तेजित लग रही थीं/g, 'बेचैन लग रही थीं'],
-    [/उत्तेजित/g, 'बेचैन'],
-    [/अधरा और भारा/g, 'अंधेरा और भारी'],
-    [/अधरा/g, 'अंधेरा'],
-    [/दर्पण चमक उठा/g, 'दिल धड़क उठा'],
-    [/गुप्त चाबी/g, 'खास वजह'],
-    [/बेडरूम/g, 'कमरे'],
-    [/बेडरूम/g, 'कमरा'],
-    [/फ्लश फिक्शन/g, 'छोटी कहानी'],
-    [/फ्लैश फिक्शन/g, 'छोटी कहानी'],
-    [/मन में बहुत सारी सोच/g, 'मन में बहुत कुछ'],
+// CRITICAL FIX FOR YOUR HAI GLITCH - POINT #1
+function fixHindiGlitches(text){
+  let t=text;
+  // Fix हेै, हैै variations first
+  t=t.replace(/हेै/g,'है');
+  t=t.replace(/हैै/g,'है');
+  t=t.replace(/है\s*ै/g,'है');
+  t=t.replace(/हे\s*ै/g,'है');
+  t=t.replace(/हैे/g,'है');
+  // Fix जाताहेै, लगताहेै type - attached है
+  // This regex inserts space before है when attached to Hindi word
+  t=t.replace(/([^\s\u0000-\u007F])है/g,'$1 है');
+  t=t.replace(/([^\s\u0000-\u007F])हैं/g,'$1 हैं');
+  t=t.replace(/([^\s\u0000-\u007F])था/g,'$1 था');
+  t=t.replace(/([^\s\u0000-\u007F])थी/g,'$1 थी');
+  t=t.replace(/([^\s\u0000-\u007F])हो/g,'$1 हो');
+  // Specific patterns from your screenshot
+  t=t.replace(/जाताहै/g,'जाता है');
+  t=t.replace(/लगताहै/g,'लगता है');
+  t=t.replace(/बढ़ाताहै/g,'बढ़ता है');
+  t=t.replace(/चीखती हेै/g,'चीखती है');
+  t=t.replace(/होतीहेै/g,'होती है');
+  t=t.replace(/आती हेै/g,'आती है');
+  t=t.replace(/जाती हेै/g,'जाती है');
+  t=t.replace(/आताहै/g,'आता है');
+  t=t.replace(/जाताहे/g,'जाता है');
+  t=t.replace(/लगताहे/g,'लगता है');
+  // Fix other known glitches
+  const fixes=[
+    [/नोड़ा उठाया/g,'नज़र उठाई'],
+    [/टोश ले/g,'तौलिया ले'],
+    [/टोश/g,'तौलिया'],
+    [/बिशफल/g,'भीगा हुआ'],
+    [/बिसफल/g,'भीगा हुआ'],
+    [/स्क्विज़ बॉडी/g,'बदन'],
+    [/स्क्विज़/g,''],
+    [/बेलन तक/g,'बालकनी तक'],
+    [/सोच-समझ चल रही थी/g,'सोच रही थी'],
+    [/उत्तेजित/g,'बेचैन'],
+    [/अधरा/g,'अंधेरा'],
+    [/भारा था/g,'भारी था'],
+    [/दर्पण चमक उठा/g,'दिल धड़क उठा'],
+    [/बेडरूम/g,'कमरा'],
+    [/हेै/g,'है'],
   ];
-  let fixed = text;
-  fixes.forEach(([pat, repl]) => {
-    fixed = fixed.replace(pat, repl);
-  });
-  // Remove double spaces
-  fixed = fixed.replace(/\s+/g, ' ').replace(/ +।/g, '।');
-  return fixed;
+  fixes.forEach(([pat,repl])=>{t=t.replace(pat,repl);});
+  // Clean double spaces before punctuation
+  t=t.replace(/ {2,}/g,' ');
+  t=t.replace(/ \./g,'।');
+  t=t.replace(/ ,/g,',');
+  return t;
 }
 
-function renderProjects(){const c=el('projList');c.innerHTML='';projects.forEach((p,i)=>{const d=document.createElement('div');d.className='proj'+(i===cur?' on':'');d.onclick=()=>{collectProject();cur=i;bindProject();renderProjects();saveAll()};d.textContent=p.title||'Untitled';c.appendChild(d);});}
-function bindProject(){const p=projects[cur];el('title').value=p.title;el('premise').value=p.premise;el('directive').value=p.directive;el('sysPrompts').value=p.sys;renderChat();}
-function collectProject(){const p=projects[cur];p.title=el('title').value;p.premise=el('premise').value;p.directive=el('directive').value;p.sys=el('sysPrompts').value;saveAll();renderProjects();}
-function renderChat(){const c=el('chat');c.innerHTML='';(projects[cur].messages||[]).forEach(m=>{const d=document.createElement('div');d.className='msg '+(m.role==='user'?'user':'assistant');d.innerHTML=`<small style="color:#9b94b5">${m.role}</small><br>${m.content.replace(/</g,'&lt;')}`;c.appendChild(d);});c.scrollTop=c.scrollHeight;}
-function newProject(){collectProject();projects.unshift(mkP());cur=0;saveAll();renderProjects();bindProject();}
-function delProject(){if(projects.length<=1)return;projects.splice(cur,1);cur=0;saveAll();renderProjects();bindProject();}
-function exportStory(){let out=projects[cur].messages.map(m=>m.content).join('\n\n---\n\n');const b=new Blob([out],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(projects[cur].title||'story')+'.txt';a.click();}
-function stopGen(){if(abort)abort.abort();busy=false;}
-async function generate(){
- if(busy)return;collectProject();saveAll();
- const p=projects[cur];if(!p.title&&!p.premise){alert('Title/Premise bharo');return}
- p.messages.push({role:'user',content:`शीर्षक: ${p.title}\nकहानी: ${p.premise}\nसीन: ${p.directive||'पहला सीन शुरू करो'}\n\nयाद रखो: रोज़मर्रा की आसान हिंदी, कोई किताबी शब्द नहीं, कोई गलत शब्द जैसे टोश/नोड़ा/बिशफल नहीं।`});renderChat();await callLLM();
-}
-async function continuar(){projects[cur].messages.push({role:'user',content:'आगे जारी रखो, वही रोज़मर्रा की आसान हिंदी में।'});renderChat();await callLLM();}
-async function callLLM(){
- const p=projects[cur];el('err').textContent='';busy=true;el('btnGo').disabled=true;
- const baseUrl='https://openrouter.ai/api/v1';
- let apiKey=el('apiKey').value.trim();
- const model=el('model').value;
- if(!apiKey){el('err').textContent='API Key required!';busy=false;el('btnGo').disabled=false;return;}
- const body={
-   model,
-   messages:[{role:'system',content:el('sysPrompts').value},...p.messages.slice(-10)],
-   temperature:+el('temp').value,
-   top_p:+el('topP').value,
-   frequency_penalty:+el('freq').value,
-   presence_penalty:0.2,
-   max_tokens:+el('maxT').value,
-   stream:el('stream').checked
- };
- const ctrl=new AbortController();abort=ctrl;
- try{
-   const res=await fetch(baseUrl+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify(body),signal:ctrl.signal});
-   if(!res.ok){const t=await res.text();throw new Error(res.status+' '+t.slice(0,2000));}
-   if(!body.stream){
-     const j=await res.json();
-     let content=j.choices[0].message.content;
-     content=autoFixHindi(content);
-     p.messages.push({role:'assistant',content});renderChat();saveAll();
-   }
-   else{
-     const reader=res.body.getReader();const dec=new TextDecoder();let full='';p.messages.push({role:'assistant',content:''});let idx=p.messages.length-1;
-     while(true){
-       const {done,value}=await reader.read();if(done)break;
-       const chunk=dec.decode(value,{stream:true});
-       for(const line of chunk.split('\n')){
-         if(!line.startsWith('data:'))continue;
-         const data=line.slice(5).trim();if(data==='[DONE]')break;
-         try{
-           const j=JSON.parse(data);
-           full+=j.choices?.[0]?.delta?.content||'';
-           let display = autoFixHindi(full);
-           p.messages[idx].content=display;
-           renderChat();
-         }catch(e){}
-       }
-     }
-     saveAll();
-   }
- }catch(e){el('err').textContent='Error: '+e.message;projects[cur].messages.pop();}
- finally{busy=false;el('btnGo').disabled=false;abort=null}
-}
-loadAll();
-document.querySelectorAll('input[type=range]').forEach(r=>{
-  r.addEventListener('input',e=>{
-    const lbl=document.getElementById('lbl'+e.target.id.charAt(0).toUpperCase()+e.target.id.slice(1));
-    if(lbl) lbl.textContent=e.target.value;
-    saveAll();
+function renderChat(){
+  const c=el('chat');c.innerHTML='';
+  projects.messages.forEach(m=>{
+    if(m.role==='user') return;
+    const d=document.createElement('div');
+    d.className='msg assistant';
+    d.textContent=m.content;
+    c.appendChild(d);
   });
+  c.scrollTop=c.scrollHeight;
+  const words=projects.messages.filter(m=>m.role!=='user').reduce((a,m)=>a+m.content.split(/\s+/).length,0);
+  el('wordCount').textContent=words+' words';
+}
+
+function getSystemPrompt(){
+  const style=el('writeStyle').value;
+  return STYLE_PROMPTS[style]||STYLE_PROMPTS.daily;
+}
+
+async function callLLM(userPrompt){
+  el('err').textContent='';busy=true;el('btnGen').disabled=true;el('btnNextChap').disabled=true;el('btnNextScene').disabled=true;
+  const apiKey=el('apiKey').value.trim();
+  const model=el('model').value;
+  const baseUrl='https://openrouter.ai/api/v1';
+  if(!apiKey){el('err').textContent='API Key डालो - एक बार डालने पर auto-save हो जाएगा';busy=false;el('btnGen').disabled=false;el('btnNextChap').disabled=false;el('btnNextScene').disabled=false;return;}
+  
+  const past=el('pastChapters').value.trim();
+  const chars=el('characters').value.trim();
+  const title=el('title').value.trim();
+  
+  const messages=[
+    {role:'system',content:getSystemPrompt()},
+  ];
+  if(past){
+    messages.push({role:'user',content:`पिछले अध्यायों का सार (continuity के लिए याद रखो):\n${past.slice(-4000)}`});
+    messages.push({role:'assistant',content:'समझ गया, पिछले अध्याय याद हैं, उसी फ्लो में आगे लिखूंगा।'});
+  }
+  // Add recent story history
+  projects.messages.slice(-6).forEach(m=>messages.push(m));
+  messages.push({role:'user',content:userPrompt});
+
+  const body={
+    model,
+    messages,
+    temperature:0.6,
+    top_p:0.85,
+    frequency_penalty:0.7,
+    presence_penalty:0.2,
+    max_tokens:1600,
+    stream:true
+  };
+  const ctrl=new AbortController();abort=ctrl;
+  try{
+    const res=await fetch(baseUrl+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify(body),signal:ctrl.signal});
+    if(!res.ok){const t=await res.text();throw new Error(t.slice(0,2000));}
+    const reader=res.body.getReader();const dec=new TextDecoder();let full='';
+    projects.messages.push({role:'assistant',content:''});
+    let idx=projects.messages.length-1;
+    while(true){
+      const {done,value}=await reader.read();if(done)break;
+      const chunk=dec.decode(value,{stream:true});
+      for(const line of chunk.split('\n')){
+        if(!line.startsWith('data:'))continue;
+        const data=line.slice(5).trim();if(data==='[DONE]')break;
+        try{
+          const j=JSON.parse(data);
+          full+=j.choices?.[0]?.delta?.content||'';
+          let fixed=fixHindiGlitches(full);
+          projects.messages[idx].content=fixed;
+          renderChat();
+        }catch(e){}
+      }
+    }
+    saveAll();
+  }catch(e){
+    el('err').textContent='Error: '+e.message;
+    projects.messages.pop();
+  }finally{busy=false;el('btnGen').disabled=false;el('btnNextChap').disabled=false;el('btnNextScene').disabled=false;abort=null}
+}
+
+function generateFirst(){
+  saveAll();
+  const title=el('title').value;
+  const chars=el('characters').value;
+  const scene=el('directive').value;
+  if(!title && !chars){alert('Title या Characters भरो');return;}
+  const prompt=`शीर्षक: ${title}\nपात्र: ${chars}\nपहला सीन: ${scene||'कहानी शुरू करो'}\n\nपहला अध्याय लिखो, रोजमर्रा की आसान हिंदी में, कोई है वाला glitch मत करना - हमेशा "जाता है" अलग लिखो।`;
+  projects.messages.push({role:'user',content:prompt});
+  renderChat();
+  callLLM(prompt);
+}
+function nextChapter(){
+  saveAll();
+  const prompt=`अगला अध्याय लिखो। पिछली कहानी को ध्यान में रखो, उसी फ्लो में आगे बढ़ो। रोजमर्रा की आसान हिंदी में, "है" हमेशा अलग शब्द। नया ट्विस्ट या आगे की घटना।`;
+  projects.messages.push({role:'user',content:prompt});
+  callLLM(prompt);
+}
+function nextScene(){
+  saveAll();
+  const scene=el('directive').value;
+  const prompt=scene?`अगला सीन: ${scene}\nइसी सीन को रोजमर्रा की हिंदी में लिखो, पिछले अध्यायों की continuity बनाए रखो। "है" अलग लिखो।`:`अगला सीन लिखो, वहीं से जहाँ कहानी रुकी थी, रोजमर्रा की हिंदी में। "है" अलग।`;
+  projects.messages.push({role:'user',content:prompt});
+  callLLM(prompt);
+}
+function stopGen(){if(abort)abort.abort();busy=false;el('btnGen').disabled=false;el('btnNextChap').disabled=false;el('btnNextScene').disabled=false;}
+function clearStory(){if(!confirm('Generated story clear करें?'))return;projects.messages=[];renderChat();saveAll();}
+function clearAll(){
+  if(!confirm('सब कुछ clear करें? Characters, Past Chapters, Story सब delete होगा। API Key बची रहेगी।'))return;
+  projects={title:'',characters:'',pastChapters:'',directive:'',messages:[]};
+  el('title').value='';el('characters').value='';el('pastChapters').value='';el('directive').value='';
+  renderChat();saveAll();
+}
+function exportStory(){
+  let out=`Title: ${projects.title}\n\n`;
+  if(projects.pastChapters) out+=`Past:\n${projects.pastChapters}\n\n---\n\n`;
+  out+=projects.messages.filter(m=>m.role!=='user').map(m=>m.content).join('\n\n---\n\n');
+  const b=new Blob([out],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(projects.title||'story')+'.txt';a.click();
+}
+function copyStory(){
+  const txt=projects.messages.filter(m=>m.role!=='user').map(m=>m.content).join('\n\n');
+  navigator.clipboard.writeText(txt);alert('Copied!');
+}
+
+// Auto-save on typing
+['apiKey','model','writeStyle','title','characters','pastChapters','directive'].forEach(id=>{
+  const e=el(id);
+  if(e) e.addEventListener('input',saveAll);
+  if(e) e.addEventListener('change',saveAll);
 });
+
+loadAll();
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
