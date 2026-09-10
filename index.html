@@ -24,432 +24,168 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>कथा-लेखक V10 - Locked Instructions</title>
+<title>कथा-लेखक V14 - Ultra Clean</title>
 <style>
-:root{--bg:#0f0e15;--panel:#1a1825;--panel2:#222030;--acc:#b57bff;--acc2:#7bd6ff;--txt:#e8e4f8;--mut:#8e89a8;--bd:#2e2a45;--green:#1a3d2a;--greenBd:#2a6b45;--greenTxt:#8affc1}
+:root{--bg:#0f0e15;--panel:#1a1825;--panel2:#222030;--acc:#b57bff;--txt:#e8e4f8;--mut:#8e89a8;--bd:#2e2a45}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
-header{padding:14px 18px;background:var(--panel);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px}
-header h1{margin:0;font-size:1.2rem;color:var(--acc)}
-.wrap{max-width:1120px;margin:0 auto;padding:14px;display:flex;flex-direction:column;gap:12px}
-.card{background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:14px}
-.card.lockedBox{border:2px solid var(--greenBd);background:linear-gradient(135deg,#1a1825,#162a1e)}
-.card.lockedBox.locked{border-color:#8affc1;background:linear-gradient(135deg,#162a1e,#1a2d22);box-shadow:0 0 0 1px rgba(138,255,193,0.2)}
-h2{font-size:.85rem;margin:0 0 8px;color:var(--acc2);text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
-label{font-size:.78rem;color:var(--mut);display:block;margin:9px 0 3px}
-input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--bd);color:var(--txt);border-radius:10px;padding:10px 11px;font-size:.93rem}
-textarea{resize:vertical;min-height:80px;line-height:1.7}
-textarea.big{min-height:130px}
-textarea.lockedTA{border-color:var(--greenBd);background:#0f2218;color:var(--greenTxt)}
-textarea.lockedTA:read-only{opacity:0.9}
-textarea.hiddenTA{filter:blur(12px);user-select:none}
-.row{display:flex;gap:8px;flex-wrap:wrap}
-.row>*{flex:1;min-width:120px}
-button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;font-size:.9rem}
+header{padding:12px 16px;background:var(--panel);border-bottom:1px solid var(--bd);display:flex;align-items:center}
+header h1{margin:0;font-size:1.1rem;color:var(--acc)}
+.wrap{max-width:1000px;margin:0 auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.card{background:var(--panel);border:1px solid var(--bd);border-radius:12px;padding:12px}
+label{font-size:.75rem;color:var(--mut);display:block;margin:8px 0 3px}
+input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--bd);color:var(--txt);border-radius:8px;padding:9px 10px;font-size:.9rem}
+textarea{resize:vertical;min-height:70px}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.row>*{flex:1;min-width:100px}
+button{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:10px 14px;font-weight:700;cursor:pointer;font-size:.88rem}
 button.sec{background:var(--panel2);color:var(--txt);border:1px solid var(--bd)}
-button.green{background:var(--green);color:var(--greenTxt);border:1px solid var(--greenBd)}
+button.small{padding:6px 10px;font-size:.78rem}
 button.danger{background:#3a1e2a;color:#ff8a9a;border:1px solid #5a2a3a}
-button.small{padding:7px 11px;font-size:.8rem}
 button:disabled{opacity:.5}
-.chat{display:flex;flex-direction:column;gap:12px;max-height:60vh;overflow-y:auto;padding:4px}
-.msg{border-radius:12px;padding:15px 17px;white-space:pre-wrap;word-break:break-word;line-height:1.9;font-size:1rem;background:var(--panel2);border:1px solid var(--bd)}
-.msg.user{display:none}
-.msg.assistant{border-color:#2a4a35;background:#18221c}
-.badge{font-size:.68rem;background:var(--panel2);border:1px solid var(--bd);padding:2px 8px;border-radius:20px;color:var(--mut)}
-.badge.lockedBadge{background:var(--green);border-color:var(--greenBd);color:var(--greenTxt);font-weight:700}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 @media(max-width:700px){.grid3{grid-template-columns:1fr}}
-.sliderBox{background:var(--panel2);border:1px solid var(--bd);border-radius:10px;padding:10px 12px}
-.lockHeader{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.msg{border-radius:10px;padding:14px 15px;white-space:pre-wrap;word-break:break-word;line-height:1.9;font-size:1rem;background:var(--panel2);border:1px solid var(--bd);margin-top:6px}
+.msg.assistant{border-color:#2a4a35;background:#18221c}
 </style>
 </head>
 <body>
 <header>
-  <h1>✍️ कथा-लेखक V10</h1>
-  <span style="font-size:.75rem;color:var(--mut)">Locked Instructions + Hide + Length + Banarasi</span>
+  <h1>✍️ कथा-लेखक</h1>
 </header>
 
 <div class="wrap">
-  <!-- SETTINGS -->
+  <!-- SETTINGS - CLEAN, NO BADGES -->
   <div class="card">
     <div class="grid3">
-      <div>
-        <label>API Key (Auto-saved)</label>
-        <input type="password" id="apiKey" placeholder="sk-or-v1-...">
-      </div>
-      <div>
-        <label>Model</label>
-        <select id="model">
-          <option value="google/gemma-3-27b-it" selected>Gemma 3 27B - Best daily Hindi</option>
-          <option value="qwen/qwen-2.5-72b-instruct">Qwen 72B - Best Hindi quality</option>
-          <option value="anthracite-org/magnum-v4-72b">Magnum 72B - Best uncensored</option>
-          <option value="deepseek/deepseek-chat">DeepSeek V3</option>
-          <option value="google/gemma-3-27b-it:free">Gemma 3 FREE</option>
-        </select>
-      </div>
-      <div>
-        <label>Writing Style</label>
-        <select id="writeStyle">
-          <option value="daily" selected>💬 रोज़मर्रा की बोली</option>
-          <option value="narrative">📖 उपन्यास - Novel</option>
-          <option value="romantic">❤️ रोमांटिक विस्तृत</option>
-          <option value="script">🎬 स्क्रिप्ट/डायलॉग</option>
-          <option value="firstperson">👤 मैं वाली</option>
-          <option value="thirdperson">👥 तीसरे व्यक्ति</option>
-          <option value="short">⚡ छोटी कहानी</option>
-          <option value="adult">🔥 एडल्ट अनसेंसर्ड</option>
-        </select>
-      </div>
+      <div><label>API Key</label><input type="password" id="apiKey" placeholder="sk-or-v1-..."></div>
+      <div><label>Model</label><select id="model"><option value="qwen/qwen-2.5-72b-instruct" selected>Qwen 72B</option><option value="google/gemma-3-27b-it">Gemma 3 27B</option><option value="anthracite-org/magnum-v4-72b">Magnum 72B</option></select></div>
+      <div><label>Style</label><select id="writeStyle"><option value="daily" selected>रोज़मर्रा</option><option value="narrative">उपन्यास</option><option value="romantic">रोमांटिक</option><option value="script">स्क्रिप्ट</option><option value="firstperson">मैं वाली</option><option value="adult">एडल्ट</option></select></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-      <div class="sliderBox">
-        <label>📏 Length: <b id="lenLabel" style="color:var(--acc)">1500 chars</b></label>
-        <input type="range" id="charLen" min="500" max="3000" step="100" value="1500">
-      </div>
-      <div class="sliderBox">
-        <label><input type="checkbox" id="banarasiToggle" style="width:auto"> बनारसी/पूर्वांचली डायलॉग</label>
-        <div style="font-size:.72rem;color:var(--mut);margin-top:4px">नरेशन हिंदी, डायलॉग बनारसी - "का हो, कहाँ जात हउअ"</div>
-      </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px">
+      <div><label>Length: <span id="lenLabel">1500</span></label><input type="range" id="charLen" min="500" max="3000" step="100" value="1500"></div>
+      <div><label>Banarasi</label><select id="banarasiLevel"><option value="off" selected>OFF</option><option value="light">Light</option><option value="medium">Medium</option><option value="heavy">Heavy</option></select></div>
     </div>
   </div>
 
-  <!-- PAST CHAPTERS -->
-  <div class="card">
-    <h2>📚 पिछले अध्याय (Continuity)</h2>
-    <textarea id="pastChapters" class="big" placeholder="पिछले अध्याय यहाँ पेस्ट करें..."></textarea>
-  </div>
+  <div class="card"><label>पिछले अध्याय</label><textarea id="pastChapters" placeholder="पिछले अध्याय यहाँ पेस्ट करें..."></textarea></div>
 
-  <!-- STORY INFO -->
   <div class="card">
-    <h2>✏️ कहानी की जानकारी</h2>
     <label>Title</label><input id="title" placeholder="बारिश की रात">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div>
-        <label>Characters / पात्र</label>
-        <textarea id="characters" placeholder="नेहा - 28, अकेली
-रवि - 30, पड़ोसी
-सभी 18+"></textarea>
-      </div>
-      <div>
-        <label>Current Scene / क्या लिखना है</label>
-        <textarea id="directive" placeholder="अब क्या सीन लिखना है..."></textarea>
-      </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div><label>Characters</label><textarea id="characters" placeholder="नेहा - 28, अकेली
+रवि - 30, पड़ोसी"></textarea></div>
+      <div><label>Current Scene</label><textarea id="directive" placeholder="अब क्या सीन..."></textarea></div>
     </div>
   </div>
 
-  <!-- NEW: LOCKED ADDITIONAL PROMPTS BOX - EXACTLY WHERE ARROW POINTS -->
-  <div class="card lockedBox" id="lockedCard">
-    <div class="lockHeader">
-      <h2 style="margin:0">🔒 Additional Prompts (Locked for All Chapters) <span class="badge lockedBadge" id="lockStatus">🔓 Unlocked - Edit kar sakte hain</span></h2>
-      <div style="display:flex;gap:6px">
-        <button class="small sec" id="eyeBtn" onclick="toggleHide()" title="Hide/Unhide">👁️ Hide</button>
-        <button class="small green" id="lockBtn" onclick="toggleLock()">🔒 Lock</button>
-      </div>
-    </div>
-    
-    <div style="font-size:.78rem;color:var(--mut);margin:6px 0 8px">
-      यहाँ जो लिखेंगे, वो <b>हर अध्याय/सीन पर अपने आप लागू होगा</b> जब तक आप edit/overwrite नहीं करते। जैसे: "कोई गाली मत लिखो", "हर सीन में बारिश का जिक्र करो", "डायलॉग छोटे रखो" आदि।
-      <span id="lockedHint" style="color:var(--greenTxt);display:none"> • ✅ Locked - सभी chapters पर लागू हो रहा है</span>
-    </div>
-
-    <textarea id="additionalPrompts" placeholder="यहाँ additional instructions लिखें जो हर chapter/scene पर लागू हों...
-
-उदा.
-- हर सीन में हल्की बारिश का माहौल रखो
-- कोई भारी किताबी शब्द मत इस्तेमाल करो
-- डायलॉग 1-2 लाइन से ज्यादा लंबे मत करो
-- हर अध्याय के अंत में सस्पेंस रखो
-- 'है' हमेशा अलग लिखो, जाताहै मत लिखो
-
-एक बार लिख कर Lock दबाओ - फिर ये हर generation में auto-apply होगा।"></textarea>
-
-    <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-      <button class="small green" onclick="lockInstructions()">🔒 Lock & Apply to All</button>
-      <button class="small sec" onclick="editInstructions()">✏️ Edit / Overwrite</button>
-      <button class="small sec" onclick="clearAdditional()">🗑️ Clear</button>
-      <span style="font-size:.75rem;color:var(--mut);align-self:center" id="additionalMeta"></span>
-    </div>
-
-    <div id="lockedPreview" style="display:none;margin-top:10px;background:var(--panel2);border:1px dashed var(--greenBd);border-radius:8px;padding:10px;font-size:.85rem;color:var(--greenTxt)"></div>
+  <!-- ADDITIONAL PROMPTS - CLEAN, WITH LOCK + EYE ONLY -->
+  <div class="card" id="lockedCard" style="border:1px solid #2a6b45">
+    <label style="display:flex;align-items:center;gap:8px">Additional Prompts <span id="lockStatus" style="font-size:.7rem;color:var(--mut)">Unlocked</span> <button class="small sec" id="eyeBtn" onclick="toggleHide()" style="margin-left:auto;padding:3px 8px">👁️</button> <button class="small sec" id="lockBtn" onclick="toggleLock()" style="padding:3px 8px">🔒</button></label>
+    <textarea id="additionalPrompts" placeholder="हर chapter पर लागू होने वाले instructions..."></textarea>
   </div>
 
-  <!-- ACTION BUTTONS -->
   <div class="card">
-    <div class="row">
-      <button id="btnGen" onclick="generateFirst()">📖 पहला अध्याय</button>
-      <button class="sec" id="btnNextChap" onclick="nextChapter()">📑 अगला अध्याय</button>
-      <button class="sec" id="btnNextScene" onclick="nextScene()">🎬 अगला सीन</button>
-      <button class="sec" onclick="stopGen()">⛔ Stop</button>
-    </div>
-    <div class="row" style="margin-top:8px">
-      <button class="sec small" onclick="clearStory()">🧹 Clear Story</button>
-      <button class="danger small" onclick="clearAll()">🗑️ Clear All</button>
-      <button class="sec small" onclick="exportStory()">⬇️ Export</button>
-      <button class="sec small" onclick="copyStory()">📋 Copy</button>
-    </div>
-    <div id="err" style="color:#ff8a9a;font-size:.85rem;margin-top:8px;white-space:pre-wrap"></div>
+    <div class="row"><button id="btnGen" onclick="generateFirst()">📖 पहला अध्याय</button><button class="sec" id="btnNextChap" onclick="nextChapter()">📑 अगला अध्याय</button><button class="sec" id="btnNextScene" onclick="nextScene()">🎬 अगला सीन</button><button class="sec" onclick="stopGen()">⛔ Stop</button></div>
+    <div class="row" style="margin-top:6px"><button class="sec small" onclick="clearStory()">Clear Story</button><button class="danger small" onclick="clearAll()">Clear All</button><button class="sec small" onclick="exportStory()">Export</button><button class="sec small" onclick="copyStory()">Copy</button></div>
+    <div id="err" style="color:#ff8a9a;font-size:.8rem;margin-top:6px;white-space:pre-wrap"></div>
   </div>
 
-  <!-- OUTPUT -->
-  <div class="card">
-    <h2>📝 Generated Story <span class="badge" id="wordCount">0 chars</span> <span class="badge" id="lockedIndicator" style="display:none">🔒 Additional prompts active</span></h2>
-    <div class="chat" id="chat"></div>
-  </div>
-
-  <!-- CONVERTER -->
-  <div class="card" style="border:1px solid var(--acc)">
-    <h2>🔄 Format Converter - बिना शब्द बदले</h2>
-    <textarea id="convertInput" class="big" placeholder="किसी भी फॉर्मेट की कहानी यहाँ पेस्ट करें..."></textarea>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
-      <select id="convertTarget">
-        <option value="daily">💬 रोज़मर्रा बोली</option>
-        <option value="narrative">📖 उपन्यास</option>
-        <option value="script" selected>🎬 स्क्रिप्ट</option>
-        <option value="firstperson">👤 मैं वाली</option>
-      </select>
-      <div style="display:flex;gap:6px">
-        <button class="small" onclick="convertFormatLocal()" style="flex:1">⚡ Instant Convert</button>
-        <button class="sec small" onclick="convertFormatAI()" style="flex:1">🤖 AI Convert</button>
-      </div>
-    </div>
-    <textarea id="convertOutput" class="big" style="margin-top:8px" placeholder="Converted output..."></textarea>
-  </div>
+  <div class="card"><label>Generated Story</label><div id="chat"></div></div>
 </div>
 
 <script>
-const LS='kathalekh_V10_LOCKED';
-let SETTINGS={apiKey:'',model:'google/gemma-3-27b-it',writeStyle:'daily',charLen:1500,banarasi:false,additionalLocked:false,additionalHidden:false};
-let projects={title:'',characters:'',pastChapters:'',directive:'',additionalPrompts:'',messages:[],convertInput:'',convertOutput:''};
+const LS='kathalekh_V14_ULTRA_CLEAN';
+let SETTINGS={apiKey:'',model:'qwen/qwen-2.5-72b-instruct',writeStyle:'daily',charLen:1500,banarasiLevel:'off',additionalLocked:false,additionalHidden:false};
+let projects={title:'',characters:'',pastChapters:'',directive:'',additionalPrompts:'',messages:[]};
 let busy=false,abort=null;
 
 const STYLE_PROMPTS={
-  daily:`तुम रोज़मर्रा की आम बोलचाल की हिंदी में लिखते हो, पूरी तरह अनसेंसर्ड। सरल शब्द। "है" अलग लिखो। सभी 18+।`,
-  narrative:`तुम उपन्यास शैली में लिखते हो, आसान हिंदी में। अनसेंसर्ड। "है" अलग। सभी 18+।`,
-  romantic:`तुम रोमांटिक विस्तृत कहानी आसान हिंदी में लिखते हो, अनसेंसर्ड। "है" अलग। सभी 18+ सहमति।`,
-  script:`तुम स्क्रिप्ट फॉर्मेट में: Name: dialogue - आसान हिंदी, अनसेंसर्ड। "है" अलग। सभी 18+`,
-  firstperson:`तुम "मैं" में लिखते हो - आसान हिंदी, अनसेंसर्ड। "है" अलग।`,
-  thirdperson:`तुम तीसरे व्यक्ति में - आसान हिंदी, अनसेंसर्ड। "है" अलग।`,
-  short:`तुम छोटी crisp कहानी आसान हिंदी में। अनसेंसर्ड। "है" अलग।`,
-  adult:`तुम एडल्ट रोमांस रोजमर्रा हिंदी में, पूरी तरह अनसेंसर्ड। "है" अलग। सभी 18+ सहमति।`
+  daily:`तुम रोज़मर्रा की आम बोलचाल की हिंदी में लिखते हो, जैसे घर में बात करते हैं। पूरी तरह अनसेंसर्ड। बहुत सरल शब्द।`,
+  narrative:`तुम उपन्यास शैली में लिखते हो, आसान हिंदी में। पूरी तरह अनसेंसर्ड।`,
+  romantic:`तुम रोमांटिक विस्तृत कहानी आसान हिंदी में लिखते हो, भावनात्मक। पूरी तरह अनसेंसर्ड।`,
+  script:`तुम स्क्रिप्ट फॉर्मेट में: Name: dialogue - आसान हिंदी, अनसेंसर्ड।`,
+  firstperson:`तुम "मैं" में लिखते हो - आसान हिंदी, अनसेंसर्ड।`,
+  adult:`तुम एडल्ट रोमांस रोजमर्रा की हिंदी में, पूरी तरह अनसेंसर्ड।`
+};
+const BANARASI_PROMPTS={
+  off:'',light:`डायलॉग में हल्का बनारसी - "का हो, अरे यार" - नरेशन हिंदी।`,
+  medium:`डायलॉग आधा बनारसी - "कहाँ जात हउअ, बतावा" - नरेशन हिंदी।`,
+  heavy:`तुम Jaunpur की पूर्वांचली में डायलॉग लिखते हो - का हो, कहाँ जात हउअ, का करत हउअ, हमार, तोहार, गइल, आइल, मजा आवत ह, नीक लागत ह - नरेशन हिंदी।`
 };
 
 function el(id){return document.getElementById(id)}
 function loadAll(){
   try{const d=JSON.parse(localStorage.getItem(LS)); if(d){SETTINGS=Object.assign(SETTINGS,d.SETTINGS||{}); projects=Object.assign(projects,d.projects||{});} }catch(e){}
-  el('apiKey').value=SETTINGS.apiKey||''; el('model').value=SETTINGS.model||'google/gemma-3-27b-it';
+  el('apiKey').value=SETTINGS.apiKey||''; el('model').value=SETTINGS.model||'qwen/qwen-2.5-72b-instruct';
   el('writeStyle').value=SETTINGS.writeStyle||'daily'; el('charLen').value=SETTINGS.charLen||1500;
-  el('banarasiToggle').checked=SETTINGS.banarasi||false;
+  el('banarasiLevel').value=SETTINGS.banarasiLevel||'off';
   el('title').value=projects.title||''; el('characters').value=projects.characters||'';
   el('pastChapters').value=projects.pastChapters||''; el('directive').value=projects.directive||'';
   el('additionalPrompts').value=projects.additionalPrompts||'';
-  el('convertInput').value=projects.convertInput||''; el('convertOutput').value=projects.convertOutput||'';
-  updateLenLabel();
+  el('lenLabel').textContent=SETTINGS.charLen||1500;
   applyLockState(SETTINGS.additionalLocked||false, SETTINGS.additionalHidden||false);
   renderChat();
 }
 function saveAll(){
   SETTINGS.apiKey=el('apiKey').value.trim(); SETTINGS.model=el('model').value;
   SETTINGS.writeStyle=el('writeStyle').value; SETTINGS.charLen=+el('charLen').value;
-  SETTINGS.banarasi=el('banarasiToggle').checked;
+  SETTINGS.banarasiLevel=el('banarasiLevel').value;
   projects.title=el('title').value; projects.characters=el('characters').value;
   projects.pastChapters=el('pastChapters').value; projects.directive=el('directive').value;
   projects.additionalPrompts=el('additionalPrompts').value;
-  projects.convertInput=el('convertInput').value; projects.convertOutput=el('convertOutput').value;
   localStorage.setItem(LS,JSON.stringify({SETTINGS,projects}));
 }
-function updateLenLabel(){el('lenLabel').textContent=el('charLen').value+' chars'; saveAll();}
-
-// LOCKED ADDITIONAL PROMPTS LOGIC
-function applyLockState(isLocked, isHidden){
+function applyLockState(isLocked,isHidden){
   SETTINGS.additionalLocked=isLocked; SETTINGS.additionalHidden=isHidden;
   const ta=el('additionalPrompts');
-  const card=el('lockedCard');
-  const status=el('lockStatus');
-  const hint=el('lockedHint');
-  const preview=el('lockedPreview');
-  const meta=el('additionalMeta');
-  const indicator=el('lockedIndicator');
-  const eyeBtn=el('eyeBtn');
-  const lockBtn=el('lockBtn');
-
-  if(isLocked){
-    ta.readOnly=true;
-    ta.classList.add('lockedTA');
-    card.classList.add('locked');
-    status.textContent='🔒 Locked - All chapters पर लागू';
-    status.className='badge lockedBadge';
-    hint.style.display='inline';
-    indicator.style.display='inline';
-    lockBtn.textContent='🔓 Unlock';
-    lockBtn.className='small sec';
-    meta.textContent=`Locked • ${ta.value.length} chars • हर chapter पर apply होगा`;
-    if(ta.value.trim()){
-      preview.style.display='block';
-      preview.innerHTML='<b>🔒 Locked Instructions (Active):</b><br>'+ta.value.replace(/</g,'&lt;').replace(/\n/g,'<br>');
-    }
-  } else {
-    ta.readOnly=false;
-    ta.classList.remove('lockedTA');
-    card.classList.remove('locked');
-    status.textContent='🔓 Unlocked - Edit कर सकते हैं';
-    status.className='badge';
-    hint.style.display='none';
-    indicator.style.display='none';
-    lockBtn.textContent='🔒 Lock';
-    lockBtn.className='small green';
-    meta.textContent=ta.value.trim()?`${ta.value.length} chars - Lock करो तो सभी पर लागू होगा`:'Empty';
-    preview.style.display='none';
-  }
-
-  if(isHidden){
-    ta.classList.add('hiddenTA');
-    eyeBtn.textContent='👁️ Show';
-    preview.style.display='none';
-  } else {
-    ta.classList.remove('hiddenTA');
-    eyeBtn.textContent='👁️ Hide';
-    if(isLocked && ta.value.trim()) preview.style.display='block';
-  }
+  ta.readOnly=isLocked; ta.style.filter=isHidden?'blur(12px)':'';
+  el('lockStatus').textContent=isLocked?'Locked':'Unlocked';
+  el('eyeBtn').textContent=isHidden?'👁️‍🗨️':'👁️';
+  el('lockBtn').textContent=isLocked?'🔓':'🔒';
   saveAll();
 }
-
-function toggleLock(){
-  const isLocked=SETTINGS.additionalLocked;
-  if(isLocked){
-    // Unlock for editing
-    applyLockState(false, SETTINGS.additionalHidden);
-  } else {
-    lockInstructions();
-  }
-}
-function lockInstructions(){
-  const txt=el('additionalPrompts').value.trim();
-  if(!txt){alert('पहले additional instructions लिखो'); return;}
-  applyLockState(true, SETTINGS.additionalHidden);
-  saveAll();
-  // Visual feedback
-  el('err').textContent='';
-  setTimeout(()=>{el('err').textContent='';},0);
-}
-function editInstructions(){
-  applyLockState(false, false);
-  el('additionalPrompts').focus();
-}
-function toggleHide(){
-  applyLockState(SETTINGS.additionalLocked, !SETTINGS.additionalHidden);
-}
-function clearAdditional(){
-  if(!confirm('Additional prompts clear करें?')) return;
-  el('additionalPrompts').value='';
-  applyLockState(false,false);
-  saveAll();
-}
-
-function fixHindiGlitches(t){
-  let x=t;
-  x=x.replace(/हेै/g,'है').replace(/हैै/g,'है').replace(/है\s*ै/g,'है').replace(/([^\s])है/g,'$1 है').replace(/([^\s])हैं/g,'$1 हैं');
-  const f=[[/नोड़ा उठाया/g,'नज़र उठाई'],[/टोश/g,'तौलिया'],[/बिशफल/g,'भीगा हुआ'],[/स्क्विज़ बॉडी/g,'बदन'],[/उत्तेजित/g,'बेचैन'],[/अधरा/g,'अंधेरा']];
-  f.forEach(([p,r])=>x=x.replace(p,r));
-  x=x.replace(/ {2,}/g,' ');
-  return x;
-}
-function renderChat(){
-  const c=el('chat'); c.innerHTML='';
-  projects.messages.forEach(m=>{ if(m.role==='user') return; const d=document.createElement('div'); d.className='msg assistant'; d.textContent=m.content; c.appendChild(d); });
-  c.scrollTop=c.scrollHeight;
-  const chars=projects.messages.filter(m=>m.role!=='user').reduce((a,m)=>a+m.content.length,0);
-  el('wordCount').textContent=`${chars} chars`;
-}
-function getSystemPrompt(){
-  let base=STYLE_PROMPTS[el('writeStyle').value]||STYLE_PROMPTS.daily;
-  base+=`\n\nलंबाई: लगभग ${el('charLen').value} characters में लिखो।`;
-  if(el('banarasiToggle').checked){
-    base+=`\n\nबनारसी डायलॉग: नरेशन हिंदी में, डायलॉग बनारसी/पूर्वांचली में - "का हो, कहाँ जात हउअ, बड़ा मजा आवत ह"`;
-  }
-  // ADD LOCKED ADDITIONAL PROMPTS - APPLIES TO ALL CHAPTERS
-  const addPrompt=el('additionalPrompts').value.trim();
-  if(SETTINGS.additionalLocked && addPrompt){
-    base+=`\n\n[LOCKED ADDITIONAL INSTRUCTIONS - हर chapter/scene पर लागू करो]:\n${addPrompt}`;
-  }
-  base+=`\nनियम: "है" हमेशा अलग शब्द।`;
-  return base;
-}
-async function callLLM(prompt,isConvert=false){
-  el('err').textContent=''; busy=true;
-  el('btnGen').disabled=true; el('btnNextChap').disabled=true; el('btnNextScene').disabled=true;
+function toggleLock(){ if(SETTINGS.additionalLocked) applyLockState(false, SETTINGS.additionalHidden); else { if(!el('additionalPrompts').value.trim()){alert('पहले instruction लिखो'); return;} applyLockState(true, SETTINGS.additionalHidden);} }
+function toggleHide(){ applyLockState(SETTINGS.additionalLocked, !SETTINGS.additionalHidden); }
+function fixHindi(t){ let x=t; x=x.replace(/हेै/g,'है').replace(/हैै/g,'है').replace(/है\s*ै/g,'है').replace(/([^\s])है/g,'$1 है').replace(/([^\s])हैं/g,'$1 हैं').replace(/जाताहै/g,'जाता है').replace(/लगताहै/g,'लगता है').replace(/बढ़ाताहै/g,'बढ़ता है').replace(/होतीहेै/g,'होती है').replace(/आतीहेै/g,'आती है').replace(/जातीहेै/g,'जाती है').replace(/नोड़ा/g,'नज़र').replace(/टोश/g,'तौलिया').replace(/बिशफल/g,'भीगा हुआ').replace(/उत्तेजित/g,'बेचैन').replace(/अधरा/g,'अंधेरा'); x=x.replace(/ {2,}/g,' '); return x; }
+function renderChat(){ const c=el('chat'); c.innerHTML=''; projects.messages.forEach(m=>{ if(m.role==='user') return; const d=document.createElement('div'); d.className='msg assistant'; d.textContent=m.content; c.appendChild(d); }); }
+function getSystemPrompt(){ let b=STYLE_PROMPTS[el('writeStyle').value]||STYLE_PROMPTS.daily; b+=`\n\nलंबाई: ${el('charLen').value} characters में लिखो, कम मत लिखो।`; const bl=el('banarasiLevel').value; if(bl!=='off') b+=`\n\n${BANARASI_PROMPTS[bl]}`; b+=`\n\nनियम: "है" हमेशा अलग शब्द - जाताहै नहीं, जाता है। कभी मत लिखो: हेै, नोड़ा, टोश, बिशफल। सभी 18+।`; const add=el('additionalPrompts').value.trim(); if(SETTINGS.additionalLocked && add) b+=`\n\n[LOCKED INSTRUCTIONS हर chapter पर लागू]:\n${add}`; return b; }
+async function callLLM(prompt,isFix=false){
+  el('err').textContent=''; busy=true; el('btnGen').disabled=true; el('btnNextChap').disabled=true; el('btnNextScene').disabled=true;
   const apiKey=el('apiKey').value.trim(); const model=el('model').value;
   if(!apiKey){el('err').textContent='API Key डालो'; busy=false; el('btnGen').disabled=false; el('btnNextChap').disabled=false; el('btnNextScene').disabled=false; return;}
-  const baseUrl='https://openrouter.ai/api/v1';
-  const past=el('pastChapters').value.trim();
-  const msgs=[{role:'system',content:isConvert?'तुम format converter हो, बिना शब्द बदले सिर्फ फॉर्मेट बदलो।':getSystemPrompt()}];
-  if(!isConvert && past){ msgs.push({role:'user',content:`पिछले अध्याय:\n${past.slice(-3500)}`}); msgs.push({role:'assistant',content:'समझ गया, continuity बनाए रखूंगा।'}); }
-  if(!isConvert) projects.messages.slice(-4).forEach(m=>msgs.push(m));
+  const baseUrl='https://openrouter.ai/api/v1'; const past=el('pastChapters').value.trim(); const targetLen=+el('charLen').value;
+  const msgs=[{role:'system',content:getSystemPrompt()}];
+  if(past){ msgs.push({role:'user',content:`पिछले अध्याय:\n${past.slice(-3500)}`}); msgs.push({role:'assistant',content:'समझ गया।'}); }
+  if(!isFix) projects.messages.slice(-4).forEach(m=>msgs.push(m));
+  else { const last=projects.messages.filter(m=>m.role!=='user').pop(); if(last) msgs.push({role:'user',content:`पिछली कहानी:\n${last.content.slice(-2000)}`}); }
   msgs.push({role:'user',content:prompt});
-  const charLen=isConvert? 4000 : +el('charLen').value;
-  const body={model,messages:msgs,temperature:0.55,top_p:0.85,frequency_penalty:0.7,presence_penalty:0.2,max_tokens:Math.ceil(charLen/2.5)+500,stream:true};
+  const body={model,messages:msgs,temperature:0.6,top_p:0.85,frequency_penalty:0.8,presence_penalty:0.2,max_tokens:Math.ceil(targetLen/1.8)+800,stream:true};
   const ctrl=new AbortController(); abort=ctrl;
   try{
     const res=await fetch(baseUrl+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify(body),signal:ctrl.signal});
     if(!res.ok){const t=await res.text(); throw new Error(t.slice(0,2000));}
     const reader=res.body.getReader(); const dec=new TextDecoder(); let full='';
-    if(!isConvert){ projects.messages.push({role:'assistant',content:''}); var idx=projects.messages.length-1; }
-    else { el('convertOutput').value='Generating...'; }
-    while(true){
-      const {done,value}=await reader.read(); if(done)break;
-      const chunk=dec.decode(value,{stream:true});
-      for(const line of chunk.split('\n')){
-        if(!line.startsWith('data:'))continue; const data=line.slice(5).trim(); if(data==='[DONE]')break;
-        try{ const j=JSON.parse(data); full+=j.choices?.[0]?.delta?.content||'';
-          if(!isConvert){ let fixed=fixHindiGlitches(full); projects.messages[idx].content=fixed; renderChat(); }
-          else { el('convertOutput').value=fixHindiGlitches(full); }
-        }catch(e){}
-      }
-    }
+    if(!isFix){ projects.messages.push({role:'assistant',content:''}); var idx=projects.messages.length-1; } else { var idx=projects.messages.length-1; full=projects.messages[idx].content; }
+    while(true){ const {done,value}=await reader.read(); if(done)break; const chunk=dec.decode(value,{stream:true}); for(const line of chunk.split('\n')){ if(!line.startsWith('data:'))continue; const data=line.slice(5).trim(); if(data==='[DONE]')break; try{ const j=JSON.parse(data); full+=j.choices?.[0]?.delta?.content||''; let f=fixHindi(full); projects.messages[idx].content=f; renderChat(); }catch(e){} } }
+    const finalLen=projects.messages[idx].content.length;
+    if(!isFix && finalLen < targetLen*0.8){
+      el('err').textContent=`${finalLen}/${targetLen} chars - extending...`;
+      setTimeout(()=>{ const need=targetLen-finalLen; const p=`और ${need} characters जोड़ो, वहीं से जारी रखो।`; callLLM(p,true); },500);
+    } else { el('err').textContent=''; }
     saveAll();
-    if(isConvert) projects.convertOutput=el('convertOutput').value;
-  }catch(e){ el('err').textContent='Error: '+e.message; if(!isConvert) projects.messages.pop(); }
-  finally{ busy=false; el('btnGen').disabled=false; el('btnNextChap').disabled=false; el('btnNextScene').disabled=false; abort=null; }
+  }catch(e){ el('err').textContent='Error: '+e.message; if(!isFix) projects.messages.pop(); }
+  finally{ if(!el('err').textContent.includes('extending')){ busy=false; el('btnGen').disabled=false; el('btnNextChap').disabled=false; el('btnNextScene').disabled=false; abort=null; } }
 }
-function generateFirst(){
-  saveAll();
-  const title=el('title').value, chars=el('characters').value, scene=el('directive').value;
-  if(!title && !chars){alert('Title या Characters भरो'); return;}
-  const prompt=`शीर्षक: ${title}\nपात्र: ${chars}\nपहला सीन: ${scene||'कहानी शुरू करो'}\n\nपहला अध्याय लगभग ${el('charLen').value} characters में लिखो।`;
-  projects.messages.push({role:'user',content:prompt}); renderChat(); callLLM(prompt,false);
-}
-function nextChapter(){
-  saveAll();
-  const prompt=`अगला अध्याय लिखो, continuity बनाए रखो, लगभग ${el('charLen').value} characters में।`;
-  projects.messages.push({role:'user',content:prompt}); callLLM(prompt,false);
-}
-function nextScene(){
-  saveAll();
-  const scene=el('directive').value;
-  const prompt=scene?`अगला सीन: ${scene}\nलगभग ${el('charLen').value} characters में।`:`अगला सीन वहीं से जारी रखो, लगभग ${el('charLen').value} characters में।`;
-  projects.messages.push({role:'user',content:prompt}); callLLM(prompt,false);
-}
+function generateFirst(){ saveAll(); const t=el('title').value,c=el('characters').value,s=el('directive').value; if(!t&&!c){alert('Title/Characters भरो'); return;} const p=`शीर्षक: ${t}\nपात्र: ${c}\nपहला सीन: ${s||'शुरू करो'}\n\nपहला अध्याय ${el('charLen').value} chars में।`; projects.messages.push({role:'user',content:p}); renderChat(); callLLM(p,false); }
+function nextChapter(){ saveAll(); const p=`अगला अध्याय ${el('charLen').value} chars में, continuity में।`; projects.messages.push({role:'user',content:p}); callLLM(p,false); }
+function nextScene(){ saveAll(); const s=el('directive').value; const p=s?`अगला सीन: ${s}\n${el('charLen').value} chars में।`:`अगला सीन जारी रखो, ${el('charLen').value} chars में।`; projects.messages.push({role:'user',content:p}); callLLM(p,false); }
 function stopGen(){ if(abort) abort.abort(); busy=false; el('btnGen').disabled=false; el('btnNextChap').disabled=false; el('btnNextScene').disabled=false; }
-function clearStory(){ if(!confirm('Generated story clear करें?')) return; projects.messages=[]; renderChat(); saveAll(); }
-function clearAll(){ if(!confirm('सब clear? Key बची रहेगी।')) return; projects={title:'',characters:'',pastChapters:'',directive:'',additionalPrompts:'',messages:[],convertInput:'',convertOutput:''}; el('title').value=''; el('characters').value=''; el('pastChapters').value=''; el('directive').value=''; el('additionalPrompts').value=''; el('convertInput').value=''; el('convertOutput').value=''; applyLockState(false,false); renderChat(); saveAll(); }
+function clearStory(){ if(!confirm('Clear story?')) return; projects.messages=[]; renderChat(); saveAll(); }
+function clearAll(){ if(!confirm('Clear all?')) return; projects={title:'',characters:'',pastChapters:'',directive:'',additionalPrompts:'',messages:[]}; el('title').value=''; el('characters').value=''; el('pastChapters').value=''; el('directive').value=''; el('additionalPrompts').value=''; applyLockState(false,false); renderChat(); saveAll(); }
 function exportStory(){ let out=`Title: ${projects.title}\n\n`; if(projects.pastChapters) out+=`Past:\n${projects.pastChapters}\n\n---\n\n`; out+=projects.messages.filter(m=>m.role!=='user').map(m=>m.content).join('\n\n---\n\n'); const b=new Blob([out],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=(projects.title||'story')+'.txt'; a.click(); }
 function copyStory(){ const txt=projects.messages.filter(m=>m.role!=='user').map(m=>m.content).join('\n\n'); navigator.clipboard.writeText(txt); alert('Copied!'); }
-function convertFormatLocal(){
-  const input=el('convertInput').value.trim(); if(!input){alert('पहले कहानी paste करो'); return;}
-  let output=input.replace(/([^\s])है/g,'$1 है');
-  el('convertOutput').value=output; projects.convertInput=input; projects.convertOutput=output; saveAll();
-}
-function convertFormatAI(){
-  const input=el('convertInput').value.trim(); if(!input){alert('पहले कहानी paste करो'); return;}
-  const target=el('convertTarget')?.value||'script';
-  const prompt=`नीचे की कहानी को ${target} format में convert करो, बिना एक भी शब्द बदले, सिर्फ फॉर्मेट बदलो:\n\n${input.slice(0,4000)}`;
-  callLLM(prompt,true);
-}
-
-['apiKey','model','writeStyle','charLen','banarasiToggle','title','characters','pastChapters','directive','additionalPrompts','convertInput'].forEach(id=>{
-  const e=el(id);
-  if(e){ e.addEventListener('input',()=>{ if(id==='charLen') updateLenLabel(); saveAll(); if(id==='additionalPrompts' && SETTINGS.additionalLocked){ /* if editing while locked, auto-unlock? Keep locked until edit button */ } }); e.addEventListener('change',()=>{ if(id==='charLen') updateLenLabel(); saveAll(); }); }
-});
-
+['apiKey','model','writeStyle','charLen','banarasiLevel','title','characters','pastChapters','directive','additionalPrompts'].forEach(id=>{ const e=el(id); if(e){ e.addEventListener('input',()=>{ if(id==='charLen') el('lenLabel').textContent=el(id).value; saveAll(); }); e.addEventListener('change',saveAll); } });
 loadAll();
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
